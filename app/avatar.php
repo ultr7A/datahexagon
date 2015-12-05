@@ -3,7 +3,7 @@ ini_set('display_startup_errors',1);
 ini_set('display_errors',1);
 error_reporting(-1);
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-    $connection = mysqli_connect("db.spacehexagon.com", "pcn_root", "db4189five", "data_spacehexagon");
+    $connection = mysqli_connect("db.example.com","user","pass","db");
     if (!$connection) {
         echo 'Connect Error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error();
     }
