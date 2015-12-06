@@ -51,12 +51,12 @@
 		<meta name="application-name" content="DataHexagon">
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	    <meta content="utf-8" http-equiv="encoding">
-        <meta property="og:image" content="/app/data/shadow-gradient-hexagon-192.png" / >
+        <meta property="og:image" content="/app/data/gradient-shadow-hexagon-white-192.png" / >
         <meta property="og:image:width" content="192" />
         <meta property="og:image:height" content="192" />
         <!--        <link rel="icon" sizes="192x192" href="/app/data/balanced-hexagon-0-192.png"> -->
         <!--        <link rel="icon" sizes="192x192" href="/app/data/convex-shadow-192.png">-->
-        <link rel="icon" sizes="192x192" href="/app/data/shadow-gradient-hexagon-192.png">
+        <link rel="icon" sizes="192x192" href="/app/data/gradient-shadow-hexagon-white-192.png">
 
         <!--        <link rel="icon" sizes="192x192" href="/app/data/concave-shadow-192.png">-->
         <link rel="stylesheet" href="app/css/main.css" type="text/css" >

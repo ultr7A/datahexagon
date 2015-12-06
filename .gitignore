@@ -3,3 +3,8 @@
 # Example .gitignore files: https://github.com/github/gitignore
 /bower_components/
 /node_modules/
+/app/private_avatar.php
+/app/private_data.php
+/app/private_share.php
+/private_index.php
+/home/private_index.php
