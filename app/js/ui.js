@@ -63,6 +63,7 @@ var UI = {
 		this.element = div;
 		div.setAttribute("class", "UI-Context-Menu");
 		item.innerHTML="<h2>"+name+"</h2>";
+		div.appendChild(list);
 		list.appendChild(item);
 		options.menuItems.forEach(function (menuItem) {
 			item = document.createElement("li");
