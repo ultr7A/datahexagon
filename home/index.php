@@ -47,7 +47,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name='theme-color' content='rgb(40, 40, 40)'>
 		<meta name="description" content="A web based desktop environment, file storage and sharing service." >
-        <meta name="msapplication-TileColor" content="#282828">
+      	 <meta name="msapplication-TileColor" content="#282828">
+        <meta name="msapplication-TileImage" content="/app/data/gradient-shadow-hexagon-white-192.png">
 		<meta name="application-name" content="DataHexagon">
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	    <meta content="utf-8" http-equiv="encoding">
