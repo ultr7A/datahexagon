@@ -686,7 +686,8 @@ function init () {
         geometry,
         material;
 
-    console.log("Data Hexagon (C) "+(new Date().getFullYear())+" Jeremy Evans - jeremy@spacehexagon.com");
+    console.log("Data Hexagon (C) "+(new Date().getFullYear()) + " jeremy@spacehexagon.com");
+	console.log("https://github.com/SpaceHexagon/datahexagon");
 
 	function toggleInitialForms (login) {
         var signInForm = document.querySelector("#signin-form"),

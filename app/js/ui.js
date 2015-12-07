@@ -56,10 +56,27 @@ var UI = {
 
 		};
 	},
+	ContextMenu: function (name, options) {
+		var div = document.createElement("div"),
+			list = document.createElement("ul"),
+			item = document.createElement("li");
+		this.element = div;
+		div.setAttribute("class", "UI-Context-Menu");
+		item.innerHTML="<h2>"+name+"</h2>";
+		list.appendChild(item);
+		options.menuItems.forEach(function (menuItem) {
+			item = document.createElement("li");
+			item.innerHTML = menuItem.name;
+			item.addEventListener("click", function (evt) {
+				menuItem.click;
+			}, true);
+			list.appendChild()
+		});
+	},
 	defaults: {
 		menu: {
 			options:[
-				{"name": "App Icon", "icon":"/app/data/text.png", "click": function (e) {
+				{"name": "App Icon", "icon":"/app/data/192/text.png", "click": function (e) {
 
 				}},
 				{"name": "New", "icon":"/app/data/plus.png", "click": function (e) {
