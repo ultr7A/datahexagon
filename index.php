@@ -96,11 +96,11 @@
                 <input type='submit' value='Go'/>
             </form>
 		</div>
-
         <script src="/app/lib/three.js"></script>
         <script src="app/lib/socket.io/socket.io.js"></script>
+        <script src="app/js/ui.js"></script>
         <script src="app/js/main.js"></script>
-         <script src="app/js/applet.js"></script>
+        <script src="app/js/applet.js"></script>
          <?php if ($username != "") { ?>
         <script>
             app.user.name = "<?php echo $username; ?>";
@@ -111,6 +111,4 @@
         </script>
 		<?php } ?>
     </body>
-
-
 </html>

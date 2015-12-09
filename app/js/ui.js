@@ -41,7 +41,7 @@ var UI = {
 			case "codemirror":
 
 			break;
-			case: "canvas";
+			case "canvas":
 
 			break;
 			case "webgl":
