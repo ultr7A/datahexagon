@@ -180,12 +180,24 @@ input [type=text] {
 	background: black;
 	color: white;
 }
+
+
 aside.sort, aside.view, aside.file, aside.creation {
-    box-shadow: 0px 0px 10px;
+    box-shadow: 0px 0px 60px rgba(255,255,255,0.5);
     padding-top: 94px !important;
     left: 86px !important;
     z-index: 99999998 !important;
 }
+
+.light aside  {
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.5);
+}
+
+aside.root {
+    box-shadow: none !important;
+}
+
+
 
 aside.sort nav a, aside.view nav a, aside.file nav a, aside.creation nav a {
 	width: 48px;
@@ -803,7 +815,7 @@ input[type=text], input[type=password] {
 		padding-top: 1em !important;
 	}
 	aside.sort, aside.view, aside.file, aside.creation {
-		top: 78px !important;
+		top: 75px !important;
 		left: 0px !important;
 	}
 	section.content {

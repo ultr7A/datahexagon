@@ -64,7 +64,7 @@
         </header>
         <?php if ($username != "") { ?>
         <form class='fileManagement' action="?" method="POST" enctype="multipart/form-data">
-            <aside>
+            <aside class="root">
             	<nav>
                 	<a class="sh" href="javascript:void(0);" onclick="app.showMenu('launcher');" title="Launch Applets" ></a>
                 	<a onclick="app.showMenu('creation');" href="javascript:void(0);" class='create' title="Create and Upload"></a>
