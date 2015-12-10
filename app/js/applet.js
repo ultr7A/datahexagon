@@ -25,7 +25,7 @@ Applet.prototype.close = function (params) {
 
 };
 
-app.applets["clock"] = {
+app.applets["alarm-clock"] = {
     name: "Clock",
     options: {
         "Clock": function (p) {},
@@ -98,6 +98,20 @@ app.applets["chat"] = {
 
 	},
     save: function (p) { },
+    close: function (p) { }
+};
+
+app.applets["image-viewer"] = {
+    name: "Image Viewer",
+    options: {
+        "Next": function (p) {},
+		"Previous": function (p) {},
+		"Share": function (p) {}
+    },
+    schema: {
+
+    },
+    init: function (p) { },
     close: function (p) { }
 };
 
