@@ -56,15 +56,18 @@ var UI = {
 
 		};
 	},
-	ContextMenu: function (name, options) {
+	ContextMenu: function (options) {
 		var div = document.createElement("div"),
 			list = document.createElement("ul"),
 			item = document.createElement("li");
 		this.element = div;
 		div.setAttribute("class", "UI-Context-Menu");
-		item.innerHTML="<h2>"+name+"</h2>";
+		item.innerHTML="<h2>"+options.name+"</h2>";
 		div.appendChild(list);
 		list.appendChild(item);
+		if (options.menuItems.length == 0) {
+			options.menuItems = UI.defaults.contextMenu.options;
+		}
 		options.menuItems.forEach(function (menuItem) {
 			item = document.createElement("li");
 			item.innerHTML = menuItem.name;
@@ -98,10 +101,31 @@ var UI = {
 			loadFiles: function () {
 
 			}
+		},
+		contextMenu: {
+			options: {
+				menuItems: [
+					{"name": "Open", "icon":"/app/data/hidpi-box.png", "click": function (e) { }},
+					{"name": "Edit", "icon":"/app/data/hidpi-box.png", "click": function (e) { }},
+					{"name": "Delete", "icon":"/app/data/hidpi-box.png", "click": function (e) { }},
+				]
+			}
 		}
 	}
 
 
+}
+
+
+function AppIcon (name) {
+	var element = new document.createElement("div"),
+		app = app.applets[name];
+	element.setAttribute("UI-App-Icon");
+	element.innerHTML = "<span>"+app.title+"</span>";
+	this.element = element;
+	element.addEventListener("click", function () {
+		app.openPane("app", app.title, { applet: app });
+	}, true);
 }
 
 

@@ -109,26 +109,25 @@
 
             </section>
             <section class="launcher" style="display: none;">
-                   <p>App Launcher coming soon!</p>
-                   <div style="display: none;">
+                   <div>
                   		<div class="app icon" id='text-editor'>
-                   		<span>Text Editor</span>
-					   </div>
-					   <div class="app icon up" id='image-editor'>
+							<span>Text Editor</span>
+						</div>
+					   	<div class="app icon up" id='alarm'>
+							<span>Alarm Clock</span>
+					   	</div>
+					   	<div class="app icon " id='image-editor'>
 							<span>Image Editor</span>
-					   </div>
-					   <div class="app icon" id='editor-3d'>
-							<span>3D Editor</span>
-					   </div>
-					   <div class="app icon" id='nexus-chat'>
+					   	</div>
+					   	<div class="app icon" id='nexus-chat'>
 							<span>Nexus Chat</span>
-					   </div>
-					   <div class="app icon down" id='animator'>
-							<span>Animator</span>
-					   </div>
-					   <div class="app icon" id='animator-3d'>
-							<span>3D Animator</span>
-					   </div>
+					   	</div>
+					   	<div class="app icon down" id='settings-app'>
+							<span>Settings</span>
+					   	</div>
+					   	<div class="app icon" id='editor-3d'>
+							<span>3D Editor</span>
+					   	</div>
 
                    </div>
             </section>

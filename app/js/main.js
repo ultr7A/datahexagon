@@ -9,6 +9,7 @@ var app = {
         files: [],
 		panes: [],
         applets: [],
+		accessories: ["Text Edit", "Alarm Clock", "Image Editor", "Messaging", "Settings", "3D Editor"],
 		bgImage: "",
 		sortMode: "type",
 		viewMode: "grid",
@@ -132,13 +133,22 @@ var app = {
 				};
 			}
 			uploadFiles(pane);
-		}
+		},
+	initLauncher: function () {
+		var launcher = document.querySelector("section.launcher");
+		this.accessories.forEach(function (accessory) {
+			var appIcon = new AppIcon(accessory)
+			console.log("accessory", accessory);
+			launcher.appendChild(appIcon);
+		});
+	}
 };
 
 function Card (name, resource, options) {
     var e = document.createElement("div"),
         i = null,
 		up = false,
+		contextMenu = false,
 		link = document.createElement("a"),
 		close = document.createElement("input"),
 		edit = document.createElement("input");
@@ -182,21 +192,35 @@ function Card (name, resource, options) {
 			}, true);
 			e.setAttribute("class", "Card Folder");
 		} else {
-			edit.setAttribute("class", "close edit");
-			edit.setAttribute("type", "button");
-			edit.setAttribute("value", "Edit");
-			edit.addEventListener("click", function (event) {
-				event.preventDefault();
-				app.request("GET", resource+"?cache="+Date.now(), "", function (response) {
-					app.openPane('edit', name, {"resource":app.cwd+"/"+name, "text": response});
-				});
-				return false;
-			}, true);
-			e.appendChild(edit);
+			if (! contextMenu) {
+				edit.setAttribute("class", "close edit");
+				edit.setAttribute("type", "button");
+				edit.setAttribute("value", "Edit");
+				edit.addEventListener("click", function (event) {
+					event.preventDefault();
+					app.request("GET", resource+"?cache="+Date.now(), "", function (response) {
+						app.openPane('edit', name, {"resource":app.cwd+"/"+name, "text": response});
+					});
+					return false;
+				}, true);
+				e.appendChild(edit);
+			}
 		}
     }
-	e.appendChild(close);
-	e.appendChild(link);
+	//	Experimental..
+	if (contextMenu) {
+		e.addEventListener("click", function (evt) {
+			var options = {
+					name: evt.target.getAttribute("data-resource"),
+					resource: evt.target.getAttribute("data-resource"),
+					menuItems: []
+				},
+				menu = new ContextMenu(options);
+		}, true);
+	} else {
+		e.appendChild(close);
+		e.appendChild(link);
+	}
     for (i in options) {
         e.setAttribute(i, options[i]);
     }

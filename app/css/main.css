@@ -332,7 +332,7 @@ section.content#paneview {
 }
 
 section.launcher {
-        position: fixed;
+   position: fixed;
     z-index: 10000000;
     left: 0;
     right: 0;
@@ -343,9 +343,9 @@ section.launcher {
     max-width: 800px;
     max-height: 800px;
     margin: auto;
-    background: #FFF;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25), 0px 0px 60px rgba(0, 0, 0, 0.25);
-    border-radius: 5%;
+    background: rgb(241, 241, 241);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15), 0px 0px 80px rgba(0, 0, 0, 0.35);
+    border-radius: 2%;
 }
 
 section.launcher p {
@@ -360,7 +360,7 @@ section.launcher p {
     height: 100px;
     display: inline-block;
     border-radius: 18%;
-    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25), 0px 0px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.10), 0px 0px 20px rgba(0, 0, 0, 0.25);
     margin-right: 0%;
     margin-bottom: -6%;
     margin-left: 9.75%;
@@ -370,6 +370,7 @@ section.launcher p {
     padding-bottom: 0;
     color: grey;
     text-align: center;
+    background-color: white;
 }
 
 .app.icon.up {
@@ -737,7 +738,7 @@ input[type=text], input[type=password] {
 }
 
 .light .lightbox, .lightbox.light {
-	background-color: rgba(255, 255, 255, 0.92) !important;
+	background-color: rgba(255, 255, 255, 0.97) !important;
     color: black;
     text-shadow: none;
 }
