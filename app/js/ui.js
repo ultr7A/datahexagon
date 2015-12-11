@@ -128,7 +128,6 @@ function AppIcon (name) {
 	}, true);
 }
 
-
 function DataPane (type, name, data) {
 	console.log(data);
     var container = document.createElement("div"),
@@ -273,4 +272,87 @@ DataPane.prototype.getCloseMethod = function (save) {
 		}
     };
 };
+
+function Card (name, resource, options) {
+    var e = document.createElement("div"),
+        i = null,
+		up = false,
+		contextMenu = false,
+		link = document.createElement("a"),
+		close = document.createElement("input"),
+		edit = document.createElement("input");
+	e.setAttribute("class", "Card");
+	e.setAttribute("data-resource", resource);
+	link.setAttribute("target", "_blank");
+	link.innerHTML = name;
+	link.setAttribute("href", resource);
+	close.setAttribute("class", "close");
+	close.setAttribute("type", "button");
+	close.setAttribute("value", "X");
+	close.addEventListener("click", function (event) {
+		event.preventDefault();
+		deletePath(app.cwd+"/"+name);
+		return false;
+	}, true);
+    if (/(\.jpg|\.png|\.gif|\.jpeg|\.webp)/i.test(resource)) {
+		resource = resource.replace(/\s/g, "%20");
+		if (!/(\.webp|\.gif)/i.test(resource)) { // don't thumbnail webp or gif
+			var rPath = resource.split("/");
+			var thumb = rPath[rPath.length-1];
+			rPath.splice(rPath.length-1, 1);
+			rPath.push("DHThumbs");
+			if (window.innerWidth < 641) { // temporary hack to use high-dpi on mobile
+				rPath.push("1024");
+			}
+			rPath.push(thumb+".jpg");
+			thumb = rPath.join("/");
+		} else {
+			thumb = resource;
+		}
+		e.setAttribute("style", "background-image: url('"+thumb+"');"); //resource+"');");
+		e.setAttribute("class", "Card Image");
+    } else {
+		if (/^(.*\/){0,1}[^\.]*.{1}$/.test(resource)) { // detect folders
+            link.setAttribute("href", "#");
+			link.addEventListener("click", function (event) {
+				event.preventDefault();
+				openFolder(resource);
+				return false;
+			}, true);
+			e.setAttribute("class", "Card Folder");
+		} else {
+			if (! contextMenu) {
+				edit.setAttribute("class", "close edit");
+				edit.setAttribute("type", "button");
+				edit.setAttribute("value", "Edit");
+				edit.addEventListener("click", function (event) {
+					event.preventDefault();
+					app.request("GET", resource+"?cache="+Date.now(), "", function (response) {
+						app.openPane('edit', name, {"resource":app.cwd+"/"+name, "text": response});
+					});
+					return false;
+				}, true);
+				e.appendChild(edit);
+			}
+		}
+    }
+	//	Experimental..
+	if (contextMenu) {
+		e.addEventListener("click", function (evt) {
+			var options = {
+					name: evt.target.getAttribute("data-resource"),
+					resource: evt.target.getAttribute("data-resource"),
+					menuItems: []
+				},
+				menu = new ContextMenu(options);
+		}, true);
+	} else {
+		e.appendChild(close);
+		e.appendChild(link);
+	}
+    for (i in options) {
+        e.setAttribute(i, options[i]);
+    }
+    return e;
+}
 
