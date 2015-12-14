@@ -136,6 +136,7 @@ var app = {
 		},
 	initLauncher: function () {
 		var launcher = document.querySelector("section.launcher");
+        launcher.innerHTML = "";
 		this.accessories.forEach(function (accessory) {
 			var appIcon = new AppIcon(accessory)
 			console.log("accessory", accessory);

@@ -118,13 +118,13 @@ var UI = {
 
 
 function AppIcon (name) {
-	var element = new document.createElement("div"),
-		app = app.applets[name];
-	element.setAttribute("UI-App-Icon");
-	element.innerHTML = "<span>"+app.title+"</span>";
+	var element = document.createElement("div"),
+		applet = app.applets[name];
+	element.setAttribute("class", "UI-App-Icon");
+	element.innerHTML = "<span>"+applet.name+"</span>";
 	this.element = element;
 	element.addEventListener("click", function () {
-		app.openPane("app", app.title, { applet: app });
+		app.openPane("app", applet.title, { applet: applet });
 	}, true);
 }
 
