@@ -1280,7 +1280,7 @@ div.formContainer {
 .light .Folder {
     background-color: #515151 !important;
     border-top: #BEBEBE 5px solid !Important;
-    padding-top: 0.8em;
+	padding-top: 0.8em;
     margin-bottom: 8px;
     background-color: #1A1A1A;
     background-image: -webkit-linear-gradient(#656565, #1A1A1A);
