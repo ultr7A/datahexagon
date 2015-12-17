@@ -23,7 +23,7 @@ var app = {
     	actors: [],
 		request: function (method, path, query, callback) {
 			var xhr = new XMLHttpRequest(),
-				prefix = window.location.href.split(".com")[1] == "/home?" ? ".." : "";
+				prefix = window.location.href.split(".com")[1] == "/home/?" ? ".." : "";
 			xhr.onreadystatechange = function () {
 				if (xhr.readyState == 4 && xhr.status == 200) {
 					callback(xhr.responseText);

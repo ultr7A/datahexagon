@@ -19,7 +19,7 @@
                     if (mysqli_num_rows($user) == 0) {
                         mysqli_query($connection,"insert into `Users` (username,password,email,user_data) values ('" .
                                      $_POST["username"] . "','" . $password . "','" . $_POST["email"] . "','" . $user_data . "');");
-                        mkdir(getcwd()."../".strtolower($_POST["username"]), 0755);
+                        mkdir(getcwd()."../".strtolower($_POST["username"]), 0775);
 						$text = "<h1>Welcome to Data Hexagon</h1>";
 						$textFile = fopen(getcwd()."../".strtolower($_POST["username"]) . "/Welcome.htm", "w") or die("Unable to open file!");
 						fwrite($textFile, $text);

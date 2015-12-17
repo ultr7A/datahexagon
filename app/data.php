@@ -19,10 +19,10 @@ function thumbnail ($location, $file, $tmp_name) {
 				$img = imagecreatefromjpeg($tmp_name);
 			}
 			if (!file_exists($location . "DHThumbs")) {
-				mkdir($location . "DHThumbs", 0755);
+				mkdir($location . "DHThumbs", 0775);
 			}
 			if (!file_exists($location . "DHThumbs" . "/1024")) {
-				mkdir($location . "DHThumbs" . "/1024", 0755);
+				mkdir($location . "DHThumbs" . "/1024", 0775);
 			}
 			$width = imagesx($img);
 			$height = imagesy($img);
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             case "ls":
 				$location = $cwd . "/.." . $_POST["path"];
 				if (strtolower($location) == strtolower($cwd . "/../" . ($username)) && !file_exists($location)) {
-					mkdir($location, 0755);
+					mkdir($location, 0775);
 				} else {
 					$files = scandir($location);
 					$location .= "/";
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             	break;
             case "mkdir":
                 echo "mkdir " . $cwd . "/.." . $_POST["path"];
-                mkdir($cwd . "/.." . $_POST["path"], 0755);
+                mkdir($cwd . "/.." . $_POST["path"], 0775);
                 break;
             case "mv":
 
