@@ -1329,6 +1329,7 @@ div.formContainer {
 
 
 body.light  {
+	background-color: white !important;
 	background-image: -webkit-linear-gradient(#333, #FFF, #FFF, #FFF, #FFF) !important;
 	background-image: -moz-linear-gradient(#333, #FFF, #FFF, #FFF, #FFF) !important;
 	background-image: linear-gradient(#333, #FFF, #FFF, #FFF, #FFF) !important;
