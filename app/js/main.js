@@ -16,7 +16,7 @@ var app = {
         lightbox: null,
 		logo: null,
     	light: null,
-		largeThumbs: false,
+		thumbSize: false,
 		layoutTimeout: 0,
         scrollDepth: 0,
     	gravityZone: [180, 180],
@@ -114,9 +114,9 @@ var app = {
 			document.body.setAttribute("class", (app.bgImage != "" ? "bg " : "") + localStorage.getItem("theme"));
 		},
 		toggleThumbSize: function () {
-			this.largeThumbs = ! this.largeThumbs;
+			this.thumbSize = ! this.thumbSize;
 			app.showMenu("none");
-			app.container.setAttribute("class", "content" + (this.largeThumbs ? " doubleSurface" : ""));
+			app.container.setAttribute("class", "content" + (this.thumbSize ? " doubleSurface" : ""));
 		},
 		startUpload: function (input, files) {
 			var pane = {

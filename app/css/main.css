@@ -1038,16 +1038,18 @@ aside.creation nav a span {
 	nav a.mkdir {
 		margin-bottom: 10px;
 	}
-	nav a.full3d {
-		display: none;
-	}
 	nav a.grid {
 		display: none;
 	}
 	nav a.hexagon {
 		display: none;
 	}
-
+	.doubleSurface .Card.Image {
+		width: 118px !important;
+		height: 118px !important;
+		margin-left: 1.5em !important;
+		display: inline-block !important;
+	}
 	.titleEntry.icon {
         padding-left: 16%;
         width: 80.5%;
