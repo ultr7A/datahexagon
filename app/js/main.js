@@ -9,7 +9,7 @@ var app = {
         files: [],
 		panes: [],
         applets: [],
-		accessories: ["text-edit", "alarm-clock", "image-editor", "chat", "settings", "3d-editor"],
+		accessories: ["text-editor", "alarm-clock", "image-editor", "chat", "settings", "3d-editor"],
 		bgImage: "",
 		sortMode: "type",
 		viewMode: "grid",
@@ -138,9 +138,10 @@ var app = {
 		var launcher = document.querySelector("section.launcher");
         launcher.innerHTML = "";
 		this.accessories.forEach(function (accessory) {
-			var appIcon = new AppIcon(accessory)
+			var appIcon = new AppIcon(accessory),
+                launcher = document.querySelector("section.launcher");
 			console.log("accessory", accessory);
-			launcher.appendChild(appIcon);
+			launcher.appendChild(appIcon.element);
 		});
 	}
 };

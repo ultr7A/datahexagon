@@ -120,6 +120,7 @@ var UI = {
 function AppIcon (name) {
 	var element = document.createElement("div"),
 		applet = app.applets[name];
+    console.log("name", name);
 	element.setAttribute("class", "UI-App-Icon");
 	element.innerHTML = "<span>"+applet.name+"</span>";
 	this.element = element;

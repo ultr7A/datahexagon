@@ -1,30 +1,39 @@
 
 function Applet (name, params) {
-    var data = app.applets[name];
+    var data = app.applets[name],
+        div = document.createElement("div");
+    div.setAttribute("class", "UI-Applet");
+    this.div = div;
     this.data = data;
+    this.components = [];
     this.init(data);
 }
 
 Applet.prototype.init = function (params) {
     console.log("Applet init... ", params);
-
+    var components = this.data.init(params);
+    if (typeof components == 'array') {
+        this.components = components;
+        this.components.forEach(function (component) {
+            this.div.appendChild(component);
+        });
+    }
 };
 
 Applet.prototype.add = function (params) {
     console.log("Applet add... ", params);
-
+    this.data.add(params);
 };
 
 Applet.prototype.save = function (params) {
     console.log("Applet save... ", params);
-
+    this.data.save(params);
 };
 
 Applet.prototype.close = function (params) {
     console.log("Applet close... ", params);
-
+    this.data.close(params);
 };
-
 app.applets["alarm-clock"] = {
     name: "Clock",
     options: {
@@ -44,7 +53,9 @@ app.applets["alarm-clock"] = {
             "date": "2015-08-08"
         }
     },
-    init: function (p) { },
+    init: function (p) {
+
+    },
     add: function (p) { },
     save: function (p) { },
     close: function (p) { }
@@ -63,7 +74,6 @@ app.applets["terminal"] = { // support algebra as well as *nix commands
     },
     init: function (p) {
 		//add event listener to button to submit command
-
 		// code function to parse command,
 		// call app function,
 		// display result...
@@ -72,7 +82,6 @@ app.applets["terminal"] = { // support algebra as well as *nix commands
     save: function (p) { },
     close: function (p) { }
 };
-
 
 app.applets["chat"] = {
     name: "Nexus Chat",
@@ -92,7 +101,6 @@ app.applets["chat"] = {
 		// send welcome message
 		// add event listener to send button
 		// add socket event listener for chat message
-
 	},
     add: function (p) {
 
@@ -111,7 +119,25 @@ app.applets["image-viewer"] = {
     schema: {
 
     },
-    init: function (p) { },
+    init: function (p) {
+
+    },
+    close: function (p) { }
+};
+
+app.applets["text-editor"] = {
+    name: "Text Editor",
+    options: {
+        "Save Changes": function (p) {}
+    },
+    schema: {
+
+    },
+    init: function (p) {
+
+    },
+    add: function (p) { },
+    save: function (p) { },
     close: function (p) { }
 };
 
@@ -123,7 +149,9 @@ app.applets["image-editor"] = {
     schema: {
 
     },
-    init: function (p) { },
+    init: function (p) {
+
+    },
     add: function (p) { },
     save: function (p) { },
     close: function (p) { }
