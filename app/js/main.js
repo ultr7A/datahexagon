@@ -511,6 +511,16 @@ function init () {
 		if (app.cwd != "" && app.viewMode !="grid") {
 			app.switchView(app.viewMode);
 		}
+		console.log(app.thumbSize, window.innerWidth);
+		if (window.innerWidth <= 640) {
+			if (!app.thumbSize) { // if thumbnail size at default...
+				app.toggleThumbSize();
+			}
+		} else {
+			if (app.thumbSize) { // stop defautly resizing thumbnails once a reasonable resolution is detected
+				app.toggleThumbSize();
+			}
+		}
 		clearTimeout(app.layoutTimeout);
 		app.layoutTimeout = setTimeout(function () { adjustLayout(); /*initFileView(app.files, app.cwd);*/ }, 125);
 		if (!!THREE) {
@@ -521,6 +531,9 @@ function init () {
 			}
 		}
 	};
+	if (window.innerWidth <= 640) {
+		app.toggleThumbSize();
+	}
 	console.log(page);
 	if (page == "/home/?") {
         app.container.ondragover = function () { app.lightbox.setAttribute("class", "lightbox hover"); return false; };

@@ -898,6 +898,15 @@ input[type=text], input[type=password] {
 		left: 20px;
 		top: 100px;
 	}
+	.doubleSurface .Card.Image {
+		width: 29% !important;
+		height: 118px !important;
+		min-height: 0px;
+		display: inline-block !important;
+		margin: 8% !important;
+		margin-right: 0 !important;
+		margin-top: 2% !important;
+	}
 }
 aside.creation nav a span {
 		display: none;
@@ -1048,12 +1057,7 @@ aside.creation nav a span {
 	nav a.hexagon {
 		display: none;
 	}
-	.doubleSurface .Card.Image {
-		width: 118px !important;
-		height: 118px !important;
-		margin-left: 1.5em !important;
-		display: inline-block !important;
-	}
+
 	.titleEntry.icon {
         padding-left: 16%;
         width: 80.5%;
@@ -1361,6 +1365,10 @@ body.light  {
 
 }
 
+.UI-Toolbar {
+
+}
+
 .UI-Sidebar {
 
 }
@@ -1373,6 +1381,17 @@ body.light  {
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.4), 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+.UI-Vector-Editor {
+
+}
+
+.UI-Vector-Editor div {
+
+}
+
+.UI-Vector-Editor input[type=select] {
+
+}
 
 
 

@@ -30,6 +30,19 @@ var UI = {
 			break;
 		}
 	},
+	Toolbar: function Toolbar (type, options) {
+		var aside = document.createElement("aside");
+		aside.setAttribute("class", "UI-Toolbar");
+		this.element = aside;
+		switch (type) {
+			case "standard":
+
+			break;
+			case "custom":
+
+			break;
+		}
+	},
 	Frame: function Frame (type, options) {
 		var main = document.createElement("main");
 		main.setAttribute("class", "UI-Frame");
@@ -56,12 +69,33 @@ var UI = {
 
 		};
 	},
-	ContextMenu: function (options) {
+	ContextMenu: function ContextMenu (options) {
 		var div = document.createElement("div"),
 			list = document.createElement("ul"),
 			item = document.createElement("li");
 		this.element = div;
 		div.setAttribute("class", "UI-Context-Menu");
+		item.innerHTML="<h2>"+options.name+"</h2>";
+		div.appendChild(list);
+		list.appendChild(item);
+		if (options.menuItems.length == 0) {
+			options.menuItems = UI.defaults.contextMenu.options;
+		}
+		options.menuItems.forEach(function (menuItem) {
+			item = document.createElement("li");
+			item.innerHTML = menuItem.name;
+			item.addEventListener("click", function (evt) {
+				menuItem.click;
+			}, true);
+			list.appendChild()
+		});
+	},
+	VectorEditor: function VectorEditor (options) {
+		var div = document.createElement("div"),
+			list = document.createElement("ul"),
+			item = document.createElement("li");
+		this.element = div;
+		div.setAttribute("class", "UI-Vector-Editor");
 		item.innerHTML="<h2>"+options.name+"</h2>";
 		div.appendChild(list);
 		list.appendChild(item);
