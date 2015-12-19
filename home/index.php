@@ -11,19 +11,17 @@
             $username = "";
             $user_id = -1;
             $serverMSG = "";
+			$createUser = false;
             if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 				if (isset($_POST["register"])) {
 					$password =  password_hash($_POST["password"], PASSWORD_BCRYPT);
                     $user_data = '{"directories":[], "settings":{}}';
                     $user = mysqli_query($connection,"select * from `Users` where username = '" . $_POST["username"] . "';");
                     if (mysqli_num_rows($user) == 0) {
+						$username = $_POST["username"];
                         mysqli_query($connection,"insert into `Users` (username,password,email,user_data) values ('" .
                                      $_POST["username"] . "','" . $password . "','" . $_POST["email"] . "','" . $user_data . "');");
-                        mkdir(getcwd()."../".strtolower($_POST["username"]), 0775);
-						$text = "<h1>Welcome to Data Hexagon</h1>";
-						$textFile = fopen(getcwd()."../".strtolower($_POST["username"]) . "/Welcome.htm", "w") or die("Unable to open file!");
-						fwrite($textFile, $text);
-						fclose($textFile);
+                        $createUser = true;
                     }  else {    // else the user already exists:
                        $serverMSG = "Unfortunately the username entered is not available; please try another.";
                     }
@@ -186,6 +184,13 @@
         </script>
 		<?php } ?>
     </body>
-
-
 </html>
+<?php
+	if ($createUser) {
+		mkdir(getcwd()."../".strtolower($_POST["username"]), 0775);
+		$text = "<h1>Welcome to Data Hexagon</h1>";
+		touch(getcwd()."../".strtolower($_POST["username"]) . "/Welcome.htm");
+		$textFile = fopen(getcwd()."../".strtolower($_POST["username"]) . "/Welcome.htm", "w") or die("Unable to open file!");
+		fwrite($textFile, $text);
+		fclose($textFile);
+	}
