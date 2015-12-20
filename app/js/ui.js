@@ -151,11 +151,19 @@ var UI = {
 }
 
 
-function AppIcon (name) {
+function AppIcon (name, index) {
 	var element = document.createElement("div"),
-		applet = app.applets[name];
+		applet = app.applets[name],
+		directionClass = "";
+	if (!! index) {
+		if (index == 1) {
+			directionClass = " up";
+		} else if (index == 4) {
+			directionClass = " down";
+		}
+	}
     console.log("name", name);
-	element.setAttribute("class", "UI-App-Icon");
+	element.setAttribute("class", "UI-App-Icon" + directionClass);
 	element.innerHTML = "<span>"+applet.name+"</span>";
 	this.element = element;
 	element.addEventListener("click", function () {

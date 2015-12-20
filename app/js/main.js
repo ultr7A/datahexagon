@@ -67,6 +67,9 @@ var app = {
 			});
 			lightbox.setAttribute("style", "display: " + (menu == "none" ? "none" : "block")+ ";");
 			lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " light" : ""));
+			if (menu == "launcher") {
+				app.initLauncher();
+			}
 		},
 		changeSortMode: function (mode) {
 			var sort = document.querySelector("aside.sort"),
@@ -137,8 +140,8 @@ var app = {
 	initLauncher: function () {
 		var launcher = document.querySelector("section.launcher");
         launcher.innerHTML = "";
-		this.accessories.forEach(function (accessory) {
-			var appIcon = new AppIcon(accessory),
+		this.accessories.forEach(function (accessory, i) {
+			var appIcon = new AppIcon(accessory, i),
                 launcher = document.querySelector("section.launcher");
 			console.log("accessory", accessory);
 			launcher.appendChild(appIcon.element);

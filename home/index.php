@@ -107,27 +107,7 @@
 
             </section>
             <section class="launcher" style="display: none;">
-                   <div>
-                  		<div class="UI-App-Icon" id='text-editor'>
-							<span>Text Editor</span>
-						</div>
-					   	<div class="UI-App-Icon up" id='alarm'>
-							<span>Alarm Clock</span>
-					   	</div>
-					   	<div class="UI-App-Icon " id='image-editor'>
-							<span>Image Editor</span>
-					   	</div>
-					   	<div class="UI-App-Icon" id='nexus-chat'>
-							<span>Nexus Chat</span>
-					   	</div>
-					   	<div class="UI-App-Icon down" id='settings-app'>
-							<span>Settings</span>
-					   	</div>
-					   	<div class="UI-App-Icon" id='editor-3d'>
-							<span>3D Editor</span>
-					   	</div>
 
-                   </div>
             </section>
             <input type="hidden" name="login" value="1" />
             <input name="username" type="hidden" value="<?php echo $_POST["username"]; ?>" />
