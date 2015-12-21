@@ -75,19 +75,20 @@ var UI = {
 			item = document.createElement("li");
 		this.element = div;
 		div.setAttribute("class", "UI-Context-Menu");
-		item.innerHTML="<h2>"+options.name+"</h2>";
+		item.innerHTML="<a target='_blank' href='"+options.resource+"' >Open</a>";
 		div.appendChild(list);
 		list.appendChild(item);
 		if (options.menuItems.length == 0) {
-			options.menuItems = UI.defaults.contextMenu.options;
+			options.menuItems = UI.defaults.contextMenu.options.menuItems;
 		}
 		options.menuItems.forEach(function (menuItem) {
 			item = document.createElement("li");
 			item.innerHTML = menuItem.name;
+			item.setAttribute("data-resource", options.resource);
 			item.addEventListener("click", function (evt) {
-				menuItem.click;
+				menuItem.click(evt);
 			}, true);
-			list.appendChild()
+			list.appendChild(item);
 		});
 	},
 	VectorEditor: function VectorEditor (options) {
@@ -100,15 +101,15 @@ var UI = {
 		div.appendChild(list);
 		list.appendChild(item);
 		if (options.menuItems.length == 0) {
-			options.menuItems = UI.defaults.contextMenu.options;
+			options.menuItems = UI.defaults.contextMenu.options.menuItems;
 		}
 		options.menuItems.forEach(function (menuItem) {
 			item = document.createElement("li");
 			item.innerHTML = menuItem.name;
 			item.addEventListener("click", function (evt) {
-				menuItem.click;
+				menuItem.click(evt);
 			}, true);
-			list.appendChild()
+			list.appendChild(item);
 		});
 	},
 	defaults: {
@@ -139,9 +140,22 @@ var UI = {
 		contextMenu: {
 			options: {
 				menuItems: [
-					{"name": "Open", "icon":"/app/data/hidpi-box.png", "click": function (e) { }},
-					{"name": "Edit", "icon":"/app/data/hidpi-box.png", "click": function (e) { }},
-					{"name": "Delete", "icon":"/app/data/hidpi-box.png", "click": function (e) { }},
+//					{"name": "Open", "icon":"/app/data/hidpi-box.png", "click": function (e) { }},
+					{"name": "Edit", "icon":"/app/data/hidpi-box.png", "click": function (e) {
+						var element = e.target,
+							resource = element.getAttribute("data-resource");
+						e.preventDefault();
+						app.request("GET", resource+"?cache="+Date.now(), "", function (response) {
+							app.openPane('edit', name, {"resource":app.cwd+"/"+name, "text": response});
+						});
+						return false;
+
+					}},
+					{"name": "Delete", "icon":"/app/data/hidpi-box.png", "click": function (e) {
+						var element = e.target,
+							resource = element.getAttribute("data-resource");
+						// implement...
+					}},
 				]
 			}
 		}
@@ -320,12 +334,14 @@ function Card (name, resource, options) {
     var e = document.createElement("div"),
         i = null,
 		up = false,
-		contextMenu = false,
-		link = document.createElement("a"),
+		isImage = false,
+		contextMenu = true,
+		link = document.createElement("span"),
 		close = document.createElement("input"),
 		edit = document.createElement("input");
 	e.setAttribute("class", "Card");
 	e.setAttribute("data-resource", resource);
+	e.setAttribute("data-name", name);
 	link.setAttribute("target", "_blank");
 	link.innerHTML = name;
 	link.setAttribute("href", resource);
@@ -337,7 +353,8 @@ function Card (name, resource, options) {
 		deletePath(app.cwd+"/"+name);
 		return false;
 	}, true);
-    if (/(\.jpg|\.png|\.gif|\.jpeg|\.webp)/i.test(resource)) {
+	isImage = /(\.jpg|\.png|\.gif|\.jpeg|\.webp)/i.test(resource);
+    if (isImage) {
 		resource = resource.replace(/\s/g, "%20");
 		if (!/(\.webp|\.gif)/i.test(resource)) { // don't thumbnail webp or gif
 			var rPath = resource.split("/");
@@ -355,7 +372,9 @@ function Card (name, resource, options) {
 		e.setAttribute("style", "background-image: url('"+thumb+"');"); //resource+"');");
 		e.setAttribute("class", "Card Image");
     } else {
+		e.appendChild(link);
 		if (/^(.*\/){0,1}[^\.]*.{1}$/.test(resource)) { // detect folders
+			contextMenu = false; // disable context menu for now...
             link.setAttribute("href", "#");
 			link.addEventListener("click", function (event) {
 				event.preventDefault();
@@ -364,7 +383,7 @@ function Card (name, resource, options) {
 			}, true);
 			e.setAttribute("class", "Card Folder");
 		} else {
-			if (! contextMenu) {
+			if (!contextMenu) {
 				edit.setAttribute("class", "close edit");
 				edit.setAttribute("type", "button");
 				edit.setAttribute("value", "Edit");
@@ -381,18 +400,20 @@ function Card (name, resource, options) {
     }
 	//	Experimental..
 	if (contextMenu) {
-		e.addEventListener("click", function (evt) {
-			var options = {
-					name: evt.target.getAttribute("data-resource"),
-					resource: evt.target.getAttribute("data-resource"),
-					menuItems: []
-				},
-				menu = new ContextMenu(options);
-		}, true);
+		var menu = new UI.ContextMenu({
+			name: name,
+			resource: resource,
+			menuItems: [] // dummy menu items
+		});
+		if (isImage) {
+			e.appendChild(menu.element);
+		} else {
+			link.appendChild(menu.element);
+		}
 	} else {
 		e.appendChild(close);
-		e.appendChild(link);
 	}
+
     for (i in options) {
         e.setAttribute(i, options[i]);
     }
