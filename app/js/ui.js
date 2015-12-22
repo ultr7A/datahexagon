@@ -85,6 +85,7 @@ var UI = {
 			item = document.createElement("li");
 			item.innerHTML = menuItem.name;
 			item.setAttribute("data-resource", options.resource);
+            item.setAttribute("data-name", options.name);
 			item.addEventListener("click", function (evt) {
 				menuItem.click(evt);
 			}, true);
@@ -143,13 +144,13 @@ var UI = {
 //					{"name": "Open", "icon":"/app/data/hidpi-box.png", "click": function (e) { }},
 					{"name": "Edit", "icon":"/app/data/hidpi-box.png", "click": function (e) {
 						var element = e.target,
-							resource = element.getAttribute("data-resource");
+							resource = element.getAttribute("data-resource"),
+                            name = element.getAttribute("data-name");
 						e.preventDefault();
 						app.request("GET", resource+"?cache="+Date.now(), "", function (response) {
 							app.openPane('edit', name, {"resource":app.cwd+"/"+name, "text": response});
 						});
 						return false;
-
 					}},
 					{"name": "Delete", "icon":"/app/data/hidpi-box.png", "click": function (e) {
 						var element = e.target,

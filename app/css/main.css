@@ -3,13 +3,14 @@ html {
 }
 
 body {
-	font-family: robotoThin, helvetica, sans-serif;
-	font-size: 16px;
-	font-weight: bold;
 	position: absolute;
     width: 100%;
     height: 100%;
-	color: white;
+    margin: 0;
+    color: white;
+	font-size: 16px;
+	font-weight: bold;
+    font-family: robotoThin, helvetica, sans-serif;
 	background-color: #1A1A1A;
 	background-image: -webkit-linear-gradient(#313131, #1A1A1A);
 	background-image: -moz-linear-gradient(#313131, #1A1A1A);
@@ -1035,6 +1036,9 @@ aside.creation nav a span {
         margin-bottom: 0px;
         padding-top: 14px;
 	}
+    .UI-Context-Menu {
+        min-width: 60px !important;
+    }
 }
 
 @media screen and (max-width: 322px) {
@@ -1381,6 +1385,10 @@ body.light  {
 .Card:hover .UI-Context-Menu {
 	opacity: 1;
 	    z-index: 9999999;
+}
+
+.UI-Context-Menu ul li a {
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
 }
 
 .UI-Vector-Editor {
