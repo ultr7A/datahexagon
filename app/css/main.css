@@ -870,13 +870,14 @@ input[type=text], input[type=password] {
 		top: 100px;
 	}
 	.doubleSurface .Card.Image {
-		width: 29% !important;
-		height: 118px !important;
-		min-height: 0px;
-		display: inline-block !important;
-		margin: 8% !important;
-		margin-right: 0 !important;
-		margin-top: 2% !important;
+        width: 120px !important;
+        height: 120px !important;
+        min-height: 0px;
+        display: inline-block !important;
+        margin: 5% !important;
+        margin-right: 0 !important;
+        margin-top: 2.5% !important;
+        margin-bottom: 3.5% !important;
 	}
 }
 aside.creation nav a span {
@@ -894,7 +895,7 @@ aside.creation nav a span {
     	max-width: 265px !important;
     	width: 100% !important;
 		margin: auto !important;
-		margin-bottom: 2em !important;
+		margin-bottom: 1em !important;
 	}
 	.Card.Image {
 		height: 265px !important;
@@ -1037,7 +1038,7 @@ aside.creation nav a span {
         padding-top: 14px;
 	}
     .UI-Context-Menu {
-        min-width: 60px !important;
+        min-width: 104px !important;
     }
 }
 
@@ -1287,7 +1288,7 @@ div.formContainer {
 .light .Folder {
         background-color: #515151 !important;
     border-top: #F0F0F0 5px solid !important;
-    padding-top: 0.8em;
+    padding-top: 0.75em;
     background-color: #1A1A1A;
     background-image: -webkit-linear-gradient(#656565, #1A1A1A);
     background-image: -moz-linear-gradient(#656565, #1A1A1A);
@@ -1368,7 +1369,8 @@ body.light  {
 }
 
 .UI-Context-Menu {
-	    position: absolute;
+    position: absolute;
+/*    z-index: 99999999;*/
     top: 20px;
     min-width: 205px;
     background-color: rgba(255, 255, 255, 0.87);
@@ -1382,9 +1384,21 @@ body.light  {
     transition: all 0.5s ease;
 }
 
+.UI-Context-Menu ul li {
+    margin-top: 0.5em;
+    font-size: 26px;
+    list-style-type: none;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+}
+
+.UI-Context-Menu ul li a {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+}
+
+
 .Card:hover .UI-Context-Menu {
 	opacity: 1;
-	    z-index: 9999999;
+    z-index: 9999999;
 }
 
 .UI-Context-Menu ul li a {
