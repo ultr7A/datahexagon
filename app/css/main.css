@@ -1369,8 +1369,7 @@ body.light  {
 }
 
 .UI-Context-Menu {
-    position: absolute;
-/*    z-index: 99999999;*/
+   position: absolute;
     top: 20px;
     min-width: 205px;
     background-color: rgba(255, 255, 255, 0.87);
@@ -1379,9 +1378,10 @@ body.light  {
     border-radius: 4px;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.4), 0px 2px 5px rgba(0, 0, 0, 0.3);
     opacity: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.4s cubic-bezier(0, 0.97, 0.22, 1.04);
+    -moz-transition: all 0.4s cubic-bezier(0, 0.97, 0.22, 1.04);
+    transition: all 0.4s cubic-bezier(0, 0.97, 0.22, 1.04);
+    transform: scale(0,0);
 }
 
 .UI-Context-Menu ul li {
@@ -1399,6 +1399,9 @@ body.light  {
 .Card:hover .UI-Context-Menu {
 	opacity: 1;
     z-index: 9999999;
+	-webkit-transform: scale(1,1);
+	-moz-transform: scale(1,1);
+    transform: scale(1,1);
 }
 
 .UI-Context-Menu ul li a {
