@@ -69,6 +69,8 @@ var app = {
 			lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " light" : ""));
 			if (menu == "launcher") {
 				app.initLauncher();
+			} else {
+				document.querySelector("section.launcher").setAttribute("class", "launcher");
 			}
 		},
 		changeSortMode: function (mode) {
@@ -140,6 +142,9 @@ var app = {
 	initLauncher: function () {
 		var launcher = document.querySelector("section.launcher");
         launcher.innerHTML = "";
+		setTimeout(function(){
+			launcher.setAttribute("class", "launcher show");
+		},100)
 		this.accessories.forEach(function (accessory, i) {
 			var appIcon = new AppIcon(accessory, i),
                 launcher = document.querySelector("section.launcher");

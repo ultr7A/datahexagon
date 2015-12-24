@@ -347,6 +347,21 @@ section.launcher {
     background: rgb(241, 241, 241);
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15), 0px 0px 80px rgba(0, 0, 0, 0.35);
     border-radius: 2%;
+	-webkit-transform: perspective(50px) translateZ(268px);
+    -moz-transition: all 0.666s cubic-bezier(0.07, 0.93, 0.2, 0.92);
+	-webkit-transform: perspective(50px) translateZ(268px);
+    -moz-transition: all 0.666s cubic-bezier(0.07, 0.93, 0.2, 0.92);
+    transform: perspective(50px) translateZ(268px);
+    transition: all 0.666s cubic-bezier(0.07, 0.93, 0.2, 0.92);
+    opacity: 0;
+}
+
+section.launcher.show {
+	display: block;
+    transform: perspective(50px) translateZ(0px);
+	-webkit-transform: perspective(50px) translateZ(0px);
+	-moz-transform: perspective(50px) translateZ(0px);
+    opacity: 1;
 }
 
 section.launcher p {
@@ -914,7 +929,6 @@ aside.creation nav a span {
         max-height: 320px;
 		margin: auto;
     position: absolute;
-    margin-left: 0.67em;
     }
 	.launcher .app.icon {
 		width: 56px;
@@ -1031,15 +1045,35 @@ aside.creation nav a span {
 	}
 
 	.titleEntry.icon {
-        padding-left: 16%;
-        width: 80.5%;
-        margin-top: 0em;
-        margin-bottom: 0px;
-        padding-top: 14px;
+        padding-left: 16% !important;
+        width: 80.5% !important;
+        margin-top: 0em !important;
+        margin-bottom: 0px !important;
+        padding-top: 14px !important;
 	}
     .UI-Context-Menu {
         min-width: 104px !important;
     }
+	.launcher .UI-App-Icon {
+		width: 32px !important;
+		height: 50px !important;
+		display: inline-block !important;
+		border-radius: 18% !important;
+		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.10),inset 0px 0px 20px rgba(0, 0, 0, 0.25) !important;
+		margin-right: 0% !important;
+		margin-bottom: -9% !important;
+		margin-left: 9.75% !important;
+		margin-top: 18.75% !important;
+		padding: 1em !important;
+		padding-top: 16px !important;
+		padding-bottom: 0 !important;
+	}
+	.launcher .UI-App-Icon.up {
+	    bottom: 4em !important;
+	}
+	.launcher .UI-App-Icon.down {
+	    top: 2em !important;
+	}
 }
 
 @media screen and (max-width: 322px) {
@@ -1312,10 +1346,10 @@ body.light  {
 
 .launcher .UI-App-Icon {
 	width: 128px;
-    height: 100px;
+    height: 96px;
     display: inline-block;
     border-radius: 18%;
-    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.10), 0px 0px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.10),inset 0px 0px 20px rgba(0, 0, 0, 0.25);
     margin-right: 0%;
     margin-bottom: -6%;
     margin-left: 9.75%;
