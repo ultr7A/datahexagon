@@ -1414,8 +1414,10 @@ body.light  {
     opacity: 0;
     -webkit-transition: all 0.4s cubic-bezier(0, 0.97, 0.22, 1.04);
     -moz-transition: all 0.4s cubic-bezier(0, 0.97, 0.22, 1.04);
-    transition: all 0.4s cubic-bezier(0, 0.97, 0.22, 1.04);
-    transform: scale(0,0);
+    transition: all 0.33s cubic-bezier(0, 0.97, 0.22, 1.04);
+	-webkit-transform: scale(0,0) perspective(100px) rotateX(15deg) translateY(-200px);
+	-moz-transform: scale(0,0) perspective(100px) rotateX(15deg) translateY(-200px);
+    transform: scale(0,0) perspective(100px) rotateX(15deg) translateY(-200px);
 }
 
 .UI-Context-Menu ul li {
@@ -1433,9 +1435,9 @@ body.light  {
 .Card:hover .UI-Context-Menu {
 	opacity: 1;
     z-index: 9999999;
-	-webkit-transform: scale(1,1);
-	-moz-transform: scale(1,1);
-    transform: scale(1,1);
+    -webkit-transform: scale(1,1) perspective(100px) rotateX(0deg) translateY(0px);
+    -moz-transform: scale(1,1) perspective(100px) rotateX(0deg) translateY(0px);
+    transform: scale(1,1) perspective(100px) rotateX(0deg) translateY(0px);
 }
 
 .UI-Context-Menu ul li a {
