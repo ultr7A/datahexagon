@@ -722,6 +722,9 @@ input[type=text], input[type=password] {
     text-align: center;
     font-size: 3em;
     cursor: pointer;
+	-webkit-transition: all 0.333s ease;
+	-moz-transition: all 0.333s ease;
+	transition: all 0.333s ease;
 }
 
 .light .lightbox, .lightbox.light {
@@ -1406,7 +1409,7 @@ body.light  {
    position: absolute;
     top: 20px;
     min-width: 205px;
-    background-color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(255, 255, 255, 0.93);
     padding: 0.5em;
     padding-top: 1em;
     border-radius: 4px;
@@ -1415,9 +1418,9 @@ body.light  {
     -webkit-transition: all 0.4s cubic-bezier(0, 0.97, 0.22, 1.04);
     -moz-transition: all 0.4s cubic-bezier(0, 0.97, 0.22, 1.04);
     transition: all 0.33s cubic-bezier(0, 0.97, 0.22, 1.04);
-	-webkit-transform: scale(0,0) perspective(100px) rotateX(15deg) translateY(-200px);
-	-moz-transform: scale(0,0) perspective(100px) rotateX(15deg) translateY(-200px);
-    transform: scale(0,0) perspective(100px) rotateX(15deg) translateY(-200px);
+	-webkit-transform: scale(0.66,0.66) perspective(100px) rotateX(15deg) translateY(-100px);
+	-moz-transform: scale(0.66,0.66) perspective(100px) rotateX(15deg) translateY(-100px);
+    transform: scale(0.66,0.66) perspective(100px) rotateX(15deg) translateY(-100px);
 }
 
 .UI-Context-Menu ul li {
@@ -1425,10 +1428,15 @@ body.light  {
     font-size: 26px;
     list-style-type: none;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+	cursor: pointer;
+}
+
+.UI-Context-Menu ul li:hover {
+	color: #383838;
 }
 
 .UI-Context-Menu ul li a {
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
 
 
@@ -1441,7 +1449,7 @@ body.light  {
 }
 
 .UI-Context-Menu ul li a {
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
 
 .UI-Vector-Editor {

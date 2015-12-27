@@ -109,7 +109,7 @@ var UI = {
 			item.innerHTML = menuItem.name;
 			item.addEventListener("click", function (evt) {
 				menuItem.click(evt);
-			}, true);
+			}, false);
 			list.appendChild(item);
 		});
 	},
@@ -155,8 +155,10 @@ var UI = {
 					{"name": "Delete", "icon":"/app/data/hidpi-box.png", "click": function (e) {
 						var element = e.target,
 							resource = element.getAttribute("data-resource");
+						deletePath(resource);
 						// implement...
-					}},
+
+					}}
 				]
 			}
 		}
@@ -356,9 +358,9 @@ function Card (name, resource, options) {
 	}, true);
 	isImage = /(\.jpg|\.png|\.gif|\.jpeg|\.webp)/i.test(resource);
     if (isImage) {
-		resource = resource.replace(/\s/g, "%20");
+		var thumb = resource.replace(/\s/g, "%20");
 		if (!/(\.webp|\.gif)/i.test(resource)) { // don't thumbnail webp or gif
-			var rPath = resource.split("/");
+			var rPath = thumb.split("/");
 			var thumb = rPath[rPath.length-1];
 			rPath.splice(rPath.length-1, 1);
 			rPath.push("DHThumbs");
