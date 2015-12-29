@@ -349,11 +349,11 @@ section.launcher {
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15), 0px 0px 80px rgba(0, 0, 0, 0.35);
     border-radius: 2%;
 	-webkit-transform: perspective(50px) translateZ(268px);
-    -moz-transition: all 0.666s cubic-bezier(0.07, 0.93, 0.2, 0.92);
+    -moz-transition: all 0.25s cubic-bezier(0.07, 0.93, 0.2, 0.92);
 	-webkit-transform: perspective(50px) translateZ(268px);
-    -moz-transition: all 0.666s cubic-bezier(0.07, 0.93, 0.2, 0.92);
+    -moz-transition: all 0.25s cubic-bezier(0.07, 0.93, 0.2, 0.92);
     transform: perspective(50px) translateZ(268px);
-    transition: all 0.666s cubic-bezier(0.07, 0.93, 0.2, 0.92);
+    transition: all 0.25s cubic-bezier(0.07, 0.93, 0.2, 0.92);
     opacity: 0;
 }
 
@@ -735,7 +735,18 @@ input[type=text], input[type=password] {
     text-shadow: none;
 }
 
+@media screen and (max-width:1568px) {
+	.UI-Applet {
+		max-width: 1024px;
+	}
+}
+
 @media screen and (max-width: 1200px) {
+	.UI-Applet {
+		max-width: 960px;
+		margin-left: -73px;
+		margin-right: 0;
+	}
 	section.half {
 		margin-left: 1em;
 		width: 45%;
@@ -758,6 +769,11 @@ input[type=text], input[type=password] {
 }
 
 @media screen and (max-width: 960px) {
+	.UI-Applet {
+		max-width: 720px;
+		margin-left: -73px;
+		margin-right: 0;
+	}
 	nav input.upload {
 		bottom: -0.2em;
 		left: -0.8em;
@@ -905,6 +921,11 @@ aside.creation nav a span {
 	}
 
 @media screen and (max-width: 480px) {
+	.UI-Applet {
+		max-width: 320px;
+		margin-left: -73px;
+		margin-right: 0;
+	}
 	body {
 /*		background-size: 100% !important;*/
 		background-image: none;
@@ -1072,6 +1093,7 @@ aside.creation nav a span {
 		padding: 1em !important;
 		padding-top: 16px !important;
 		padding-bottom: 0 !important;
+		cursor: pointer;
 	}
 	.launcher .UI-App-Icon.up {
 	    bottom: 4em !important;
