@@ -319,7 +319,7 @@ section.content {
 section.content#paneview {
 	z-index: 3;
     top: 0;
-    position: fixed !important;
+    position: absolute !important;
     left: 0;
     height: 100%;
     width: 100%;
@@ -925,6 +925,8 @@ aside.creation nav a span {
 		max-width: 320px;
 		margin-left: -73px;
 		margin-right: 0;
+		margin-top: 5em !important;
+    	margin-left: 0 !important;
 	}
 	body {
 /*		background-size: 100% !important;*/
@@ -954,7 +956,7 @@ aside.creation nav a span {
         max-width: 320px;
         max-height: 320px;
 		margin: auto;
-    position: absolute;
+    	position: absolute;
     }
 	.launcher .app.icon {
 		width: 56px;
@@ -993,7 +995,7 @@ aside.creation nav a span {
 		margin-right: -60px;
 	}
 	.DataPane {
-		    margin: auto !important;
+		    margin: auto;
 			display: block;
 			position: relative;
 			bottom: 1em;
