@@ -184,7 +184,7 @@ function AppIcon (name, index) {
 	element.innerHTML = "<span>"+applet.name+"</span>";
 	this.element = element;
 	element.addEventListener("click", function () {
-		app.openPane("app", applet.name, { applet: applet });
+		app.openPane("app", applet.name, { applet: {name: name} });
 	}, true);
 }
 
