@@ -219,6 +219,7 @@ function DataPane (type, name, data) {
         applet = new Applet(data.applet.name);
         applet.init();
 		this.applet = applet;
+        container.setAttribute("class", "DataPane UI-Applet");
     } else {
 		switch (type) {
             case "touch":
