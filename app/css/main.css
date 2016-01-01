@@ -1082,6 +1082,8 @@ aside.creation nav a span {
 	}
     .UI-Context-Menu {
         min-width: 104px !important;
+		margin-left: 2em;
+		padding-top: 0.2em !important;
     }
 	.launcher .UI-App-Icon {
 		width: 32px !important;
