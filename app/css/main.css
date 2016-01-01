@@ -1465,9 +1465,9 @@ body.light  {
     -webkit-transition: all 0.08s cubic-bezier(0.83, 0.44, 0.88, 0.6);
     -moz-transition: all 0.08s cubic-bezier(0.83, 0.44, 0.88, 0.6);
     transition: all 0.08s cubic-bezier(0.83, 0.44, 0.88, 0.6);
-	-webkit-transform: scale(0.66,0.66) perspective(100px) rotateX(-5deg);
-	-moz-transform: scale(0.66,0.66) perspective(100px) rotateX(-5deg);
-    transform: scale(0.66,0.66) perspective(100px) rotateX(-5deg);
+	-webkit-transform: scale(0.75,0.75) perspective(100px) translateZ(-12px) rotateX(-5deg);
+	-moz-transform: scale(0.75,0.75) perspective(100px) translateZ(-12px) rotateX(-5deg);
+    transform: scale(0.75,0.75) perspective(100px) translateZ(-12px) rotateX(-5deg);
 }
 
 .UI-Context-Menu ul li {
