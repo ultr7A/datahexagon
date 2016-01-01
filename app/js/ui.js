@@ -69,6 +69,19 @@ var UI = {
 
 		};
 	},
+	ModalWindow: function ModalWindow (type, options) {
+		var section = document.createElement("section");
+		section.setAttribute("class", "UI-ModalWindow");
+		this.element = section;
+		switch (type) {
+			case "standard":
+
+			break;
+			case "custom":
+
+			break;
+		}
+	},
 	ContextMenu: function ContextMenu (options) {
 		var div = document.createElement("div"),
 			list = document.createElement("ul"),
