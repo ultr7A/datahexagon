@@ -36,6 +36,7 @@ Applet.prototype.close = function (params) {
 };
 app.applets["alarm-clock"] = {
     name: "Clock",
+	icon: "/app/data/192/clock-2.png",
     options: {
         "Clock": function (p) {},
         "Alarm": function (p) {},
@@ -63,6 +64,7 @@ app.applets["alarm-clock"] = {
 
 app.applets["terminal"] = { // support algebra as well as *nix commands
     name: "Terminal",
+	icon: "/app/data/192/text.png",
     options: {
         "Save Dump": function (p) {}
     },
@@ -85,6 +87,7 @@ app.applets["terminal"] = { // support algebra as well as *nix commands
 
 app.applets["chat"] = {
     name: "Nexus Chat",
+	icon: "/app/data/192/chat.png",
     options: {
         "Save Dump": function (p) {
 
@@ -111,6 +114,7 @@ app.applets["chat"] = {
 
 app.applets["image-viewer"] = {
     name: "Image Viewer",
+	icon: "/app/data/192/",
     options: {
         "Next": function (p) {},
 		"Previous": function (p) {},
@@ -127,6 +131,7 @@ app.applets["image-viewer"] = {
 
 app.applets["text-editor"] = {
     name: "Text Editor",
+	icon: "/app/data/192/text.png",
     options: {
         "Save Changes": function (p) {}
     },
@@ -143,6 +148,7 @@ app.applets["text-editor"] = {
 
 app.applets["image-editor"] = {
     name: "Image Editor",
+	icon: "/app/data/192/image.png",
     options: {
         "Save Changes": function (p) {}
     },
@@ -159,6 +165,7 @@ app.applets["image-editor"] = {
 
 app.applets["3d-editor"] = {
     name: "3D Editor",
+	icon: "/app/data/192/cube.png",
     options: {
         "Save Changes": function (p) {}
     },
@@ -187,6 +194,7 @@ app.applets["midi-editor"] = {
 
 app.applets["animation-editor"] = {
     name: "Animation Editor",
+	icon: "/app/data/192/circle.png",
     options: {
         "Save Changes": function (p) {}
     },
@@ -201,6 +209,7 @@ app.applets["animation-editor"] = {
 
 app.applets["search"] = {
     name: "Search",
+	icon: "/app/data/192/circle.png",
     options: {
         "Search": function (p) {}
     },
@@ -213,6 +222,7 @@ app.applets["search"] = {
 
 app.applets["settings"] = {
     name: "Settings",
+	icon: "/app/data/192/circle.png",
     options: {
         "Save Changes": function (p) {}
     },

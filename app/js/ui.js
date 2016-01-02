@@ -18,12 +18,17 @@ var UI = {
 
 	},
 	Sidebar: function Sidebar (type, options) {
-		var aside = document.createElement("aside");
+		var aside = document.createElement("aside"),
+			h2 = document.createElement("h2"),
+			h3 = document.createElement("h3");
 		aside.setAttribute("class", "UI-Sidebar");
 		this.element = aside;
 		switch (type) {
 			case "standard":
-
+				h2.innerHTML = options.title;
+				h3.innerHTML = options.subtitle;
+				aside.appendChild(h2);
+				aside.appendChild(h3);
 			break;
 			case "custom":
 
@@ -135,13 +140,16 @@ var UI = {
 				{"name": "New", "icon":"/app/data/plus.png", "click": function (e) {
 
 				}},
-				{"name": "Open", "icon":"/app/data/hidpi-box.png", "click": function (e) {
-
-				}},
+//				{"name": "Open", "icon":"/app/data/hidpi-box.png", "click": function (e) {
+//
+//				}},
 				{"name": "Save As", "icon":"/app/data/plus.png", "click": function (e) {
 
 				}},
-				{"name": "Options", "icon":"/app/data/circle-192.png", "click": function (e) {
+				{"name": "Options", "icon":"/app/data/192/circle.png", "click": function (e) {
+
+				}},
+				{"name": "Close", "icon":"/app/data/192/triangle-horizontal.png", "click": function (e) {
 
 				}},
 			]
@@ -194,6 +202,7 @@ function AppIcon (name, index) {
 	}
     console.log("name", name);
 	element.setAttribute("class", "UI-App-Icon" + directionClass);
+	element.setAttribute("style", "background-image: url(" + applet.icon + ");");
 	element.innerHTML = "<span>"+applet.name+"</span>";
 	this.element = element;
 	element.addEventListener("click", function () {

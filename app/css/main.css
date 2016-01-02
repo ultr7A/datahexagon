@@ -1385,7 +1385,10 @@ body.light  {
     height: 96px;
     display: inline-block;
     border-radius: 18%;
-    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.10),;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.10);
+	-webkit-transition: all ease-out 0.25s;
+    -moz-transition: all ease-out 0.25s;
+    transition: all ease-out 0.25s;
     margin-right: 0%;
     margin-bottom: -6%;
     margin-left: 9.75%;
@@ -1393,16 +1396,18 @@ body.light  {
     padding: 1em;
     padding-top: 64px;
     padding-bottom: 0;
-    color: white;
-    background-color: rgba(221, 221, 221, 0.42);
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+	background-color: rgba(221, 221, 221, 0.42);
+	background-size: contain;
     text-align: center;
     border: 2px solid white;
     cursor: pointer;
 }
-
-.launcher .UI-App-Icon: hover {
-	    background-color: white !important;
+.launcher .UI-App-Icon span {
+	  color: rgba(255, 255, 255, 0);
+}
+.launcher .UI-App-Icon:hover span {
+	color: white !important;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
 }
 
 .UI-App-Icon.up {
