@@ -334,7 +334,7 @@ section.content#paneview {
 }
 
 section.launcher {
-   position: fixed;
+  position: fixed;
     z-index: 10000000;
     left: 0;
     right: 0;
@@ -345,12 +345,14 @@ section.launcher {
     max-width: 800px;
     max-height: 800px;
     margin: auto;
-    background: rgb(241, 241, 241);
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15), 0px 0px 80px rgba(0, 0, 0, 0.35);
+	background: -webkit-linear-gradient(#F7F7F7, rgb(221, 221, 221));
+	background: -moz-linear-gradient(#F7F7F7, rgb(221, 221, 221));
+    background: linear-gradient(#F7F7F7, rgb(221, 221, 221));
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.45), 0px 0px 30px rgba(0, 0, 0, 0.35);
     border-radius: 2%;
-	-webkit-transform: perspective(50px) translateZ(268px);
+    -webkit-transform: perspective(50px) translateZ(268px);
     -moz-transition: all 0.25s cubic-bezier(0.07, 0.93, 0.2, 0.92);
-	-webkit-transform: perspective(50px) translateZ(268px);
+    -webkit-transform: perspective(50px) translateZ(268px);
     -moz-transition: all 0.25s cubic-bezier(0.07, 0.93, 0.2, 0.92);
     transform: perspective(50px) translateZ(268px);
     transition: all 0.25s cubic-bezier(0.07, 0.93, 0.2, 0.92);
@@ -585,11 +587,13 @@ input[type=text], input[type=password] {
 	background: black;
 	color: white;
 	border: 2px white solid;
+	text-shadow: 1px 1px 1px black;
 }
 
 .DataPane .close:hover, .DataPane .done:hover {
 	background: white !important;
 	color: black !important;
+	text-shadow: none;
 }
 
 .DataPane .snap {
@@ -1377,11 +1381,11 @@ body.light  {
 }
 
 .launcher .UI-App-Icon {
-	width: 128px;
+	    width: 128px;
     height: 96px;
     display: inline-block;
     border-radius: 18%;
-    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.10),inset 0px 0px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.10),;
     margin-right: 0%;
     margin-bottom: -6%;
     margin-left: 9.75%;
@@ -1389,9 +1393,16 @@ body.light  {
     padding: 1em;
     padding-top: 64px;
     padding-bottom: 0;
-    color: grey;
+    color: white;
+    background-color: rgba(221, 221, 221, 0.42);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
     text-align: center;
-    background-color: white;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+.launcher .UI-App-Icon: hover {
+	    background-color: white !important;
 }
 
 .UI-App-Icon.up {
