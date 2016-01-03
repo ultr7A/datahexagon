@@ -8,3 +8,8 @@
 /app/private_share.php
 /private_index.php
 /home/private_index.php
+/app/lib/three.min.js
+/app/lib/ThreeCSG.js
+/app/lib/three.js
+/app/lib/csg.js
+/app/lib/socket.io/socket.io.js
