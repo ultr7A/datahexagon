@@ -19,16 +19,20 @@ var UI = {
 	},
 	Sidebar: function Sidebar (type, options) {
 		var aside = document.createElement("aside"),
+			icon = document.createElement("img"),
 			h2 = document.createElement("h2"),
 			h3 = document.createElement("h3");
 		aside.setAttribute("class", "UI-Sidebar");
 		this.element = aside;
 		switch (type) {
 			case "standard":
+				icon.src = options.icon;
 				h2.innerHTML = options.title;
 				h3.innerHTML = options.subtitle;
+				aside.appendChild(icon);
 				aside.appendChild(h2);
 				aside.appendChild(h3);
+				aside.appendChild(document.createElement("br"));
 			break;
 			case "custom":
 
@@ -49,21 +53,22 @@ var UI = {
 		}
 	},
 	Frame: function Frame (type, options) {
-		var main = document.createElement("main");
+		var main = document.createElement("main"),
+			view = null;
 		main.setAttribute("class", "UI-Frame");
 		this.element = main;
 		switch (type) {
 			case "text":
-
+				view = document.createElement("textarea");
 			break;
 			case "codemirror":
-
+				view = document.createElement("textarea");
 			break;
 			case "canvas":
-
+				view = document.createElement("canvas");
 			break;
 			case "webgl":
-
+				view  = document.createElement("canvas");
 			break;
 
 		}
@@ -134,7 +139,7 @@ var UI = {
 	defaults: {
 		menu: {
 			options:[
-				{"name": "App Icon", "icon":"/app/data/192/text.png", "click": function (e) {
+				{"name": "Close", "icon":"/app/data/192/triangle-horizontal.png", "click": function (e) {
 
 				}},
 				{"name": "New", "icon":"/app/data/plus.png", "click": function (e) {
@@ -148,10 +153,7 @@ var UI = {
 				}},
 				{"name": "Options", "icon":"/app/data/192/circle.png", "click": function (e) {
 
-				}},
-				{"name": "Close", "icon":"/app/data/192/triangle-horizontal.png", "click": function (e) {
-
-				}},
+				}}
 			]
 		},
 		sidebar: {

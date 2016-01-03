@@ -1438,7 +1438,6 @@ body.light  {
     left: 0;
     right: 0;
     bottom: 0;
-    border-left: 87px solid #D6D6D6;
     padding: 0;
     pointer-events: all;
     margin-left: 2em;
@@ -1454,7 +1453,10 @@ body.light  {
 }
 
 .UI-Menu {
-
+	background-color: #D6D6D6;
+	width: 60px;
+	height: 100%;
+	display: inline-block;
 }
 
 .UI-Toolbar {
@@ -1483,9 +1485,9 @@ body.light  {
     -webkit-transition: all 0.08s cubic-bezier(0.83, 0.44, 0.88, 0.6);
     -moz-transition: all 0.08s cubic-bezier(0.83, 0.44, 0.88, 0.6);
     transition: all 0.08s cubic-bezier(0.83, 0.44, 0.88, 0.6);
-	-webkit-transform: scale(0.75,0.75) perspective(100px) translateZ(-12px) rotateX(-5deg);
-	-moz-transform: scale(0.75,0.75) perspective(100px) translateZ(-12px) rotateX(-5deg);
-    transform: scale(0.75,0.75) perspective(100px) translateZ(-12px) rotateX(-5deg);
+	-webkit-transform: scale(0.1,0.1) perspective(100px) translateZ(-12px) rotateX(-5deg);
+	-moz-transform: scale(0.1,0.1) perspective(100px) translateZ(-12px) rotateX(-5deg);
+    transform: scale(0.1,0.1) perspective(100px) translateZ(-12px) rotateX(-5deg);
 }
 
 .UI-Context-Menu ul li {

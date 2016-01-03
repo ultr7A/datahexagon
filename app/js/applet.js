@@ -233,3 +233,18 @@ app.applets["settings"] = {
     save: function (p) { },
     close: function (p) { }
 };
+
+app.applets["sharing"] = {
+    name: "Sharing",
+	icon: "/app/data/192/circle.png",
+    options: {
+        "New Share": function (p) {},
+		"New Shortcut": function (p) {}
+    },
+    schema: {
+
+    },
+    init: function (p) { },
+    save: function (p) { },
+    close: function (p) { }
+};
