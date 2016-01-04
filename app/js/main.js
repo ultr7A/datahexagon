@@ -287,20 +287,11 @@ function adjustLayout () {
 					breaks = 0;
 				}
 				if (/(\.jpg|\.png|\.gif|\.jpeg|\.webp)/i.test(f.getAttribute("data-resource"))) {
-					images ++;
-	//				for (var a = i; a < i+cols; a++) {
-	//					if (/(\.jpg|\.png|\.gif|\.jpeg|\.webp)/i.test(files[a].getAttribute("data-resource"))) {
-	//						images ++;
-	//					}
-	//				}
-				}
-				if (breaks == 0 && col <= (halfColumns) && images > 0 && images <= halfColumns) {
 					breaks ++;
 					tidiedImages = true;
 					container.insertBefore(document.createElement("br"), f); //files[i-1]);
 				}
 			}
-
     	});
 	}
 }
@@ -506,8 +497,7 @@ function init () {
 
 	function handleMouseWheel (e) {
         	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-		console.log(e);
-        app.scrollDepth += delta;
+		app.scrollDepth += delta;
     }
 
     if (!! document.querySelector(".content")) {
