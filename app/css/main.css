@@ -935,7 +935,7 @@ aside.creation nav a span {
 	body {
 /*		background-size: 100% !important;*/
 		background-image: none;
-		background-color: transparent;
+/*		background-color: transparent;*/
 	}
 	.Card {
 		display: block !important;

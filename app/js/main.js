@@ -594,11 +594,6 @@ function animate () {
         gravity = [],
         pbv = new THREE.Vector3(0, 0, 0),
 		mod = 5;
-	if (window.location.href.split("/").length == 4) { // home page
-		mod = 5;
-	} else {
-		mod = 10;
-	}
     while (p-- > 0) {
         pb = pbs[p];
         pbpos = pb.mesh.position;
@@ -625,11 +620,7 @@ function ProjectionBot (image, url) {
     this.image = image;
     this.url = url;
     //this.velocity = [-0.125+Math.random()*0.25, -0.125+Math.random()*0.25, -0.125+Math.random()*0.25];
-	if (window.location.href.search("/data") > -1) {
-		var mat  = new THREE.MeshLambertMaterial( { color: 0xffffff, wireframe: true } );
-	} else {
-		var mat  = new THREE.MeshLambertMaterial( { color: 0xff8000, wireframe: true } );
-	}
+	var mat  = new THREE.MeshLambertMaterial( { color: 0xffffff, wireframe: true } );
     var geom = new THREE.OctahedronGeometry(1.66,0);
     var limb, limbGeom = new THREE.BoxGeometry(0.5, 0.25, 2);
     var mesh = new THREE.Mesh(geom, mat);
