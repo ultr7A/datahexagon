@@ -46,7 +46,7 @@
         <title>Login | DataHexagon</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name='theme-color' content='rgb(40, 40, 40)'>
-		<meta name="description" content="A web based desktop environment, file storage and sharing service." >
+		<meta name="description" content="Open source, cloud desktop environment, dropbox and file sharing for all your devices." >
         <meta name="msapplication-TileColor" content="#282828">
         <meta name="msapplication-TileImage" content="/app/data/gradient-shadow-hexagon-white-192.png">
 		<meta name="application-name" content="DataHexagon">
@@ -55,11 +55,12 @@
         <meta property="og:image" content="/app/data/gradient-shadow-hexagon-white-192.png" / >
         <meta property="og:image:width" content="192" />
         <meta property="og:image:height" content="192" />
-        <!--        <link rel="icon" sizes="192x192" href="/app/data/balanced-hexagon-0-192.png"> -->
-        <!--        <link rel="icon" sizes="192x192" href="/app/data/convex-shadow-192.png">-->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@SpaceHexagon" />
+        <meta name="twitter:title" content="DataHexagon" />
+        <meta name="twitter:description" content="Open source, cloud desktop environment, dropbox and file sharing for all your devices." />
+        <meta name="twitter:image" content="https://datahexagon.com/app/data/gradient-shadow-hexagon-white-192.png" />
         <link rel="icon" sizes="192x192" href="/app/data/gradient-shadow-hexagon-white-192.png">
-
-        <!--        <link rel="icon" sizes="192x192" href="/app/data/concave-shadow-192.png">-->
         <link rel="stylesheet" href="app/css/main.css" type="text/css" >
     </head>
     <body>
