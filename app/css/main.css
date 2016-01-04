@@ -1472,7 +1472,7 @@ body.light  {
 }
 
 .UI-Context-Menu {
-   position: absolute;
+    position: absolute;
     top: 20px;
     min-width: 205px;
     background-color: rgba(255, 255, 255, 0.93);
@@ -1481,13 +1481,13 @@ body.light  {
     border-radius: 4px;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.4), 0px 2px 5px rgba(0, 0, 0, 0.3);
     opacity: 0;
-	pointer-events: none;
+    pointer-events: none;
     -webkit-transition: all 0.08s cubic-bezier(0.83, 0.44, 0.88, 0.6);
     -moz-transition: all 0.08s cubic-bezier(0.83, 0.44, 0.88, 0.6);
-    transition: all 0.08s cubic-bezier(0.83, 0.44, 0.88, 0.6);
-	-webkit-transform: scale(0.1,0.1) perspective(100px) translateZ(-12px) rotateX(-5deg);
-	-moz-transform: scale(0.1,0.1) perspective(100px) translateZ(-12px) rotateX(-5deg);
-    transform: scale(0.1,0.1) perspective(100px) translateZ(-12px) rotateX(-5deg);
+    transition: all 0.08s cubic-bezier(0.07, 0.87, 0.01, 0.67);
+    -webkit-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px) rotateX(-8deg);
+    -moz-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px) rotateX(-8deg);
+    transform: scale(0.2,0.2) perspective(150px) translateZ(-12px) rotateX(-8deg);
 }
 
 .UI-Context-Menu ul li {
