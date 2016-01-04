@@ -1482,9 +1482,9 @@ body.light  {
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.4), 0px 2px 5px rgba(0, 0, 0, 0.3);
     opacity: 0;
     pointer-events: none;
-    -webkit-transition: all 0.08s cubic-bezier(0.83, 0.44, 0.88, 0.6);
-    -moz-transition: all 0.08s cubic-bezier(0.83, 0.44, 0.88, 0.6);
-    transition: all 0.08s cubic-bezier(0.07, 0.87, 0.01, 0.67);
+    -webkit-transition: all 0.050s cubic-bezier(0.07, 0.67, 0.75, 0.24);
+    -moz-transition: all 0.050s cubic-bezier(0.07, 0.67, 0.75, 0.24);
+    transition: all 0.050s cubic-bezier(0.07, 0.67, 0.75, 0.24);
     -webkit-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px) rotateX(-8deg);
     -moz-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px) rotateX(-8deg);
     transform: scale(0.2,0.2) perspective(150px) translateZ(-12px) rotateX(-8deg);
