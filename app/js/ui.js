@@ -98,7 +98,7 @@ var UI = {
 			item = document.createElement("li");
 		this.element = div;
 		div.setAttribute("class", "UI-Context-Menu");
-		item.innerHTML="<a target='_blank' href='"+options.resource+"' >Open</a>";
+		item.innerHTML="<a target='_blank' href='"+options.resource+"' >Download</a>";
 		div.appendChild(list);
 		list.appendChild(item);
 		if (options.menuItems.length == 0) {

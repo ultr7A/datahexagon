@@ -1482,12 +1482,19 @@ body.light  {
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.4), 0px 2px 5px rgba(0, 0, 0, 0.3);
     opacity: 0;
     pointer-events: none;
-    -webkit-transition: all 0.050s cubic-bezier(0.07, 0.67, 0.75, 0.24);
-    -moz-transition: all 0.050s cubic-bezier(0.07, 0.67, 0.75, 0.24);
-    transition: all 0.050s cubic-bezier(0.07, 0.67, 0.75, 0.24);
+    -webkit-transition: all 0.050s cubic-bezier(0.01, 0.76, 0.45, 0.89);
+    -moz-transition: all 0.050s cubic-bezier(0.01, 0.76, 0.45, 0.89);
+    transition: all 0.050s cubic-bezier(0.01, 0.76, 0.45, 0.89);
     -webkit-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px) rotateX(-8deg);
     -moz-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px) rotateX(-8deg);
     transform: scale(0.2,0.2) perspective(150px) translateZ(-12px) rotateX(-8deg);
+}
+
+.Card.Image .UI-Context-Menu {
+		min-height: 190px;
+	   -webkit-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
+	   -moz-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
+	   transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
 }
 
 .UI-Context-Menu ul li {

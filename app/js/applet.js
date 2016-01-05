@@ -87,11 +87,20 @@ app.applets["terminal"] = { // support algebra as well as *nix commands
     close: function (p) { }
 };
 
-app.applets["chat"] = {
-    name: "Nexus Chat",
+app.applets["messaging"] = {
+    name: "Messaging",
 	icon: "/app/data/192/chat.png",
     options: {
-        "Save Dump": function (p) {
+		"New Message": function (p) {
+
+		},
+		"New Chat": function (p) {
+
+		},
+		"Search": function (p) {
+
+		},
+		"Options": function (p) {
 
 		}
     },
@@ -238,6 +247,21 @@ app.applets["settings"] = {
     save: function (p) { },
     close: function (p) { }
 };
+
+app.applets["usage-visualizer"] = {
+    name: "Disk Usage Visualizer",
+	icon: "/app/data/192/circle.png",
+    options: {
+        "Save Changes": function (p) {}
+    },
+    schema: {
+
+    },
+    init: function (p) { },
+    save: function (p) { },
+    close: function (p) { }
+};
+
 
 app.applets["sharing"] = {
     name: "Sharing",
