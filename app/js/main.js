@@ -9,7 +9,7 @@ var app = {
         files: [],
 		panes: [],
         applets: [],
-		accessories: ["text-editor", "alarm-clock", "image-editor", "chat", "settings", "3d-editor"],
+		accessories: ["text-editor", "alarm-clock", "image-editor", "messaging", "settings", "3d-editor"],
 		bgImage: "",
 		sortMode: "type",
 		viewMode: "grid",

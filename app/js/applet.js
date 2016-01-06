@@ -1,25 +1,27 @@
 
 function Applet (name, params) {
     var data = app.applets[name],
-        div = document.createElement("div");
+        div = document.createElement("div"),
+        c = 0;
     div.setAttribute("class", "DataPane UI-Applet");
     this.div = div;
     this.data = data;
-    this.components = [];
-    this.init(data);
+    this.components = this.data.init(params);
+    console.log("this components");
+    console.log(this.components);
+    console.log(typeof this.components);
+    if (typeof this.components == 'object') {
+        c = this.components.length -1;
+        while (c >= 0) {
+            this.div.appendChild(this.components[c].element);
+       		c --;
+		}
+    }
 }
 
 Applet.prototype.init = function (params) {
     console.log("Applet init... ", params);
-    var components = this.data.init(params),
-		c = components.length - 1;
-    if (typeof components == 'array') {
-        this.components = components;
-        while (c >= 0) {
-            this.div.appendChild(components[c]);
-       		c --;
-		}
-    }
+
 };
 
 Applet.prototype.add = function (params) {
@@ -153,7 +155,7 @@ app.applets["text-editor"] = {
 		var menu = new UI.Menu(),
 		sidebar = new UI.Sidebar("Text Editor", {title:"Text Editor", icon: "/app/data/192/text.png"}),
 		view = new UI.Frame("text");
-		return [menu.element, sidebar.element, view.element];
+		return [menu, sidebar, view];
     },
     add: function (p) { },
     save: function (p) { },
