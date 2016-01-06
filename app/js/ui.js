@@ -241,7 +241,6 @@ function DataPane (type, name, data) {
     if (!!data.applet) {
         // load applet form data.applet
         applet = new Applet(data.applet.name);
-        applet.init();
 		this.applet = applet;
 		container = applet.div;
     } else {

@@ -6,22 +6,21 @@ function Applet (name, params) {
     div.setAttribute("class", "DataPane UI-Applet");
     this.div = div;
     this.data = data;
-    this.components = this.data.init(params);
-    console.log("this components");
-    console.log(this.components);
-    console.log(typeof this.components);
-    if (typeof this.components == 'object') {
-        c = this.components.length -1;
-        while (c >= 0) {
-            this.div.appendChild(this.components[c].element);
-       		c --;
-		}
-    }
+    this.components = [];
+	this.init(params);
 }
 
 Applet.prototype.init = function (params) {
+	var c = 0;
     console.log("Applet init... ", params);
-
+	this.components = this.data.init(params);
+		if (typeof this.components == 'object') {
+			c = this.components.length -1;
+			while (c >= 0) {
+				this.div.appendChild(this.components[c].element);
+				c --;
+			}
+		}
 };
 
 Applet.prototype.add = function (params) {
