@@ -1501,6 +1501,13 @@ body.light  {
     transform: scale(0.2,0.2) perspective(150px) translateZ(-12px) rotateX(-8deg);
 }
 
+.UI-Context-Menu .icon {
+	padding-left: 1.5em;
+    background-color: rgba(0, 0, 0, 0.2);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .Card.Image .UI-Context-Menu {
 		min-height: 190px;
 	   -webkit-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);

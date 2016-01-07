@@ -109,6 +109,7 @@ var UI = {
 			item.innerHTML = menuItem.name;
 			item.setAttribute("data-resource", options.resource);
             item.setAttribute("data-name", options.name);
+			item.setAttribute("style", "background-image:url("+menuItem.icon+")");
 			item.addEventListener("click", function (evt) {
 				menuItem.click(evt);
 			}, true);
@@ -175,7 +176,7 @@ var UI = {
 						});
 						return false;
 					}},
-					{"name": "Delete", "icon":"/app/data/hidpi-box.png", "click": function (e) {
+					{"name": "Delete", "icon":"/app/data/192/x.png", "click": function (e) {
 						var element = e.target,
 							resource = element.getAttribute("data-resource");
 						deletePath(resource);
