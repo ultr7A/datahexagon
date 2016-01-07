@@ -98,7 +98,7 @@ var UI = {
 			item = document.createElement("li");
 		this.element = div;
 		div.setAttribute("class", "UI-Context-Menu");
-		item.innerHTML="<a target='_blank' href='"+options.resource+"' >Download</a>";
+		item.innerHTML="<a target='_blank' class='icon' style='background-image:url(/app/data/192/download.png);' href='"+options.resource+"' >Download</a>";
 		div.appendChild(list);
 		list.appendChild(item);
 		if (options.menuItems.length == 0) {
@@ -109,6 +109,7 @@ var UI = {
 			item.innerHTML = menuItem.name;
 			item.setAttribute("data-resource", options.resource);
             item.setAttribute("data-name", options.name);
+			item.setAttribute("class", "icon");
 			item.setAttribute("style", "background-image:url("+menuItem.icon+")");
 			item.addEventListener("click", function (evt) {
 				menuItem.click(evt);
@@ -166,7 +167,7 @@ var UI = {
 			options: {
 				menuItems: [
 //					{"name": "Open", "icon":"/app/data/hidpi-box.png", "click": function (e) { }},
-					{"name": "Edit", "icon":"/app/data/hidpi-box.png", "click": function (e) {
+					{"name": "Edit", "icon":"/app/data/192/edit.png", "click": function (e) {
 						var element = e.target,
 							resource = element.getAttribute("data-resource"),
                             name = element.getAttribute("data-name");
