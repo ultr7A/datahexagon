@@ -1503,7 +1503,7 @@ body.light  {
 
 .UI-Context-Menu .icon {
 	padding-left: 1.5em;
-    background-color: rgba(0, 0, 0, 0.2);
+	    margin-left: 0.25em;
     background-size: contain;
     background-repeat: no-repeat;
 }
