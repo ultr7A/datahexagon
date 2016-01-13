@@ -1503,9 +1503,16 @@ body.light  {
 
 .UI-Context-Menu .icon {
 	padding-left: 1.5em;
-	    margin-left: 0.25em;
+    margin-left: 0.25em;
     background-size: contain;
     background-repeat: no-repeat;
+    color: grey;
+    font-size: 26px;
+    text-shadow: none !important;
+    text-decoration: none;
+}
+.UI-Context-Menu .icon:hover {
+    color: #383838;
 }
 
 .Card.Image .UI-Context-Menu {
@@ -1527,14 +1534,13 @@ body.light  {
 	cursor: pointer;
 }
 
-.UI-Context-Menu ul li:hover {
-	color: #383838;
+.UI-Context-Menu ul li:hover, .UI-Context-Menu ul li:hover a,  {
+	color: #383838 !important;
 }
 
 .UI-Context-Menu ul li a {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
-
 
 .Card:hover .UI-Context-Menu {
 	opacity: 1;
