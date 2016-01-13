@@ -21,6 +21,7 @@ var app = {
         scrollDepth: 0,
     	gravityZone: [180, 180],
     	actors: [],
+		socket: null,
 		request: function (method, path, query, callback) {
 			var xhr = new XMLHttpRequest(),
 				prefix = window.location.href.split(".com")[1] == "/home/?" ? ".." : "";
@@ -470,12 +471,48 @@ function init () {
     console.log("Data Hexagon (C) "+(new Date().getFullYear()) + " jeremy@spacehexagon.com");
 	console.log("https://github.com/SpaceHexagon/datahexagon");
 
+	window.socket = app.socket = io.connect("https://subnexus.fm:8081", {secure:true, port: 8080});
+	// temporarily using subnexus socketio
+
+	socket.on('user update', function (data) {
+//		var user,
+//			sys = app,
+//			userData = JSON.parse(data);
+//		if (userData.user != sys.user.name) {
+//				//user = sys.users[userData.user];
+//
+//		}
+	});
+
+	socket.on('chat message', function (data) {
+		var user,
+			sys = app,
+			chatData = JSON.parse(data);
+		console.log(chatData);
+		if (chatData.user != sys.user.name) {
+				//user = sys.users[userData.user];
+
+		}
+	});
+
+	socket.on('nexus event', function (data) {
+		var user,
+			sys = app,
+			eventData = JSON.parse(eventData);
+		console.log("socket event...");
+		if (eventData.user != sys.user.name) {
+				//user = sys.users[userData.user];
+
+		}
+	});
+
 	function toggleInitialForms (login) {
         var signInForm = document.querySelector("#signin-form"),
             registerForm = document.querySelector("#register-form");
         signInForm.setAttribute("class", login ? "" : "hidden");
         registerForm.setAttribute("class", login ? "hidden" : "");
     }
+
     app.lightbox = document.querySelector(".lightbox");
     app.container = document.querySelector("#fileview");
     document.querySelector("#show-signin") &&
@@ -529,10 +566,13 @@ function init () {
 			}
 		}
 	};
+
 	if (window.innerWidth <= 640) {
 		app.toggleThumbSize();
 	}
+
 	console.log(page);
+
 	if (page == "/home/?") {
         app.container.ondragover = function () { app.lightbox.setAttribute("class", "lightbox hover"); return false; };
         app.container.ondragend = function () { app.lightbox.setAttribute("class", "lightbox"); return false; };
