@@ -3,10 +3,18 @@ var UI = {
 		var aside = document.createElement("aside");
 		aside.setAttribute("class", "UI-Menu");
 		this.element = aside;
+		type = (!!type ? type : "standard");
 		switch (type) {
 			case "standard":
 				UI.defaults.menu.options.forEach(function (menuItem) {
 					// create menu for app
+					var button = document.createElement("a");
+					button.setAttribute("class", "UI-Menu-Button");
+					button.setAttribute("href", "javascript:void(0);");
+					button.setAttribute("title", menuItem.name);
+					button.setAttribute("style", "background-image:url("+menuItem.icon+")");
+					button.addEventListener("click", menuItem.click);
+					aside.appendChild(button);
 				});
 			break;
 			case "custom":
@@ -141,16 +149,10 @@ var UI = {
 	defaults: {
 		menu: {
 			options:[
-				{"name": "Close", "icon":"/app/data/192/triangle-horizontal.png", "click": function (e) {
+				{"name": "Close", "icon":"/app/data/192/dark/x.png", "click": function (e) {
 
 				}},
 				{"name": "New", "icon":"/app/data/plus.png", "click": function (e) {
-
-				}},
-//				{"name": "Open", "icon":"/app/data/hidpi-box.png", "click": function (e) {
-//
-//				}},
-				{"name": "Save As", "icon":"/app/data/plus.png", "click": function (e) {
 
 				}},
 				{"name": "Options", "icon":"/app/data/192/circle.png", "click": function (e) {
