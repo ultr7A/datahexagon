@@ -1445,28 +1445,30 @@ body.light  {
 }
 
 .UI-Frame {
-	    background-color: rgba(255, 255, 255, 0.87);
-    width: 844px;
+    background-color: rgba(255, 255, 255, 0.87);
+    width: 900px;
     height: 100%;
     max-height: 960px;
     display: inline-block;
+    float: left;
 }
 
 .UI-Applet .UI-Menu {
-	top: 0;
+    top: 0;
     right: 0px;
     width: 60px !important;
     height: 100% !important;
     display: inline-block !important;
     position: absolute !important;
     background-color: rgb(222, 222, 222) !important;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5) !important;
 }
 
 .UI-Menu a {
-	display: inline-block;
-	height: 60px;
-	width: 60px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    background-size: contain;
 }
 
 .UI-Toolbar {
@@ -1474,19 +1476,37 @@ body.light  {
 }
 
 .UI-Applet .UI-Sidebar {
-        height: 100% !important;
-    background: #E6E6E6 !important;
+    height: 100% !important;
+    background: #AFAFAF !important;
     padding: 0 !important;
     margin: 0 !important;
     position: relative!important;
     width: 320px !important;
-    background-color: #E2E2E2 !important;
-    box-shadow: 12px 0px 30px rgba(0, 0, 0, 0.42) !important;
+    background-color: #DEDEDE !important;
     top: 0;
     left: 0;
     border: 0;
     float: left;
+    display: inline-block;
 }
+
+.UI-Sidebar .icon {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    float: left;
+}
+
+.UI-Sidebar h2 {
+    display: inline-block;
+    float: left;
+    padding-top: 0.4em;
+}
+
+.UI-Sidebar h3 {
+
+}
+
 
 .UI-Context-Menu {
     position: absolute;

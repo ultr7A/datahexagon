@@ -15,10 +15,9 @@ Applet.prototype.init = function (params) {
     console.log("Applet init... ", params);
 	this.components = this.data.init(params);
 		if (typeof this.components == 'object') {
-			c = this.components.length -1;
-			while (c >= 0) {
+			while (c < this.components.length) {
 				this.div.appendChild(this.components[c].element);
-				c --;
+				c ++;
 			}
 		}
 };
@@ -152,9 +151,9 @@ app.applets["text-editor"] = {
     },
     init: function (p) {
 		var menu = new UI.Menu(),
-		sidebar = new UI.Sidebar("Text Editor", {title:"Text Editor", icon: "/app/data/192/text.png"}),
+		sidebar = new UI.Sidebar("standard", {icon: this.icon, title:this.name, subtitle: ""}),
 		view = new UI.Frame("text");
-		return [menu, sidebar, view];
+		return [sidebar, view, menu];
     },
     add: function (p) { },
     save: function (p) { },
