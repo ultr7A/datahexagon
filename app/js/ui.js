@@ -32,9 +32,11 @@ var UI = {
 			h3 = document.createElement("h3");
 		aside.setAttribute("class", "UI-Sidebar");
 		this.element = aside;
+        this.options = options;
 		switch (type) {
 			case "standard":
 				icon.src = options.icon;
+                icon.setAttribute("class", "icon");
 				h2.innerHTML = options.title;
 				h3.innerHTML = options.subtitle;
 				aside.appendChild(icon);
@@ -149,7 +151,7 @@ var UI = {
 	defaults: {
 		menu: {
 			options:[
-				{"name": "Close", "icon":"/app/data/192/dark/x.png", "click": function (e) {
+				{"name": "Close", "icon":"/app/data/192/x.png", "click": function (e) {
 
 				}},
 				{"name": "New", "icon":"/app/data/plus.png", "click": function (e) {
