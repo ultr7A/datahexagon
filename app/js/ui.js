@@ -1,29 +1,36 @@
 var UI = {
 	Menu: function Menu (type, options) {
-		var aside = document.createElement("aside");
+		var aside = document.createElement("aside"),
+			menuItems = [],
+			menuItem = null,
+			menu = this,
+			m = 0;
 		aside.setAttribute("class", "UI-Menu");
 		this.element = aside;
+		this.applet = null;
 		type = (!!type ? type : "standard");
 		switch (type) {
 			case "standard":
-				UI.defaults.menu.options.forEach(function (menuItem) {
-					// create menu for app
-					var button = document.createElement("a");
-					button.setAttribute("class", "UI-Menu-Button");
-					button.setAttribute("href", "javascript:void(0);");
-					button.setAttribute("title", menuItem.name);
-					button.setAttribute("style", "background-image:url("+menuItem.icon+")");
-					button.addEventListener("click", menuItem.click);
-					aside.appendChild(button);
-				});
+				menuItems = UI.defaults.menu.options;
 			break;
 			case "custom":
-				options.menuItems.forEach(function (menuItem) {
-					// create menu for app
-				});
+				menuItems = options.menuItems;
 			break;
 		}
-
+		while (m < menuItems.length) {
+			// create menu for app
+			menuItem = menuItems[m];
+			var button = document.createElement("a");
+			button.setAttribute("class", "UI-Menu-Button");
+			button.setAttribute("href", "javascript:void(0);");
+			button.setAttribute("title", menuItem.name);
+			button.setAttribute("style", "background-image:url("+menuItem.icon+")");
+			button.addEventListener("click", function (evt) {
+				menuItem.click(evt, menu);
+			});
+			aside.appendChild(button);
+			m += 1;
+		}
 	},
 	Sidebar: function Sidebar (type, options) {
 		var aside = document.createElement("aside"),
@@ -151,13 +158,13 @@ var UI = {
 	defaults: {
 		menu: {
 			options:[
-				{"name": "Close", "icon":"/app/data/192/x.png", "click": function (e) {
+				{"name": "Close", "icon":"/app/data/192/x.png", "click": function (event, menu) {
+					menu.applet.dataPane.close();
+				}},
+				{"name": "New", "icon":"/app/data/plus.png", "click": function (event, applet) {
 
 				}},
-				{"name": "New", "icon":"/app/data/plus.png", "click": function (e) {
-
-				}},
-				{"name": "Options", "icon":"/app/data/192/circle.png", "click": function (e) {
+				{"name": "Options", "icon":"/app/data/192/circle.png", "click": function (event, applet) {
 
 				}}
 			]
@@ -247,6 +254,7 @@ function DataPane (type, name, data) {
     if (!!data.applet) {
         // load applet form data.applet
         applet = new Applet(data.applet.name);
+		applet.dataPane = this; // won't be needed once DataPane is deprecated
 		this.applet = applet;
 		container = applet.div;
     } else {

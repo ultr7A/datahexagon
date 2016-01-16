@@ -16,6 +16,7 @@ Applet.prototype.init = function (params) {
 	this.components = this.data.init(params);
 		if (typeof this.components == 'object') {
 			while (c < this.components.length) {
+				this.components[c].applet = this;
 				this.div.appendChild(this.components[c].element);
 				c ++;
 			}
