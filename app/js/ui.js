@@ -25,9 +25,11 @@ var UI = {
 			button.setAttribute("href", "javascript:void(0);");
 			button.setAttribute("title", menuItem.name);
 			button.setAttribute("style", "background-image:url("+menuItem.icon+")");
-			button.addEventListener("click", function (evt) {
-				menuItem.click(evt, menu);
-			});
+			(function (buttonMenu, buttonMenuItem){
+				button.addEventListener("click", function (evt) {
+					buttonMenuItem.click(buttonMenu);
+				}, true);
+			})(menu, menuItem);
 			aside.appendChild(button);
 			m += 1;
 		}
@@ -158,13 +160,14 @@ var UI = {
 	defaults: {
 		menu: {
 			options:[
-				{"name": "Close", "icon":"/app/data/192/x.png", "click": function (event, menu) {
+				{"name": "Close", "icon":"/app/data/192/x.png", "click": function close (menu) {
+					console.log("Close event handler is happening now");
 					menu.applet.dataPane.close();
 				}},
-				{"name": "New", "icon":"/app/data/plus.png", "click": function (event, applet) {
+				{"name": "New", "icon":"/app/data/plus.png", "click": function create (event, menu) {
 
 				}},
-				{"name": "Options", "icon":"/app/data/192/circle.png", "click": function (event, applet) {
+				{"name": "Options", "icon":"/app/data/192/circle.png", "click": function options (event, menu) {
 
 				}}
 			]
