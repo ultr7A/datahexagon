@@ -14,12 +14,16 @@ Applet.prototype.init = function (params) {
 	var c = 0;
     console.log("Applet init... ", params);
 	this.components = this.data.init(params);
-		if (typeof this.components == 'object') {
-			while (c < this.components.length) {
-				this.components[c].applet = this;
-				this.div.appendChild(this.components[c].element);
-				c ++;
-			}
+		if (typeof this.components != 'object') {
+			var menu = new UI.Menu(),
+			sidebar = new UI.Sidebar("standard", {icon: this.data.icon, title:this.data.name, subtitle: ""}),
+			view = new UI.Frame("text");
+			this.components = [sidebar, view, menu];
+		}
+		while (c < this.components.length) {
+			this.components[c].applet = this;
+			this.div.appendChild(this.components[c].element);
+			c ++;
 		}
 };
 
@@ -151,10 +155,7 @@ app.applets["text-editor"] = {
 
     },
     init: function (p) {
-		var menu = new UI.Menu(),
-		sidebar = new UI.Sidebar("standard", {icon: this.icon, title:this.name, subtitle: ""}),
-		view = new UI.Frame("text");
-		return [sidebar, view, menu];
+
     },
     add: function (p) { },
     save: function (p) { },
