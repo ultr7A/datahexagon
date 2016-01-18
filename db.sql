@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `Replies` (
 CREATE TABLE IF NOT EXISTS `Shares` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL,
+  `passphrase` varchar(127) DEFAULT NULL,
   `directory` varchar(512) NOT NULL,
   `users` varchar(2048) NOT NULL DEFAULT '{"users":[]}',
   `public` tinyint(4) DEFAULT '0',

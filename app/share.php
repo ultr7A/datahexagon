@@ -17,17 +17,21 @@
             mysqli_close($connection);
             die();
         }
-        switch ($_POST["dataOperation"]) {
+        switch ($_POST["operation"]) {
+            case "list":
+                $shares = mysqli_query($connection, "select * from `Shares` where username = '" . $_POST["username"] . "';");
+                echo json_encode($shares);
+            break;
+            case "read":
+                $shares = mysqli_query($connection, "select * from `Shares` where id = " . $_POST["id"] . ";");
+                echo json_encode($shares);
+            break;
             case "create":
 				mysqli_query($connection, "insert into `Shares` (username, directory, passphrase, public, data) values('"
                                           . $_POST["username"] . "', '".$_POST["path"]."', '".$_POST["passphrase"]."', false, '{}');");
             break;
-            case "read":
-                $shares = mysqli_query($connection, "select * from `Shares` where username = '" . $_POST["username"] . "';");
-                echo json_encode($shares);
-            break;
             case "update":
-				mysqli_query($connection, "update `Shares` set username='".$_POST["username"]."', directory='".$_POST["path"]."', passphrase='".$_POST["passphrase"]
+				mysqli_query($connection, "update `Shares` set directory='".$_POST["path"]."', passphrase='".$_POST["passphrase"]
                                           ."', public=false, data='{}') where directory = '".$_POST["path"]."';");
             break;
             case "delete":
