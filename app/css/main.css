@@ -312,7 +312,7 @@ section.content {
 	max-width: 100%;
 	  position: absolute;
 	  height: 100%;
-	  margin-left: 92px;
+	  margin-left: 108px;
 }
 
 
@@ -409,7 +409,7 @@ h1 {
 h1.browse {
     margin-bottom: 10px;
     margin-top: 0;
-    margin-left: 38px;
+    margin-left: 30px;
     text-align: left;
     padding-bottom: 0.25em;
     padding-top: 0.2em;
@@ -1284,8 +1284,8 @@ div.formContainer {
     min-width: 90px;
     display: inline-block;
     color: #FFF;
-    margin-left: 38px;
-    margin-bottom: 40px;
+    margin-left: 32px;
+    margin-bottom: 32px;
     box-shadow: 0px 4px 4px rgba(0,0,0, 0.6), 0px 2px 10px rgba(255, 255, 255, 0);
     padding: 1em;
     background: #313131;
@@ -1344,15 +1344,15 @@ div.formContainer {
 .light .Card {
     background-color: #EDEDED !important;
     text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.44), 1px 1px 2px rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
-    box-shadow: 0px 2px 12px rgba(0,0,0, 0.2), 1px 2px 3px rgba(0,0,0, 0.3) !important;
+    border-radius: 3px;
+   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.25) !important;
     background-image: -webkit-linear-gradient(#FDFDFD, #D0D0D0);
     background-image: -moz-linear-gradient(#FDFDFD, #D0D0D0);
     background-image: linear-gradient(#FDFDFD, #D0D0D0);
 }
 
 .light .Card.Image {
-	box-shadow: inset 0px 3px 0px rgba(255, 255, 255, 0.25), 0px 3px 4px rgba(0, 0, 0, 0.5) !important;
+	box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2) !important;
 }
 
 .light .Folder {
