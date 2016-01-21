@@ -321,6 +321,7 @@ section.content#paneview {
     top: 0;
     position: absolute !important;
     left: 0;
+	margin-left: 0;
     height: 100%;
     width: 100%;
     pointer-events: none;
@@ -931,6 +932,16 @@ aside.creation nav a span {
 		margin-right: 0;
 		margin-top: 5em !important;
     	margin-left: 0 !important;
+		max-height: 700px !important;
+	}
+	.UI-Sidebar {
+		max-height: 60px !important;
+	}
+	.UI-Frame {
+		max-height: 640px !important;
+	}
+	.UI-Menu {
+		z-index: 99;
 	}
 	body {
 /*		background-size: 100% !important;*/
