@@ -1538,6 +1538,7 @@ body.light  {
 
 .UI-Context-Menu {
     position: absolute;
+	top: 0;
     min-width: 205px;
     background-color: rgba(255, 255, 255, 0.93);
     padding: 0.5em;
