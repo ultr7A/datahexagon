@@ -26,13 +26,14 @@
                 $shares = mysqli_query($connection, "select * from `Shares` where id = " . $_POST["id"] . ";");
                 echo json_encode($shares);
             break;
-            case "create":
-				mysqli_query($connection, "insert into `Shares` (username, directory, passphrase, public, data) values('"
-                                          . $_POST["username"] . "', '".$_POST["path"]."', '".$_POST["passphrase"]."', false, '{}');");
-            break;
             case "update":
-				mysqli_query($connection, "update `Shares` set directory='".$_POST["path"]."', passphrase='".$_POST["passphrase"]
-                                          ."', public=false, data='{}') where directory = '".$_POST["path"]."';");
+				if (mysqli_num_rows(mysqli_query($connection, "select * from `Shares` where directory = '".$_POST["path"]."';")) < 1) {
+					mysqli_query($connection, "insert into `Shares` (username, directory, users, passphrase, public, data) values('"
+                                          . $_POST["username"] . "', '".$_POST["path"]."', '".$_POST["users"]."', '".$_POST["passphrase"]."', '".$_POST["public"]."', '{}');");
+				} else {
+					mysqli_query($connection, "update `Shares` set directory='".$_POST["path"]."', '".$_POST["users"]."', passphrase='".$_POST["passphrase"]
+                                          ."', public=".$_POST["public"].", data='{}') where directory = '".$_POST["path"]."';");
+				}
             break;
             case "delete":
 				$shares = mysqli_query($connection, "delete from `Shares` where directory = '".$_POST["path"]."';");

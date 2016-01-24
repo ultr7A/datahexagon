@@ -277,7 +277,10 @@ app.applets["sharing"] = {
     },
     init: function (p) {
 		var menu = new UI.Menu(),
-			sidebar = new UI.Sidebar("standard", {icon: this.icon, title:this.name, subtitle: ""}),
+			sidebar = new UI.Sidebar("custom", {icon: this.icon, title:this.name, subtitle: "",
+											   items: [
+
+											   ]}),
 			element = document.createElement("div"),
 			nameLabel = document.createElement("label"),
 			resourceLabel = document.createElement("label"),

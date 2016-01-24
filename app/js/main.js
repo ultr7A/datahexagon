@@ -38,6 +38,28 @@ var app = {
 				xhr.send();
 			}
 		},
+		sharing: {
+			listAllShares: function (username) {
+				app.request("POST", "/app/share.php","operation=list", function (response) {
+					 console.log(response);
+				});
+			},
+			readShare: function (id) {
+				app.request("POST", "/app/share.php","operation=read", function (response) {
+					 console.log(response);
+				});
+			},
+			saveShare: function (name) {
+				app.request("POST", "/app/share.php","operation=update", function (response) {
+					 console.log(response);
+				});
+			},
+			deleteShare: function (name) {
+				app.request("POST", "/app/share.php","operation=delete", function (response) {
+					 console.log(response);
+				});
+			}
+		},
         openPane: function (type, name, data) {
             var p = app.panes.length,
                 pane = null,

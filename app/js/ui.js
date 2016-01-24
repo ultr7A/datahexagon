@@ -42,19 +42,22 @@ var UI = {
 		aside.setAttribute("class", "UI-Sidebar");
 		this.element = aside;
         this.options = options;
+		icon.src = options.icon;
+        icon.setAttribute("class", "icon");
+		h2.innerHTML = options.title;
+		h3.innerHTML = options.subtitle;
+		aside.appendChild(icon);
+		aside.appendChild(h2);
+		aside.appendChild(h3);
+		aside.appendChild(document.createElement("br"));
 		switch (type) {
 			case "standard":
-				icon.src = options.icon;
-                icon.setAttribute("class", "icon");
-				h2.innerHTML = options.title;
-				h3.innerHTML = options.subtitle;
-				aside.appendChild(icon);
-				aside.appendChild(h2);
-				aside.appendChild(h3);
-				aside.appendChild(document.createElement("br"));
+				// standard features
 			break;
 			case "custom":
-
+				options.items.forEach(function (sidebarItem) {
+					aside.appendChild(sidebarItem.element);
+				});
 			break;
 		}
 	},
