@@ -155,7 +155,20 @@ app.applets["text-editor"] = {
 
     },
     init: function (p) {
+		var menu = new UI.Menu(),
+			sidebar = new UI.Sidebar("custom",
+									 {icon: this.icon, title:this.name, subtitle: "",
+											   items: []
+									 }),
+			element = document.createElement("div"),
+			//textarea = document.createElement("textarea"),
+			view = null,
+			span = null;
+			//element.appendChild(textarea)l;
 
+			view = new UI.Frame("text");
+
+			return [sidebar, view, menu];
     },
     add: function (p) { },
     save: function (p) { },
@@ -277,10 +290,10 @@ app.applets["sharing"] = {
     },
     init: function (p) {
 		var menu = new UI.Menu(),
-			sidebar = new UI.Sidebar("custom", {icon: this.icon, title:this.name, subtitle: "",
-											   items: [
-
-											   ]}),
+			sidebar = new UI.Sidebar("custom",
+									 {icon: this.icon, title:this.name, subtitle: "",
+											   items: []
+									 }),
 			element = document.createElement("div"),
 			nameLabel = document.createElement("label"),
 			resourceLabel = document.createElement("label"),
