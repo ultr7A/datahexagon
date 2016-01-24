@@ -76,21 +76,25 @@ var UI = {
 			view = null;
 		main.setAttribute("class", "UI-Frame");
 		this.element = main;
-		switch (type) {
-			case "text":
-				view = document.createElement("textarea");
-			break;
-			case "codemirror":
-				view = document.createElement("textarea");
-			break;
-			case "canvas":
-				view = document.createElement("canvas");
-			break;
-			case "webgl":
-				view  = document.createElement("canvas");
-			break;
-
+		if (!! options && !! options.element) {
+			view = options.element;
+		} else {
+			switch (type) {
+				case "text":
+					view = document.createElement("textarea");
+				break;
+				case "codemirror":
+					view = document.createElement("textarea");
+				break;
+				case "canvas":
+					view = document.createElement("canvas");
+				break;
+				case "webgl":
+					view  = document.createElement("canvas");
+				break;
+			}
 		}
+		main.appendChild(view);
 		this.animate = function () {
 
 		};
@@ -117,11 +121,16 @@ var UI = {
 			item = document.createElement("li");
 		this.element = div;
 		div.setAttribute("class", "UI-Context-Menu");
-		item.innerHTML="<a target='_blank' class='icon' style='background-image:url(/app/data/192/dark/download.png);' href='"+options.resource+"' >Download</a>";
+
 		div.appendChild(list);
 		list.appendChild(item);
+		if (options.directory == true) {
+			options.menuItems = UI.defaults.contextMenu.options.directoryMenuItems;
+			item.innerHTML="<a target='_blank' class='icon' style='background-image:url(/app/data/192/dark/open.png);' href='javascript:openFolder(\""+options.resource+"\"); return false;' title='Open'>Open</a>";
+		}
 		if (options.menuItems.length == 0) {
 			options.menuItems = UI.defaults.contextMenu.options.menuItems;
+			item.innerHTML="<a target='_blank' class='icon' style='background-image:url(/app/data/192/dark/download.png);' href='"+options.resource+"' >Download</a>";
 		}
 		options.menuItems.forEach(function (menuItem) {
 			item = document.createElement("li");
@@ -189,6 +198,24 @@ var UI = {
 						app.request("GET", resource+"?cache="+Date.now(), "", function (response) {
 							app.openPane('edit', name, {"resource":app.cwd+"/"+name, "text": response});
 						});
+						return false;
+					}},
+					{"name": "Delete", "icon":"/app/data/192/dark/x.png", "click": function (e) {
+						var element = e.target,
+							resource = element.getAttribute("data-resource");
+						deletePath(resource);
+						// implement...
+
+					}}
+				],
+				directoryMenuItems: [
+//					{"name": "Open", "icon":"/app/data/hidpi-box.png", "click": function (e) { }},
+					{"name": "Sharing", "icon":"/app/data/192/dark/edit.png", "click": function (e) {
+						var element = e.target,
+							resource = element.getAttribute("data-resource"),
+                            name = element.getAttribute("data-name");
+						e.preventDefault();
+
 						return false;
 					}},
 					{"name": "Delete", "icon":"/app/data/192/dark/x.png", "click": function (e) {
@@ -382,7 +409,13 @@ function Card (name, resource, options) {
 		contextMenu = true,
 		link = document.createElement("span"),
 		close = document.createElement("input"),
-		edit = document.createElement("input");
+		edit = document.createElement("input"),
+		contextMenuData = {
+			name: name,
+			resource: resource,
+			menuItems: [], // dummy menu items
+			directory: false
+		};
 	e.setAttribute("class", "Card");
 	e.setAttribute("data-resource", resource);
 	e.setAttribute("data-name", name);
@@ -418,8 +451,9 @@ function Card (name, resource, options) {
     } else {
 		e.appendChild(link);
 		if (/^(.*\/){0,1}[^\.]*.{1}$/.test(resource)) { // detect folders
-			contextMenu = false; // disable context menu for now...
-            link.setAttribute("href", "#");
+			//contextMenu = false; // disable context menu for now...
+            contextMenuData.directory = true;
+			link.setAttribute("href", "#");
 			link.addEventListener("click", function (event) {
 				event.preventDefault();
 				openFolder(resource);
@@ -444,11 +478,7 @@ function Card (name, resource, options) {
     }
 	//	Experimental..
 	if (contextMenu) {
-		var menu = new UI.ContextMenu({
-			name: name,
-			resource: resource,
-			menuItems: [] // dummy menu items
-		});
+		var menu = new UI.ContextMenu(contextMenuData);
 		if (isImage) {
 			e.appendChild(menu.element);
 		} else {

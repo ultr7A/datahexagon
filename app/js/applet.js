@@ -17,7 +17,7 @@ Applet.prototype.init = function (params) {
 		if (typeof this.components != 'object') {
 			var menu = new UI.Menu(),
 			sidebar = new UI.Sidebar("standard", {icon: this.data.icon, title:this.data.name, subtitle: ""}),
-			view = new UI.Frame("text");
+			view = new UI.Frame("custom", {element: document.createElement("div")});
 			this.components = [sidebar, view, menu];
 		}
 		while (c < this.components.length) {
@@ -275,7 +275,50 @@ app.applets["sharing"] = {
     schema: {
 
     },
-    init: function (p) { },
+    init: function (p) {
+		var menu = new UI.Menu(),
+			sidebar = new UI.Sidebar("standard", {icon: this.icon, title:this.name, subtitle: ""}),
+			element = document.createElement("div"),
+			nameLabel = document.createElement("label"),
+			resourceLabel = document.createElement("label"),
+			publicLabel = document.createElement("label"),
+			whiteListLabel = document.createElement("label"),
+			dataLabel = document.createElement("label"),
+			nameInput = document.createElement("input"),
+			resourceInput = document.createElement("input"),
+			publicInput = document.createElement("input"),
+			whiteListInput = document.createElement("textarea"),
+			dataInput = document.createElement("input"),
+			view = null,
+			span = null;
+			span = document.createElement("span");
+			nameLabel.innerHTML = "Name";
+			span.appendChild(nameLabel);
+			span.appendChild(nameInput);
+			element.appendChild(span);
+			resourceLabel.innerHTML = "Resource";
+			span = document.createElement("span");
+			span.appendChild(resourceLabel);
+			span.appendChild(resourceInput);
+			element.appendChild(span);
+			publicLabel.innerHTML = "Public";
+			span = document.createElement("span");
+			span.appendChild(publicLabel);
+			span.appendChild(publicInput);
+			element.appendChild(span);
+			whiteListLabel.innerHTML = "White List";
+			span = document.createElement("span");
+			span.appendChild(whiteListLabel);
+			span.appendChild(whiteListInput);
+			element.appendChild(span);
+			dataLabel.innerHTML = "Data";
+			span = document.createElement("span");
+			span.appendChild(dataLabel);
+			span.appendChild(dataInput);
+			element.appendChild(span);
+			view = new UI.Frame("custom", {"element":element});
+			return [sidebar, view, menu];
+	},
     save: function (p) { },
     close: function (p) { }
 };

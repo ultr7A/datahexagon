@@ -528,7 +528,9 @@ function init () {
 		if (localStorage.getItem("theme") == null) {
 			localStorage.setItem("theme", "light");
 		} else {
-			document.body.setAttribute("class", localStorage.getItem("theme"));
+			if ( page != "/neo/") {
+				document.body.setAttribute("class", localStorage.getItem("theme"));
+			}
 		}
 	}
 
@@ -592,20 +594,35 @@ function init () {
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		renderer.domElement.setAttribute("class", "viewport");
 		document.body.appendChild( renderer.domElement );
-		material = new THREE.MeshLambertMaterial( { color: 0xFD005F, wireframe: true } ); // 0xDE002B
-		geometry = new THREE.TorusGeometry( 10, 6, 6, 6 );
-		logo = app.logo = new THREE.Mesh( geometry, material );
-		scene.add( logo );
-		logo.position.set(-16, -16, -10);
-		camera.position.z = 10;
-		camera.position.x = -5;
-		light = app.light = new THREE.PointLight(0xffffff, 1.1, 120);
-		scene.add(light);
-		light.position.z = 0;
-		light.position.y = -16;
-		light.position.x = -16;
-		for (var p = 0; p < appData.length; p++) {
-        	app.actors.push(new ProjectionBot(appData[p].image, appData[p].url));
+		if (page == "/neo/") {
+			material = new THREE.MeshLambertMaterial( { color: 0xFD005F, wireframe: true } ); // 0xDE002B
+			geometry = new THREE.PlaneGeometry(100,100,16,16);
+			ground = app.ground = new THREE.Mesh( geometry, material );
+			scene.add( ground );
+			ground.position.set(-10, -10, -10);
+			camera.position.z = 10;
+			camera.position.x = -5;
+			light = app.light = new THREE.PointLight(0xffffff, 1.1, 120);
+			scene.add(light);
+			light.position.z = 0;
+			light.position.y = -16;
+			light.position.x = -16;
+		} else {
+			material = new THREE.MeshLambertMaterial( { color: 0xFD005F, wireframe: true } ); // 0xDE002B
+			geometry = new THREE.TorusGeometry( 10, 6, 6, 6 );
+			logo = app.logo = new THREE.Mesh( geometry, material );
+			scene.add( logo );
+			logo.position.set(-16, -16, -10);
+			camera.position.z = 10;
+			camera.position.x = -5;
+			light = app.light = new THREE.PointLight(0xffffff, 1.1, 120);
+			scene.add(light);
+			light.position.z = 0;
+			light.position.y = -16;
+			light.position.x = -16;
+			for (var p = 0; p < appData.length; p++) {
+				app.actors.push(new ProjectionBot(appData[p].image, appData[p].url));
+			}
 		}
 		animate();
     }
