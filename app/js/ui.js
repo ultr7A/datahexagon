@@ -129,7 +129,7 @@ var UI = {
 		list.appendChild(item);
 		if (options.directory == true) {
 			options.menuItems = UI.defaults.contextMenu.options.directoryMenuItems;
-			item.innerHTML="<a target='_blank' class='icon' style='background-image:url(/app/data/192/dark/open.png);' href='javascript:openFolder(\""+options.resource+"\"); return false;' title='Open'>Open</a>";
+			item.innerHTML="<a target='_blank' class='icon' style='background-image:url(/app/data/192/dark/open.png);' href='javascript:openFolder(\""+options.resource+"\");' title='Open'>Open</a>";
 		}
 		if (options.menuItems.length == 0) {
 			options.menuItems = UI.defaults.contextMenu.options.menuItems;
@@ -218,7 +218,7 @@ var UI = {
 							resource = element.getAttribute("data-resource"),
                             name = element.getAttribute("data-name");
 						e.preventDefault();
-
+						app.openPane("sharing", "Sharing", {"applet": {"name":"sharing", "directory":resource}})
 						return false;
 					}},
 					{"name": "Delete", "icon":"/app/data/192/dark/x.png", "click": function (e) {
@@ -422,9 +422,9 @@ function Card (name, resource, options) {
 	e.setAttribute("class", "Card");
 	e.setAttribute("data-resource", resource);
 	e.setAttribute("data-name", name);
-	link.setAttribute("target", "_blank");
+	//link.setAttribute("target", "_blank");
 	link.innerHTML = name;
-	link.setAttribute("href", resource);
+	//link.setAttribute("href", resource);
 	close.setAttribute("class", "close");
 	close.setAttribute("type", "button");
 	close.setAttribute("value", "X");
@@ -456,12 +456,12 @@ function Card (name, resource, options) {
 		if (/^(.*\/){0,1}[^\.]*.{1}$/.test(resource)) { // detect folders
 			//contextMenu = false; // disable context menu for now...
             contextMenuData.directory = true;
-			link.setAttribute("href", "#");
-			link.addEventListener("click", function (event) {
-				event.preventDefault();
-				openFolder(resource);
-				return false;
-			}, true);
+//			link.setAttribute("href", "#");
+//			link.addEventListener("click", function (event) {
+//				event.preventDefault();
+//				openFolder(resource);
+//				return false;
+//			}, true);
 			e.setAttribute("class", "Card Folder");
 		} else {
 			if (!contextMenu) {

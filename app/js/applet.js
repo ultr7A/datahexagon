@@ -267,7 +267,7 @@ app.applets["usage-visualizer"] = {
 
 app.applets["sharing"] = {
     name: "Sharing",
-	icon: "/app/data/192/circle.png",
+	icon: "/app/data/192/share.png",
     options: {
         "New Share": function (p) {},
 		"New Shortcut": function (p) {}
@@ -319,7 +319,14 @@ app.applets["sharing"] = {
 			span.appendChild(dataLabel);
 			span.appendChild(dataInput);
 			element.appendChild(span);
+
 			view = new UI.Frame("custom", {"element":element});
+
+			app.sharing.listAllShares(app.user.name, function (share) {
+				console.log("init app get shares", share);
+
+			});
+
 			return [sidebar, view, menu];
 	},
     save: function (p) { },

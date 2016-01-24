@@ -1578,14 +1578,18 @@ body.light  {
 
 .UI-Context-Menu ul {
 	padding-left: 0 !important;
+    margin-top: 0 !important;
+    vertical-align: top;
+    display: inline-block;
 }
 
 .UI-Context-Menu ul li {
-    margin-top: 0.5em;
+       margin-bottom: 0.76em;
+    margin-top: 0.25em;
     font-size: 26px;
     list-style-type: none;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .UI-Context-Menu ul li:hover, .UI-Context-Menu ul li:hover a,  {
