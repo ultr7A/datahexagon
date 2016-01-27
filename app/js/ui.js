@@ -129,7 +129,7 @@ var UI = {
 		list.appendChild(item);
 		if (options.directory == true) {
 			options.menuItems = UI.defaults.contextMenu.options.directoryMenuItems;
-			item.innerHTML="<a target='_blank' class='icon' style='background-image:url(/app/data/192/dark/open.png);' href='javascript:openFolder(\""+options.resource+"\");' title='Open'>Open</a>";
+			item.innerHTML="<a class='icon' style='background-image:url(/app/data/192/dark/open.png);' href='javascript:openFolder(\""+options.resource+"\");' title='Open'>Open</a>";
 		}
 		if (options.menuItems.length == 0) {
 			options.menuItems = UI.defaults.contextMenu.options.menuItems;
