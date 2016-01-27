@@ -1199,8 +1199,8 @@ aside.creation nav a span {
 	}
     .UI-Context-Menu {
         min-width: 104px !important;
-		margin-left: 2em;
-		padding-top: 0.2em !important;
+        padding-top: 0.2em !important;
+        max-height: 157px;
     }
 	.launcher .UI-App-Icon {
 		width: 32px !important;
@@ -1540,7 +1540,7 @@ div.formContainer {
     position: absolute;
 	top: 0;
     min-width: 260px;
-    background-color: rgba(255, 255, 255, 0.93);
+    background-color: rgba(0, 0, 0, 0.74);
     padding: 0.5em;
     padding-top: 1em;
     border-radius: 4px;
@@ -1555,29 +1555,36 @@ div.formContainer {
     transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
 }
 .Image .UI-Context-Menu {
-	top: 20px;
+    top: 0;
+    left: 0;
 }
 .UI-Context-Menu .icon {
 	padding-left: 1.5em;
     margin-left: 0.25em;
     background-size: contain;
     background-repeat: no-repeat;
-    color: grey;
+    color: lightgrey;
     font-size: 26px;
     text-shadow: none !important;
     text-decoration: none;
 }
 .UI-Context-Menu .icon:hover {
-    color: #383838;
+    color: white;
 }
 
 .Card.Image .UI-Context-Menu {
-		min-height: 190px;
-		max-width: 264px;
-		width: 100%;
+		max-width: 100%;
+        width: 296px;
+        height: 288px;
 	   -webkit-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
 	   -moz-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
 	   transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
+}
+
+.doubleSurface .Card.Image .UI-Context-Menu {
+    width: 212px;
+    min-width: 198px;
+    height: 200px;
 }
 
 .UI-Context-Menu ul {
