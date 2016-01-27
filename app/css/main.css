@@ -544,9 +544,10 @@ input[type=text], input[type=password] {
 .Card.Image input.close {
     color: black;
 }
+
 .doubleSurface .Card.Image {
-    height: 312px;
-    width: 312px;
+    height: 194px;
+    width: 194px;
 }
 
 .Card.Image a {
@@ -1538,7 +1539,7 @@ div.formContainer {
 .UI-Context-Menu {
     position: absolute;
 	top: 0;
-    min-width: 205px;
+    min-width: 260px;
     background-color: rgba(255, 255, 255, 0.93);
     padding: 0.5em;
     padding-top: 1em;
@@ -1572,6 +1573,8 @@ div.formContainer {
 
 .Card.Image .UI-Context-Menu {
 		min-height: 190px;
+		max-width: 264px;
+		width: 100%;
 	   -webkit-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
 	   -moz-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
 	   transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
