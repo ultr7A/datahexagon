@@ -582,9 +582,9 @@ input[type=text], input[type=password] {
 
 .light .Card {
     background-color: #EDEDED !important;
-    text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.44), 1px 1px 2px rgba(0, 0, 0, 0.3);
+    color: #828282;
     border-radius: 3px;
-   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.25) !important;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.25) !important;
     background-image: -webkit-linear-gradient(#FDFDFD, #D0D0D0);
     background-image: -moz-linear-gradient(#FDFDFD, #D0D0D0);
     background-image: linear-gradient(#FDFDFD, #D0D0D0);
@@ -595,13 +595,11 @@ input[type=text], input[type=password] {
 }
 
 .light .Folder {
-    background-color: #515151 !important;
+    background-color: #F7F7F7 !important;
     border-top: 0 !important;
-    background-color: #1A1A1A;
-    background-image: -webkit-linear-gradient(#828282, #2B2B2B);
-    background-image: -moz-linear-gradient(#828282, #2B2B2B);
-    background-image: linear-gradient(#828282, #2B2B2B);
-    box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
+    color: #989898;
+    text-shadow: none;
+    background-image: none;
 }
 
 
@@ -837,7 +835,7 @@ body.light  {
 }
 
 .light .lightbox, .lightbox.light {
-	background-color: rgba(255, 255, 255, 0.95) !important;
+	background-color: rgba(255, 255, 255, 0.9) !important;
     color: black;
     text-shadow: none;
 }

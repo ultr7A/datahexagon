@@ -454,14 +454,14 @@ function Card (name, resource, options) {
     } else {
 		e.appendChild(link);
 		if (/^(.*\/){0,1}[^\.]*.{1}$/.test(resource)) { // detect folders
-			//contextMenu = false; // disable context menu for now...
+			contextMenu = false; // disable context menu for now...
             contextMenuData.directory = true;
-//			link.setAttribute("href", "#");
-//			link.addEventListener("click", function (event) {
-//				event.preventDefault();
-//				openFolder(resource);
-//				return false;
-//			}, true);
+			link.setAttribute("href", "#");
+			link.addEventListener("click", function (event) {
+				event.preventDefault();
+				openFolder(resource);
+				return false;
+			}, true);
 			e.setAttribute("class", "Card Folder");
 		} else {
 			if (!contextMenu) {
