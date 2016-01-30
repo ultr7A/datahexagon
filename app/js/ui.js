@@ -128,6 +128,7 @@ var UI = {
 		div.appendChild(list);
 		list.appendChild(item);
 		if (options.directory == true) {
+			div.setAttribute("class", "Directory UI-Context-Menu");
 			options.menuItems = UI.defaults.contextMenu.options.directoryMenuItems;
 			item.innerHTML="<a class='icon' style='background-image:url(/app/data/192/dark/open.png);' href='javascript:openFolder(\""+options.resource+"\");' title='Open'>Open</a>";
 		}
@@ -411,7 +412,7 @@ function Card (name, resource, options) {
 		isImage = false,
 		contextMenu = true,
 		link = document.createElement("span"),
-		close = document.createElement("input"),
+		configure = document.createElement("input"),
 		edit = document.createElement("input"),
 		contextMenuData = {
 			name: name,
@@ -425,12 +426,13 @@ function Card (name, resource, options) {
 	//link.setAttribute("target", "_blank");
 	link.innerHTML = name;
 	//link.setAttribute("href", resource);
-	close.setAttribute("class", "close");
-	close.setAttribute("type", "button");
-	close.setAttribute("value", "X");
-	close.addEventListener("click", function (event) {
+	configure.setAttribute("class", "configure");
+	configure.setAttribute("type", "button");
+	configure.setAttribute("value", "");
+	configure.addEventListener("click", function (event) {
 		event.preventDefault();
-		deletePath(app.cwd+"/"+name);
+		//deletePath(app.cwd+"/"+name);
+		event.target.parentNode.querySelector(".UI-Context-Menu").setAttribute("class", "active UI-Context-Menu");
 		return false;
 	}, true);
 	isImage = /(\.jpg|\.png|\.gif|\.jpeg|\.webp)/i.test(resource);
@@ -454,7 +456,7 @@ function Card (name, resource, options) {
     } else {
 		e.appendChild(link);
 		if (/^(.*\/){0,1}[^\.]*.{1}$/.test(resource)) { // detect folders
-			contextMenu = false; // disable context menu for now...
+			//contextMenu = false; // disable context menu for now...
             contextMenuData.directory = true;
 			link.setAttribute("href", "#");
 			link.addEventListener("click", function (event) {
@@ -487,8 +489,9 @@ function Card (name, resource, options) {
 		} else {
 			link.appendChild(menu.element);
 		}
-	} else {
-		e.appendChild(close);
+	}
+	if (!! contextMenuData.directory) {
+		e.appendChild(configure);
 	}
 
     for (i in options) {

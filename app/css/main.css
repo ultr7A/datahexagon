@@ -707,32 +707,43 @@ body.light  {
 
 
 
-.Card input.close {
+.Card.Folder input.configure {
 	border: 0;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url(/app/data/configure.png);
     color: #FFF;
+    background-size: cover;
+    background-repeat: no-repeat;
     cursor: pointer;
-    padding: 0.45em;
     font-weight: bold;
-    margin-top: 0;
+    margin-top: 4px;
     margin-right: 0;
     font-size: 18px;
-    display: inline-block;
+    display: block;
     right: 0px;
-	width: 37px;
+    width: 48px;
+    height: 48px;
     position: absolute;
     top: 0px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    z-index: 2;
+    z-index: 999999999;
     opacity: 0;
 }
+
+.light .Card.Folder input.configure {
+	background-image: url(/app/data/configure-dark.png);
+}
+
 .Card input.close.edit {
 	right: 37px;
     width: 64px;
 }
 .Card:hover input.close {
+	opacity: 1;
+}
+.Card.Folder:hover input.configure {
 	opacity: 1;
 }
 
@@ -1577,6 +1588,14 @@ div.formContainer {
 	   -webkit-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
 	   -moz-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
 	   transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
+}
+
+.Directory.UI-Context-Menu {
+	display: none;
+}
+
+.active.Directory.UI-Context-Menu {
+	display: inline-block !important;
 }
 
 .doubleSurface .Card.Image .UI-Context-Menu {
