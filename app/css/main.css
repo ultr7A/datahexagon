@@ -731,7 +731,6 @@ body.light  {
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    z-index: 999999999;
     opacity: 0;
 }
 
