@@ -18,7 +18,7 @@ Applet.prototype.init = function (params) {
 			var menu = new UI.Menu(),
 			sidebar = new UI.Sidebar("standard", {icon: this.data.icon, title:this.data.name, subtitle: ""}),
 			view = new UI.Frame("custom", {element: document.createElement("div")});
-			this.components = [sidebar, view, menu];
+			this.components = [menu, sidebar, view];
 		}
 		while (c < this.components.length) {
 			this.components[c].applet = this;
@@ -168,7 +168,7 @@ app.applets["text-editor"] = {
 
 			view = new UI.Frame("text");
 
-			return [sidebar, view, menu];
+			return [menu, sidebar, view];
     },
     add: function (p) { },
     save: function (p) { },
@@ -340,7 +340,7 @@ app.applets["sharing"] = {
 
 			});
 
-			return [sidebar, view, menu];
+			return [menu, sidebar, view];
 	},
     save: function (p) { },
     close: function (p) { }

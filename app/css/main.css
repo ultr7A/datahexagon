@@ -807,7 +807,7 @@ body.light  {
     padding: 2.5%;
     color: #FFF;
     background-color: rgb(43, 43, 43);
-    box-shadow: 0px 4px 4px rgba(0,0,0, 0.6), 0px 2px 10px rgba(255, 255, 255, 0);
+    box-shadow: 0px 4px 4px rgba(0,0,0, 0.6), 0px 2px 10px rgba(255, 255, 255, 0)
     border: none;
     max-width: 95%;
     position: relative;
@@ -1240,6 +1240,17 @@ aside.creation nav a span {
 	.launcher .UI-App-Icon.down {
 	    top: 2em !important;
 	}
+	.UI-Applet textarea {
+		width: 100%;
+		position: absolute;
+		margin-top: 60px;
+	}
+	.DataPane.UI-Applet .UI-Menu {
+		top: 60px;
+		height: 60px !important;
+		width: 100% !important;
+	}
+
 }
 
 @media screen and (max-width: 322px) {
@@ -1474,12 +1485,16 @@ div.formContainer {
 }
 
 .UI-Frame {
-    background-color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(0, 0, 0, 0.87);
     width: 900px;
     height: 100%;
     max-height: 960px;
     display: inline-block;
-    float: left;
+    float: right;
+}
+
+.light .UI-Frame {
+	background-color: rgba(255, 255, 255, 0.87);
 }
 
 .UI-Frame div span {
@@ -1489,10 +1504,12 @@ div.formContainer {
 }
 
 .UI-Frame span label {
-	color: #4E4E4E;
+	color: #919191;
     padding-left: 1em;
 }
-
+.light .UI-Frame span label {
+	color: #4E4E4E;
+}
 .UI-Frame span input {
 	color: #4E4E4E;
     padding-left: 1em;
@@ -1500,20 +1517,32 @@ div.formContainer {
 
 .UI-Applet .UI-Menu {
     top: 0;
-    right: 0px;
+    left: 0px;
     width: 60px !important;
     height: 100% !important;
     display: inline-block !important;
     position: absolute !important;
-    background-color: rgb(222, 222, 222) !important;
+    background-color: #252525 !important;
+}
+
+.light .UI-Applet .UI-Menu {
+	background-color: rgb(222, 222, 222) !important;
 }
 
 .UI-Menu a {
+	opacity: 0.5;
     display: inline-block;
     height: 50px;
     width: 50px;
     margin: 5px;
     background-size: contain;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+.UI-Menu:hover a {
+	opacity: 1;
 }
 
 .UI-Toolbar {
@@ -1522,17 +1551,23 @@ div.formContainer {
 
 .UI-Applet .UI-Sidebar {
     height: 100% !important;
-    background: #AFAFAF !important;
+
     padding: 0 !important;
     margin: 0 !important;
     position: relative!important;
     width: 320px !important;
-    background-color: #DEDEDE !important;
+	background: #252525 !important;
+    background-color: #252525 !important;
     top: 0;
-    left: 0;
+    left: 60px;
     border: 0;
     float: left;
     display: inline-block;
+}
+
+.light .UI-Applet .UI-Sidebar {
+	 background: #AFAFAF !important;
+	background-color: #DEDEDE !important;
 }
 
 .UI-Sidebar .icon {
@@ -1546,6 +1581,7 @@ div.formContainer {
     display: inline-block;
     float: left;
     padding-top: 0.4em;
+	margin-left: 2px;
 }
 
 .UI-Sidebar h3 {

@@ -85,6 +85,9 @@ var UI = {
 			switch (type) {
 				case "text":
 					view = document.createElement("textarea");
+					if (window.innerWidth > 960) {
+						view.setAttribute("style", "height:735px;");
+					}
 				break;
 				case "codemirror":
 					view = document.createElement("textarea");

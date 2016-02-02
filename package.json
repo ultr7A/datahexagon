@@ -1,0 +1,13 @@
+ {
+    "name": "datahexagon",
+	 "description": "A web based desktop environment and system for file storage and sharing",
+     "version": "1.0.0",
+	 "repository": { "type" : "git", "url" : "https://github.com/SpaceHexagon/datahexagon"
+	  },
+    "scripts": {
+      "build": "babel app/js/es6 -d app/js/es6/dist"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.0.0"
+    }
+  }
