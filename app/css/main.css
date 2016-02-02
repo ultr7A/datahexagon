@@ -904,7 +904,7 @@ body.light  {
     	padding-bottom: 0.5em;
 	}
 	body {
-		background-size: 200%;
+/*		background-size: 200%;*/
 	}
 	div.uploadInput {
 		display: inline-block;
@@ -1060,9 +1060,7 @@ aside.creation nav a span {
 		z-index: 99;
 	}
 	body {
-/*		background-size: 100% !important;*/
-		background-image: none;
-/*		background-color: transparent;*/
+
 	}
 	.Card {
 		display: block !important;
