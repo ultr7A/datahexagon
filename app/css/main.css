@@ -235,7 +235,7 @@ aside nav a.text {
 }
 
 aside nav a.image {
-	background-image: url(../data/image.png);
+	background-image: url(../data/192/image-2.png);
 }
 
 aside nav a.object {
@@ -346,10 +346,7 @@ section.launcher {
     max-width: 800px;
     max-height: 800px;
     margin: auto;
-	background: -webkit-linear-gradient(#F7F7F7, rgb(221, 221, 221));
-	background: -moz-linear-gradient(#F7F7F7, rgb(221, 221, 221));
-    background: linear-gradient(#F7F7F7, rgb(221, 221, 221));
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.45), 0px 0px 30px rgba(0, 0, 0, 0.35);
+	background: rgba(146, 146, 146, 0.66);
     border-radius: 2%;
     -webkit-transform: perspective(50px) translateZ(268px);
     -moz-transition: all 0.25s cubic-bezier(0.07, 0.93, 0.2, 0.92);
@@ -1436,10 +1433,9 @@ div.formContainer {
     padding: 1em;
     padding-top: 64px;
     padding-bottom: 0;
-	background-color: rgba(221, 221, 221, 0.42);
+	background-color: rgba(0, 0, 0, 0.32);
 	background-size: contain;
     text-align: center;
-    border: 2px solid white;
     cursor: pointer;
 }
 .launcher .UI-App-Icon span {

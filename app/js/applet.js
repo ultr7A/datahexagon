@@ -177,7 +177,7 @@ app.applets["text-editor"] = {
 
 app.applets["image-editor"] = {
     name: "Image Editor",
-	icon: "/app/data/192/image.png",
+	icon: "/app/data/192/image-2.png",
     options: {
         "Save Changes": function (p) {}
     },
