@@ -903,8 +903,8 @@ body.light  {
 		padding-top: 0;
     	padding-bottom: 0.5em;
 	}
-	body {
-/*		background-size: 200%;*/
+	body.light {
+		background-image: none !important;
 	}
 	div.uploadInput {
 		display: inline-block;
