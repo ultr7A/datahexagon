@@ -15,8 +15,8 @@ Applet.prototype.init = function (params) {
     console.log("Applet init... ", params);
 	this.components = this.data.init(params);
 		if (typeof this.components != 'object') {
-			var menu = new UI.Menu(),
-			sidebar = new UI.Sidebar("standard", {icon: this.data.icon, title:this.data.name, subtitle: ""}),
+			var menu = UI.Menu("standard", {"titleButton": { icon: this.icon, title:this.name}}),
+			sidebar = new UI.Sidebar("standard", {title:this.data.name, subtitle: ""}),
 			view = new UI.Frame("custom", {element: document.createElement("div")});
 			this.components = [menu, sidebar, view];
 		}
@@ -155,10 +155,11 @@ app.applets["text-editor"] = {
 
     },
     init: function (p) {
-		var menu = new UI.Menu(),
-			sidebar = new UI.Sidebar("custom",
-									 {icon: this.icon, title:this.name, subtitle: "",
-											   items: []
+		var menu = new UI.Menu("standard", {"titleButton": { icon: this.icon, title:this.name}}),
+			sidebar = new UI.Sidebar("custom", {
+                                        title:this.name,
+                                        subtitle: "",
+				                        items: []
 									 }),
 			element = document.createElement("div"),
 			//textarea = document.createElement("textarea"),
@@ -289,11 +290,12 @@ app.applets["sharing"] = {
 
     },
     init: function (p) {
-		var menu = new UI.Menu(),
-			sidebar = new UI.Sidebar("custom",
-									 {icon: this.icon, title:this.name, subtitle: "",
-											   items: []
-									 }),
+		var menu = new UI.Menu("standard", {"titleButton": { icon: this.icon, title:this.name}}),
+			sidebar = new UI.Sidebar("custom", {
+                title: this.name,
+                subtitle: "",
+                items: []
+            }),
 			element = document.createElement("div"),
 			nameLabel = document.createElement("label"),
 			resourceLabel = document.createElement("label"),

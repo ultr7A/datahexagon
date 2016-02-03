@@ -8,10 +8,13 @@ var UI = {
 		aside.setAttribute("class", "UI-Menu");
 		this.element = aside;
 		this.applet = null;
+        if (!! options.titleButton) {
+            menuItems.push(options.titleButton);
+        }
 		type = (!!type ? type : "standard");
 		switch (type) {
 			case "standard":
-				menuItems = UI.defaults.menu.options;
+				menuItems = menuItems.concat(UI.defaults.menu.options);
 			break;
 			case "custom":
 				menuItems = options.menuItems;
@@ -42,11 +45,13 @@ var UI = {
 		aside.setAttribute("class", "UI-Sidebar");
 		this.element = aside;
         this.options = options;
-		icon.src = options.icon;
-        icon.setAttribute("class", "icon");
+        if (!! options.icon) {
+            icon.src = options.icon;
+            icon.setAttribute("class", "icon");
+            aside.appendChild(icon);
+        }
 		h2.innerHTML = options.title;
 		h3.innerHTML = options.subtitle;
-		aside.appendChild(icon);
 		aside.appendChild(h2);
 		aside.appendChild(h3);
 		aside.appendChild(document.createElement("br"));
@@ -459,14 +464,15 @@ function Card (name, resource, options) {
     } else {
 		e.appendChild(link);
 		if (/^(.*\/){0,1}[^\.]*.{1}$/.test(resource)) { // detect folders
-			//contextMenu = false; // disable context menu for now...
             contextMenuData.directory = true;
 			link.setAttribute("href", "#");
 			link.addEventListener("click", function (event) {
 				event.preventDefault();
-				openFolder(resource);
+				if (event.target.nodeName != "LI") {
+                    openFolder(resource);
+                }
 				return false;
-			}, true);
+			}, false);
 			e.setAttribute("class", "Card Folder");
 		} else {
 			if (!contextMenu) {
