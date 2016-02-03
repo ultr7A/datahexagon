@@ -310,10 +310,11 @@ aside nav {
 
 section.content {
 	max-width: 100%;
-	  position: absolute;
-	  height: 100%;
-      width: 100%;
-	  margin-left: 94px;
+    position: absolute;
+    height: 100%;
+    width: 93%;
+    margin-left: 94px;
+    text-align: center;
 }
 
 
