@@ -314,7 +314,6 @@ section.content {
     height: 100%;
     width: 93%;
     margin-left: 94px;
-    text-align: center;
 }
 
 
@@ -862,6 +861,12 @@ body.light  {
 	.UI-Applet {
 		max-width: 1024px;
 	}
+}
+
+@media screen and (max-width: 1150px) {
+ section.content {
+     text-align: center;
+ }
 }
 
 @media screen and (max-width: 1200px) {
