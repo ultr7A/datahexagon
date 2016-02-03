@@ -1095,6 +1095,10 @@ aside.creation nav a span {
 		margin: auto;
     	position: absolute;
     }
+    section.content {
+         text-align: left;
+        width: 100%;
+     }
 	.launcher .app.icon {
 		width: 56px;
 		height: 64px;
