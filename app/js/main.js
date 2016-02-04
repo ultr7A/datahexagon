@@ -609,11 +609,17 @@ function init () {
 		renderer.domElement.setAttribute("class", "viewport");
 		document.body.appendChild( renderer.domElement );
 		if (page == "/neo/") {
-			material = new THREE.MeshLambertMaterial( { color: 0xFD005F, wireframe: true } ); // 0xDE002B
-			geometry = new THREE.PlaneGeometry(100,100,16,16);
-			ground = app.ground = new THREE.Mesh( geometry, material );
-			scene.add( ground );
+            var skyMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
+                cloudMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
+                groundMat = new THREE.MeshLambertMaterial({ color: 0x000000, wireframe: true }),
+                panelMat = new THREE.MeshLambertMaterial({ color: 0xff0000 }),
+                planeGeometry = new THREE.PlaneGeometry(100, 100, 16, 16),
+                cellGeometry =  new THREE.CylinderGeometry(5, 5, 7, 6);
+
+			ground = app.ground = new THREE.Mesh(planeGeometry, material );
+			scene.add(ground);
 			ground.position.set(-10, -10, -10);
+            ground.rotation.x = Math.PI / 2;
 			camera.position.z = 10;
 			camera.position.x = -5;
 			light = app.light = new THREE.PointLight(0xffffff, 1.1, 120);
@@ -623,9 +629,9 @@ function init () {
 			light.position.x = -16;
 		} else {
 			material = new THREE.MeshLambertMaterial( { color: 0xFD005F, wireframe: true } ); // 0xDE002B
-			geometry = new THREE.TorusGeometry( 10, 6, 6, 6 );
+			geometry = new THREE.TorusGeometry(10, 6, 6, 6 );
 			logo = app.logo = new THREE.Mesh( geometry, material );
-			scene.add( logo );
+			scene.add(logo);
 			logo.position.set(-16, -16, -10);
 			camera.position.z = 10;
 			camera.position.x = -5;

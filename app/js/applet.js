@@ -14,33 +14,47 @@ Applet.prototype.init = function (params) {
 	var c = 0;
     console.log("Applet init... ", params);
 	this.components = this.data.init(params);
-		if (typeof this.components != 'object') {
-			var menu = UI.Menu("standard", {"titleButton": { icon: this.icon, title:this.name}}),
+    if (typeof this.components != 'object') {
+        var menu = UI.Menu("standard", {"titleButton": { icon: this.icon, title:this.name}}),
 			sidebar = new UI.Sidebar("standard", {title:this.data.name, subtitle: ""}),
 			view = new UI.Frame("custom", {element: document.createElement("div")});
-			this.components = [menu, sidebar, view];
-		}
-		while (c < this.components.length) {
-			this.components[c].applet = this;
-			this.div.appendChild(this.components[c].element);
-			c ++;
-		}
+        this.components = [menu, sidebar, view];
+    }
+    while (c < this.components.length) {
+        this.components[c].applet = this;
+        this.div.appendChild(this.components[c].element);
+        c ++;
+    }
+    if (!! params && !! params.open) {
+        this.open(params.open);
+    }
 };
 
 Applet.prototype.add = function (params) {
-    console.log("Applet add... ", params);
+    console.log("Applet adds... ", params);
     this.data.add(params);
 };
 
 Applet.prototype.save = function (params) {
-    console.log("Applet save... ", params);
+    console.log("Applet saves... ", params);
     this.data.save(params);
 };
 
 Applet.prototype.close = function (params) {
-    console.log("Applet close... ", params);
+    console.log("Applet closes... ", params);
     this.data.close(params);
 };
+
+
+Applet.prototype.open = function (params) {
+    console.log("Applet opens file... ", params);
+    console.log(params);
+    if(!! this.data.open) {
+        this.data.open(params);
+    }
+};
+
+
 app.applets["alarm-clock"] = {
     name: "Clock",
 	icon: "/app/data/192/clock-2.png",
@@ -109,11 +123,43 @@ app.applets["messaging"] = {
 
 		}
     },
-    schema: {
-        "models": ["Output"],
-        "Output": {
-            "data": ""
-        }
+    models: {
+      contact: {
+          current: 0,
+          schema: {
+              name: "",
+              username: "",
+              email: "",
+              twitter: "",
+              facebook: "",
+              soundcloud: "",
+              gmail: "",
+              github: ""
+          },
+          all: []
+      },
+      messages : {
+          current: 0,
+          schema: {
+              title: "",
+              to: "",
+              from: "",
+              message: "",
+              type: "text"
+          },
+          all: []
+      },
+      chats: {
+          current: 0,
+          schema: {
+              to: "",
+              from: "",
+              room: "",
+              message: "",
+              type: "text"
+          },
+          all: []
+      }
     },
     init: function (p) {
 		// connect socket to app if not connected...
@@ -136,8 +182,15 @@ app.applets["image-viewer"] = {
 		"Previous": function (p) {},
 		"Share": function (p) {}
     },
-    schema: {
-
+    models: {
+      image: {
+          current: 0,
+          schema: {
+              resource: "",
+              username: "",
+          },
+          all: []
+      }
     },
     init: function (p) {
 
@@ -151,8 +204,16 @@ app.applets["text-editor"] = {
     options: {
         "Save Changes": function (p) {}
     },
-    schema: {
-
+    models: {
+      document: {
+          current: 0,
+          schema: {
+              resource: "",
+              username: "",
+              type: ""
+          },
+          all: []
+      }
     },
     init: function (p) {
 		var menu = new UI.Menu("standard", {"titleButton": { icon: this.icon, title:this.name}}),
@@ -182,8 +243,16 @@ app.applets["image-editor"] = {
     options: {
         "Save Changes": function (p) {}
     },
-    schema: {
-
+    models: {
+      image: {
+          current: 0,
+          schema: {
+              resource: "",
+              username: "",
+              type: ""
+          },
+          all: []
+      }
     },
     init: function (p) {
 
@@ -199,8 +268,16 @@ app.applets["3d-editor"] = {
     options: {
         "Save Changes": function (p) {}
     },
-    schema: {
-
+    models: {
+      object: {
+          current: 0,
+          schema: {
+              resource: "",
+              username: "",
+              type: ""
+          },
+          all: []
+      }
     },
     init: function (p) { },
     add: function (p) { },
@@ -213,8 +290,17 @@ app.applets["midi-editor"] = {
     options: {
         "Save Changes": function (p) {}
     },
-    schema: {
-
+    models: {
+      arrangment: {
+          current: 0,
+          schema: {
+              data: "",
+              resource: "",
+              username: "",
+              type: ""
+          },
+          all: []
+      }
     },
     init: function (p) { },
     add: function (p) { },
@@ -228,8 +314,16 @@ app.applets["animation-editor"] = {
     options: {
         "Save Changes": function (p) {}
     },
-    schema: {
-
+    models: {
+      animation: {
+          current: 0,
+          schema: {
+              resource: "",
+              username: "",
+              type: ""
+          },
+          all: []
+      }
     },
     init: function (p) { },
     add: function (p) { },
@@ -243,8 +337,17 @@ app.applets["search"] = {
     options: {
         "Search": function (p) {}
     },
-    schema: {
+    models: {
+      result: {
+          current: 0,
+          schema: {
 
+              resource: "",
+              username: "",
+              type: ""
+          },
+          all: []
+      }
     },
     init: function (p) { },
     close: function (p) { }
@@ -256,8 +359,16 @@ app.applets["settings"] = {
     options: {
         "Save Changes": function (p) {}
     },
-    schema: {
-
+    models: {
+      setting: {
+          current: 0,
+          schema: {
+              name: "",
+              value: "",
+              type: ""
+          },
+          all: []
+      }
     },
     init: function (p) { },
     save: function (p) { },
@@ -270,8 +381,16 @@ app.applets["usage-visualizer"] = {
     options: {
         "Save Changes": function (p) {}
     },
-    schema: {
-
+    models: {
+      visualization: {
+          current: 0,
+          schema: {
+              name: "",
+              value: "",
+              type: ""
+          },
+          all: []
+      }
     },
     init: function (p) { },
     save: function (p) { },
@@ -286,8 +405,18 @@ app.applets["sharing"] = {
         "New Share": function (p) {},
 		"New Shortcut": function (p) {}
     },
-    schema: {
-
+    models: {
+      share: {
+          current: 0,
+          schema: {
+              name: "",
+              resource: "",
+              public: "",
+              whitelist: "",
+              data: ""
+          },
+          all: []
+      }
     },
     init: function (p) {
 		var menu = new UI.Menu("standard", {"titleButton": { icon: this.icon, title:this.name}}),

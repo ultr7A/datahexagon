@@ -227,7 +227,13 @@ var UI = {
 							resource = element.getAttribute("data-resource"),
                             name = element.getAttribute("data-name");
 						e.preventDefault();
-						app.openPane("sharing", "Sharing", {"applet": {"name":"sharing", "directory":resource}})
+						app.openPane("sharing", "Sharing", { "applet": {
+                            "name":"sharing",
+                            "open": {
+                                "resource":resource,
+                                "type": "share"
+                            }
+                        }});
 						return false;
 					}},
 					{"name": "Delete", "icon":"/app/data/192/dark/x.png", "click": function (e) {
