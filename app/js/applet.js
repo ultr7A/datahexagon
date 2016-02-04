@@ -324,16 +324,17 @@ app.applets["sharing"] = {
 			span.appendChild(publicLabel);
 			span.appendChild(publicInput);
 			element.appendChild(span);
+		    dataLabel.innerHTML = "Data";
+			span = document.createElement("span");
+			span.appendChild(dataLabel);
+			span.appendChild(dataInput);
+			element.appendChild(span);
 			whiteListLabel.innerHTML = "White List";
 			span = document.createElement("span");
 			span.appendChild(whiteListLabel);
 			span.appendChild(whiteListInput);
 			element.appendChild(span);
-			dataLabel.innerHTML = "Data";
-			span = document.createElement("span");
-			span.appendChild(dataLabel);
-			span.appendChild(dataInput);
-			element.appendChild(span);
+
 
 			view = new UI.Frame("custom", {"element":element});
 
