@@ -11,14 +11,15 @@ function Applet (name, params) {
 }
 
 Applet.prototype.init = function (params) {
-	var c = 0;
-    console.log("Applet init... ", params);
-	this.components = this.data.init(params);
-    if (typeof this.components != 'object') {
-        var menu = UI.Menu("standard", {"titleButton": { icon: this.icon, title:this.name}}),
+	var c = 0,
+        components = this.data.init(params);
+    if (typeof components != 'object') {
+        var menu = new UI.Menu("standard", {"titleButton": { icon: this.icon, title:this.name}}),
 			sidebar = new UI.Sidebar("standard", {title:this.data.name, subtitle: ""}),
 			view = new UI.Frame("custom", {element: document.createElement("div")});
         this.components = [menu, sidebar, view];
+    } else {
+        this.components = components;
     }
     while (c < this.components.length) {
         this.components[c].applet = this;
@@ -218,7 +219,7 @@ app.applets["text-editor"] = {
     init: function (p) {
 		var menu = new UI.Menu("standard", {"titleButton": { icon: this.icon, title:this.name}}),
 			sidebar = new UI.Sidebar("custom", {
-                                        title:this.name,
+                                        title: this.name,
                                         subtitle: "",
 				                        items: []
 									 }),
