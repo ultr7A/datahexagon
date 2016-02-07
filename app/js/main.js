@@ -612,27 +612,49 @@ function init () {
 		document.body.appendChild( renderer.domElement );
 		if (page == "/neo/") {
             var skyMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
-                cloudMat = new THREE.MeshBasicMaterial({ color: 0xffffff }),
-                groundMat = new THREE.MeshBasicMaterial({ color: 0xffffff }),
-                panelMat = new THREE.MeshLambertMaterial({ color: 0xff0000 }),
-                planeGeometry = new THREE.PlaneGeometry(10000, 10000, 24, 24),
-                cellGeometry =  new THREE.CylinderGeometry(5, 5, 7, 6);
-
+				sunMat = new THREE.MeshBasicMaterial({ color: 0xffffff }),
+                cloudMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
+                groundMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
+                panelMat = new THREE.MeshBasicMaterial({ color: 0xff00 }),
+                planeGeometry = new THREE.PlaneGeometry(16000, 16000, 24, 24),
+                cellGeometry = new THREE.CylinderGeometry(192, 192, 320, 6),
+				sunGeometry = new THREE.BoxGeometry(360, 360, 360),
+				sun = new THREE.Mesh(cellGeometry, sunMat),
+				cell = null;
 			var zenith = app.zenith = new THREE.Mesh(planeGeometry, cloudMat);
 			var nadir = app.nadir = new THREE.Mesh(planeGeometry, groundMat);
+			renderer.setClearColor( 0x999999, 1);
 			scene.add(zenith);
-			zenith.position.set(0, 30, 0);
+			zenith.position.set(0, 600, 0);
             zenith.rotation.x = Math.PI / 2;
 			scene.add(nadir);
-			nadir.position.set(0, -30, 0);
-            //nadir.rotation.x = Math.PI / 2;
-			camera.position.z = 0;
-			camera.position.x = 0;
-			light = app.light = new THREE.PointLight(0xffffff, 1.1, 170);
+			nadir.position.set(0, 0, 0);
+            nadir.rotation.x = -Math.PI / 2;
+			camera.position.set(0, 300, 0);
+			light = app.light = new THREE.PointLight(0xffffff, 1.5, 22000);
 			scene.add(light);
-			light.position.z = 0;
-			light.position.y = -16;
-			light.position.x = -16;
+			light.position.z = -6000;
+			light.position.y = 300;
+			light.position.x = 0;
+			sun.rotation.set(Math.PI/2, 0, 0);
+			scene.add(sun);
+			sun.position.set(0, 300, -6000);
+			var x = 0,
+				y = 0,
+				r = 5;
+			while (x < 24) {
+				while (y < 24) {
+					if (Math.random() < 0.50) {
+						cell = new THREE.Mesh(cellGeometry, panelMat);
+						three.scene.add(cell);
+						cell.position.set(x*r*5, 6, ((y*r)+((x%2)*0.5))*5);
+					}
+					y++;
+				}
+				y = 0;
+				x++;
+			}
+
 		} else {
 			material = new THREE.MeshLambertMaterial( { color: 0xFD005F, wireframe: true } ); // 0xDE002B
 			geometry = new THREE.TorusGeometry(10, 6, 6, 6 );
