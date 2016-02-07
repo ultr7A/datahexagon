@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="neo">
     <head>
         <?php
             ini_set('display_errors', '1');

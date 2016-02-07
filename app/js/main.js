@@ -623,7 +623,7 @@ function init () {
 				cell = null;
 			var zenith = app.zenith = new THREE.Mesh(planeGeometry, cloudMat);
 			var nadir = app.nadir = new THREE.Mesh(planeGeometry, groundMat);
-			renderer.setClearColor( 0x999999, 1);
+			renderer.setClearColor( 0x212121, 1);
 			scene.add(zenith);
 			zenith.position.set(0, 600, 0);
             zenith.rotation.x = Math.PI / 2;
