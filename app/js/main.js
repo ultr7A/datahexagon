@@ -6,6 +6,7 @@ var app = {
 			id: -1
 		},
 		pass: "",
+		page: "",
         files: [],
 		panes: [],
         applets: [],
@@ -353,7 +354,7 @@ function readDirectory (callback) {
 			callback(xhr.responseText);
 		}
 	};
-	xhr.open("POST", "../app/data.php", true);
+	xhr.open("POST", "/app/data.php", true);
 	xhr.send(formData);
 	return false;
 }
@@ -370,7 +371,7 @@ function makeDirectory (pane) {
 			pane.close();
 		}
 	};
-	xhr.open("POST", "../app/data.php", true);
+	xhr.open("POST", "/app/data.php", true);
 	xhr.send(formData);
 	return false;
 }
@@ -385,7 +386,7 @@ function deletePath (directory) {
 			openFolder(app.cwd);
 		}
 	};
-	xhr.open("POST", "../app/data.php", true);
+	xhr.open("POST", "/app/data.php", true);
 	xhr.send(formData);
 	return false;
 }
@@ -414,7 +415,7 @@ function uploadFiles (pane) {
 			app.panes = [];
 		}
 	};
-	xhr.open("POST", "../app/data.php", true);
+	xhr.open("POST", "/app/data.php", true);
 	xhr.send(formData);
 	if (!! document.querySelector(".upload [type=file]")) {
         document.querySelector(".upload [type=file]").files = [];
@@ -448,7 +449,7 @@ function saveText (pane) {
 			openFolder(app.cwd);
 		}
 	};
-	xhr.open("POST", "../app/data.php", true);
+	xhr.open("POST", "/app/data.php", true);
 	xhr.send(formData);
 	return false;
 }
@@ -485,6 +486,7 @@ function init () {
     console.log("Data Hexagon (C) "+(new Date().getFullYear()) + " jeremy@spacehexagon.com");
 	console.log("https://github.com/SpaceHexagon/datahexagon");
 
+	app.page = page;
 	window.socket = app.socket = io.connect("https://subnexus.fm:8081", {secure:true, port: 8080});
 	// temporarily using subnexus socketio
 
@@ -602,7 +604,7 @@ function init () {
         };
 	} else {
         scene = three.scene =  new THREE.Scene();
-		camera = three.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10000 );
+		camera = three.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.2, 80000 );
 		renderer = three.renderer = new THREE.WebGLRenderer({alpha: true, antialias: (window.innerWidth <= 1440)});
 		renderer.setClearColor( 0x000000, 0 );
 		renderer.setSize( window.innerWidth, window.innerHeight );
@@ -610,19 +612,23 @@ function init () {
 		document.body.appendChild( renderer.domElement );
 		if (page == "/neo/") {
             var skyMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
-                cloudMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
-                groundMat = new THREE.MeshLambertMaterial({ color: 0x000000, wireframe: true }),
+                cloudMat = new THREE.MeshBasicMaterial({ color: 0xffffff }),
+                groundMat = new THREE.MeshBasicMaterial({ color: 0xffffff }),
                 panelMat = new THREE.MeshLambertMaterial({ color: 0xff0000 }),
-                planeGeometry = new THREE.PlaneGeometry(100, 100, 16, 16),
+                planeGeometry = new THREE.PlaneGeometry(10000, 10000, 24, 24),
                 cellGeometry =  new THREE.CylinderGeometry(5, 5, 7, 6);
 
-			ground = app.ground = new THREE.Mesh(planeGeometry, material );
-			scene.add(ground);
-			ground.position.set(-10, -10, -10);
-            ground.rotation.x = Math.PI / 2;
-			camera.position.z = 10;
-			camera.position.x = -5;
-			light = app.light = new THREE.PointLight(0xffffff, 1.1, 120);
+			var zenith = app.zenith = new THREE.Mesh(planeGeometry, cloudMat);
+			var nadir = app.nadir = new THREE.Mesh(planeGeometry, groundMat);
+			scene.add(zenith);
+			zenith.position.set(0, 30, 0);
+            zenith.rotation.x = Math.PI / 2;
+			scene.add(nadir);
+			nadir.position.set(0, -30, 0);
+            //nadir.rotation.x = Math.PI / 2;
+			camera.position.z = 0;
+			camera.position.x = 0;
+			light = app.light = new THREE.PointLight(0xffffff, 1.1, 170);
 			scene.add(light);
 			light.position.z = 0;
 			light.position.y = -16;
@@ -640,10 +646,11 @@ function init () {
 			light.position.z = 0;
 			light.position.y = -16;
 			light.position.x = -16;
-			for (var p = 0; p < appData.length; p++) {
+
+		}
+		for (var p = 0; p < appData.length; p++) {
 				app.actors.push(new ProjectionBot(appData[p].image, appData[p].url));
 			}
-		}
 		animate();
     }
 }
@@ -652,8 +659,7 @@ document.addEventListener("DOMContentLoaded", init, false);
 
 function animate () {
     requestAnimationFrame(animate);
-    three.camera.position.set(-16, -16.5, 10-0.5 * Math.sin(Date.now()/1600));
-    var gravZone = app.gravityZone,
+	var gravZone = app.gravityZone,
         pbs = app.actors,
         p = pbs.length,
         pb = null,
@@ -661,6 +667,9 @@ function animate () {
         gravity = [],
         pbv = new THREE.Vector3(0, 0, 0),
 		mod = 5;
+	if (app.page != "/neo/") {
+    	three.camera.position.set(-16, -16.5, 10-0.5 * Math.sin(Date.now()/1600));
+	}
     while (p-- > 0) {
         pb = pbs[p];
         pbpos = pb.mesh.position;

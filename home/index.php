@@ -54,8 +54,8 @@
         <meta property="og:image:width" content="192" />
         <meta property="og:image:height" content="192" />
         <link rel="icon" sizes="192x192" href="/app/data/gradient-shadow-hexagon-white-192.png">
-        <link rel="stylesheet" href="../app/css/main.css" type="text/css" >
-        <link rel="stylesheet" href="../app/lib/codemirror/codemirror.css" type="text/css" >
+        <link rel="stylesheet" href="/app/css/main.css" type="text/css" >
+        <link rel="stylesheet" href="/app/lib/codemirror/codemirror.css" type="text/css" >
     </head>
     <body>
         <header>
@@ -150,17 +150,17 @@
             </form>
 		</div>
         <?php } ?>
-        <script src="../app/lib/three.js"></script>
-        <script src="../app/lib/socket.io/socket.io.js"></script>
-        <script src="../app/js/ui.js"></script>
-        <script src="../app/js/main.js"></script>
-        <script src="../app/js/applet.js"></script>
-		<script src="../app/lib/codemirror/codemirror.js" ></script>
-		<script src="../app/lib/codemirror/css.js" ></script>
-		<script src="../app/lib/codemirror/javascript.js" ></script>
-		<script src="../app/lib/codemirror/markdown.js" ></script>
-		<script src="../app/lib/codemirror/xml.js" ></script>
-		<script src="../app/lib/codemirror/clike.js" ></script>
+        <script src="/app/lib/three.js"></script>
+        <script src="/app/lib/socket.io/socket.io.js"></script>
+        <script src="/app/js/ui.js"></script>
+        <script src="/app/js/main.js"></script>
+        <script src="/app/js/applet.js"></script>
+		<script src="/app/lib/codemirror/codemirror.js" ></script>
+		<script src="/app/lib/codemirror/css.js" ></script>
+		<script src="/app/lib/codemirror/javascript.js" ></script>
+		<script src="/app/lib/codemirror/markdown.js" ></script>
+		<script src="/app/lib/codemirror/xml.js" ></script>
+		<script src="/app/lib/codemirror/clike.js" ></script>
          <?php if ($username != "") { ?>
         <script>
             app.user.name = "<?php echo $username; ?>";
@@ -174,10 +174,10 @@
 </html>
 <?php
 	if ($createUser) {
-		mkdir(getcwd()."../".strtolower($_POST["username"]), 0775);
+		mkdir(getcwd()."/".strtolower($_POST["username"]), 0775);
 		$text = "<h1>Welcome to Data Hexagon</h1>";
-		touch(getcwd()."../".strtolower($_POST["username"]) . "/Welcome.htm");
-		$textFile = fopen(getcwd()."../".strtolower($_POST["username"]) . "/Welcome.htm", "w") or die("Unable to open file!");
+		touch(getcwd()."/".strtolower($_POST["username"]) . "/Welcome.htm");
+		$textFile = fopen(getcwd()."/".strtolower($_POST["username"]) . "/Welcome.htm", "w") or die("Unable to open file!");
 		fwrite($textFile, $text);
 		fclose($textFile);
 	}
