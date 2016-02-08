@@ -457,7 +457,7 @@ function Card (name, resource, options) {
 			var thumb = rPath[rPath.length-1];
 			rPath.splice(rPath.length-1, 1);
 			rPath.push("DHThumbs");
-			if (window.innerWidth < 641) { // temporary hack to use high-dpi on mobile
+			if ((window.innerWidth < 641 && app.thumbSize) || (window.innerWidth > 640 && !app.thumbSize) ) { // use hi-dpi thumbnails by default
 				rPath.push("1024");
 			}
 			rPath.push(thumb+".jpg");
