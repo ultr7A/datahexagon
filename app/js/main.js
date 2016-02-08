@@ -41,16 +41,16 @@ var app = {
 		},
 		sharing: {
 			listAllShares: function (username, callback) {
-				app.request("POST", "/app/share.php","operation=list&username="+username, callback);
+				app.request("POST", "/app/share.php", "operation=list&username="+username, callback);
 			},
 			readShare: function (id, callback) {
-				app.request("POST", "/app/share.php","operation=read&id="+id, callback);
+				app.request("POST", "/app/share.php", "operation=read&id="+id, callback);
 			},
 			saveShare: function (path, name, users, public, data, callback) {
-				app.request("POST", "/app/share.php","operation=update&path="+path+"&name="+name+"&users="+users+"&public="+public+"&data="+data, callback);
+				app.request("POST", "/app/share.php", "operation=update&path="+path+"&name="+name+"&users="+users+"&public="+public+"&data="+data, callback);
 			},
 			deleteShare: function (path, callback) {
-				app.request("POST", "/app/share.php","operation=delete&path="+path, callback);
+				app.request("POST", "/app/share.php", "operation=delete&path="+path, callback);
 			}
 		},
         openPane: function (type, name, data) {
