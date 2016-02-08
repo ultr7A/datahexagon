@@ -69,7 +69,7 @@ nav a:hover {
 }
 
 nav a.sh {
-    background: url(../data/balanced-thin-small-192.png);
+    background: url(/app/data/balanced-thin-small-192.png);
     background-size: cover;
     height: 64px;
     width: 64px;
@@ -103,7 +103,7 @@ nav a {
 nav a.up {
 	font-size: 3.5em !important;
     text-align: center;
-    background-image: url(../data/hdpi-triangle.png);
+    background-image: url(/app/data/192/triangle-round.png);
 	margin-top: 0;
 }
 
@@ -113,7 +113,7 @@ nav a.upload {
 	padding-left: 13px;
 	margin-bottom: 12px;
 	font-family: arial;
-	background-image:url(../data/upload.png);
+	background-image:url(/app/data/upload.png);
 }
 
 nav a.mkdir {
@@ -122,7 +122,7 @@ nav a.mkdir {
   padding-left: 11px;
 	margin-bottom: 12px;
   font-family: arial;
-	background-image:url(../data/mkdir.png);
+	background-image:url(/app/data/mkdir.png);
 }
 nav a.rm {
 font-size: 2.0em;
@@ -133,11 +133,11 @@ font-size: 2.0em;
 }
 
 nav a.touch {
-	background-image:url(../data/touch.png);
+	background-image:url(/app/data/touch.png);
 }
 
 nav a.create {
-	background-image: url(../data/plus.png);
+	background-image: url(/app/data/plus.png);
     margin-top: 22px;
     margin-bottom: 12px;
 }
@@ -150,16 +150,16 @@ div.upload {
 	left: 90px;
 }
 nav a.view {
-	background-image: url(../data/image.png);
+	background-image: url(/app/data/image.png);
 }
 nav a.sort {
-	background-image: url(../data/192/circle.png);
+	background-image: url(/app/data/192/circle.png);
 }
 nav a.theme {
-	background-image: url(../data/sun-192.png);
+	background-image: url(/app/data/sun-192.png);
 }
 .light nav a.theme {
-	background-image: url(../data/moon-192.png);
+	background-image: url(/app/data/moon-192.png);
 }
 
 
@@ -206,39 +206,39 @@ aside.sort nav a, aside.view nav a, aside.file nav a, aside.creation nav a {
 
 
 aside nav a.name {
-	background-image: url(../data/name.png);
+	background-image: url(/app/data/name.png);
 }
 
 aside nav a.date {
-	background-image: url(../data/horizontal-split.png);
+	background-image: url(/app/data/horizontal-split.png);
 }
 
 aside nav a.type {
-	background-image: url(../data/type3.png);
+	background-image: url(/app/data/type3.png);
 }
 
 aside nav a.grid {
-	background-image: url(../data/quarter-split.png);
+	background-image: url(/app/data/quarter-split.png);
 }
 
 aside nav a.hexagon {
-	background-image: url(../data/hexagon2.png);
+	background-image: url(/app/data/hexagon2.png);
 }
 
 aside nav a.full3d {
-	background-image: url(../data/3d.png);
+	background-image: url(/app/data/3d.png);
 }
 
 aside nav a.text {
-	background-image: url(../data/text2.png);
+	background-image: url(/app/data/text2.png);
 }
 
 aside nav a.image {
-	background-image: url(../data/192/image-2.png);
+	background-image: url(/app/data/192/image-2.png);
 }
 
 aside nav a.object {
-	background-image: url(../data/cube.png);
+	background-image: url(/app/data/cube.png);
 }
 
 .upload input,
@@ -988,7 +988,7 @@ body.light  {
 		display: inline-block;
 		margin-top: 12px;
         margin-left: 0;
-        background-image: url(../data/192/triangle-horizontal.png);
+        background-image: url(/app/data/192/back.png);
 	}
 	nav a.mkdir {
 		position: relative;
@@ -1048,26 +1048,9 @@ aside.creation nav a span {
 	}
 
 @media screen and (max-width: 480px) {
-	.UI-Applet {
-		max-width: 320px;
-		margin-left: -73px;
-		margin-right: 0;
-		margin-top: 5em !important;
-    	margin-left: 0 !important;
-		max-height: 700px !important;
-	}
-	.UI-Sidebar {
-		max-height: 60px !important;
-	}
-	.UI-Frame {
-		max-height: 640px !important;
-	}
-	.UI-Menu {
-		z-index: 99;
-	}
-	body {
-
-	}
+    .light .UI-Frame {
+        background-color: rgb(222, 222, 222);
+    }
 	.Card {
 		display: block !important;
 		max-height: 265px !important;
@@ -1079,6 +1062,51 @@ aside.creation nav a span {
 	.Card.Image {
 		height: 265px !important;
 	}
+    .UI-Applet {
+		max-width: 320px;
+		margin-left: -73px;
+		margin-right: 0;
+		margin-top: 5em !important;
+    	margin-left: 0 !important;
+		max-height: 420px !important;
+	}
+	.UI-Applet .UI-Sidebar {
+		background: #AFAFAF !important;
+        background-color: #DEDEDE !important;
+        top: initial;
+        bottom: 0;
+        left: 0 !important;
+        position: absolute !important;
+        z-index: 99;
+        padding-left: 0.5em !important;
+	}
+	.UI-Applet .UI-Frame {
+		max-height: 640px !important;
+        width: 100%;
+	}
+	.UI-Applet .UI-Menu {
+        background-color: rgba(76, 76, 76, 0.35) !important;
+        box-shadow: none;
+        text-align: left;
+        padding-left: 0.5em !important;
+        bottom: 0;
+        top: initial !important;
+        z-index: 999;
+	}
+    .UI-Applet textarea {
+		width: 100%;
+		margin-top: 60px;
+	}
+    .UI-Context-Menu {
+        min-width: 104px !important;
+        padding-top: 0.2em !important;
+        max-height: 157px;
+    }
+	.DataPane.UI-Applet .UI-Menu {
+		height: 60px !important;
+		width: 100% !important;
+	}
+
 	.fileManagement aside {
 		height: 70px !important;
 	}
@@ -1219,11 +1247,7 @@ aside.creation nav a span {
         margin-bottom: 0px !important;
         padding-top: 14px !important;
 	}
-    .UI-Context-Menu {
-        min-width: 104px !important;
-        padding-top: 0.2em !important;
-        max-height: 157px;
-    }
+
 	.launcher .UI-App-Icon {
 		width: 32px !important;
 		height: 50px !important;
@@ -1245,17 +1269,6 @@ aside.creation nav a span {
 	.launcher .UI-App-Icon.down {
 	    top: 2em !important;
 	}
-	.UI-Applet textarea {
-		width: 100%;
-		position: absolute;
-		margin-top: 60px;
-	}
-	.DataPane.UI-Applet .UI-Menu {
-		top: 60px;
-		height: 60px !important;
-		width: 100% !important;
-	}
-
 }
 
 @media screen and (max-width: 322px) {
@@ -1265,7 +1278,7 @@ aside.creation nav a span {
 }
 
 .hexMenu {
-	background: url(../data/appicon60.png);
+	background: url(/app/data/appicon60.png);
 	background-size: cover;
 	height: 60px;
 	width: 60px;
@@ -1554,14 +1567,13 @@ div.formContainer {
 }
 
 .UI-Applet .UI-Sidebar {
-    height: 100% !important;
-
-    padding: 0 !important;
+    height: 100%;
+    padding: 0;
     margin: 0 !important;
-    position: relative!important;
-    width: 320px !important;
-	background: #252525 !important;
-    background-color: #252525 !important;
+    position: relative;
+    width: 320px;
+	background: #252525;
+    background-color: #252525;
     top: 0;
     left: 60px;
     border: 0;
