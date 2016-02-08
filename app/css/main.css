@@ -1746,3 +1746,20 @@ div.formContainer {
 	    display: inline-block;
     margin-right: 1em;
 }
+
+
+.neo input[type=button] {
+	    padding: 1em;
+    margin: 1em;
+    margin-left: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    border: 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.neo input[type=button]:hover {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: black;
+}

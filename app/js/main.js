@@ -592,16 +592,19 @@ function init () {
 	console.log(page);
 
 	if (page == "/home/?") {
-        app.container.ondragover = function () { app.lightbox.setAttribute("class", "lightbox hover"); return false; };
-        app.container.ondragend = function () { app.lightbox.setAttribute("class", "lightbox"); return false; };
-//        window.onblur = function () {
-//            app.lightbox.setAttribute("class", "lightbox");
-//        };
-        app.container.ondrop = function (e) {
-            app.lightbox.setAttribute("class", "lightbox");
-            e.preventDefault();
-            app.startUpload(null, e.dataTransfer.files);
-        };
+		if (!! app && !! app.container) {
+			app.container.ondragover = function () { app.lightbox.setAttribute("class", "lightbox hover"); return false; };
+			app.container.ondragend = function () { app.lightbox.setAttribute("class", "lightbox"); return false; };
+	//        window.onblur = function () {
+	//            app.lightbox.setAttribute("class", "lightbox");
+	//        };
+			app.container.ondrop = function (e) {
+				app.lightbox.setAttribute("class", "lightbox");
+				e.preventDefault();
+				app.startUpload(null, e.dataTransfer.files);
+			};
+		}
+
 	} else {
         scene = three.scene =  new THREE.Scene();
 		camera = three.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.2, 80000 );
@@ -615,15 +618,15 @@ function init () {
 				sunMat = new THREE.MeshBasicMaterial({ color: 0xffffff }),
                 cloudMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
                 groundMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
-                panelMat = new THREE.MeshBasicMaterial({ color: 0xff00 }),
-                planeGeometry = new THREE.PlaneGeometry(16000, 16000, 24, 24),
+                panelMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
+                planeGeometry = new THREE.PlaneGeometry(32000, 32000, 24, 24),
                 cellGeometry = new THREE.CylinderGeometry(192, 192, 320, 6),
 				sunGeometry = new THREE.BoxGeometry(360, 360, 360),
 				sun = new THREE.Mesh(cellGeometry, sunMat),
 				cell = null;
 			var zenith = app.zenith = new THREE.Mesh(planeGeometry, cloudMat);
 			var nadir = app.nadir = new THREE.Mesh(planeGeometry, groundMat);
-			renderer.setClearColor( 0x212121, 1);
+			renderer.setClearColor( 0x0B0B0B, 1);
 			scene.add(zenith);
 			zenith.position.set(0, 600, 0);
             zenith.rotation.x = Math.PI / 2;
@@ -631,7 +634,7 @@ function init () {
 			nadir.position.set(0, 0, 0);
             nadir.rotation.x = -Math.PI / 2;
 			camera.position.set(0, 300, 0);
-			light = app.light = new THREE.PointLight(0xffffff, 1.5, 22000);
+			light = app.light = new THREE.PointLight(0xffffff, 1.5, 64000);
 			scene.add(light);
 			light.position.z = -6000;
 			light.position.y = 300;
@@ -647,7 +650,7 @@ function init () {
 					if (Math.random() < 0.50) {
 						cell = new THREE.Mesh(cellGeometry, panelMat);
 						three.scene.add(cell);
-						cell.position.set(x*r*5, 6, ((y*r)+((x%2)*0.5))*5);
+						cell.position.set(x*r*360, 80, ((y*r)+((x%2)*0.5))*360);
 					}
 					y++;
 				}
