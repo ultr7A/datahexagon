@@ -138,7 +138,7 @@ nav a.touch {
 
 nav a.create {
 	background-image: url(/app/data/plus.png);
-    margin-top: 22px;
+    margin-top: 11px;
     margin-bottom: 12px;
 }
 
@@ -153,7 +153,14 @@ nav a.view {
 	background-image: url(/app/data/image.png);
 }
 nav a.sort {
-	background-image: url(/app/data/192/circle.png);
+    background-image: url(/app/data/192/person.png);
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+    margin-top: 22px;
+    margin-bottom: 12px;
 }
 nav a.theme {
 	background-image: url(/app/data/sun-192.png);

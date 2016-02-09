@@ -4,7 +4,7 @@
         <?php
             ini_set('display_errors', '1');
             error_reporting(E_ALL);
-			$connection = mysqli_connect("server","user","password","database");
+			require("db.php");
             if (!$connection) {
                 echo 'Connect Error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error();
             }
@@ -66,10 +66,10 @@
             <aside class="root">
             	<nav>
                 	<a class="sh" href="javascript:void(0);" onclick="app.showMenu('launcher');" title="Launch Applets" ></a>
+                	<a  class="sort" href="javascript:void(0);" onclick="app.showMenu('sort');" title="Change Settings"></a>
                 	<a onclick="app.showMenu('creation');" href="javascript:void(0);" class='create' title="Create and Upload"></a>
 					<a onclick='openFolder(".."); return false;' href="javascript:void(0);" class='up' title="Up One Level"></a>
 <!--                    <a class="view" href="javascript:void(0);" onclick="app.showMenu('launcher');" title="Launch Applets"></a>-->
-                    <a  class="sort" href="javascript:void(0);" onclick="app.showMenu('sort');" title="Change Settings"></a>
                 </nav>
             </aside>
             <aside class="startMenu" style="display: none;">

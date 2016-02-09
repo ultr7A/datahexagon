@@ -1,6 +1,6 @@
 <?php
    if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-    $connection = mysqli_connect("db.example.com","user","pass","db");
+    require("db.php");
     if (!$connection) {
         echo 'Connect Error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error();
     }
