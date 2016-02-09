@@ -64,6 +64,7 @@ var app = {
                 }
                 console.log(p, app.panes[p]);
             }
+			app.showMenu("lightbox");
             pane = new DataPane(type, name, data);
 			if (paneview.children.length > 1) {
 				paneview.insertBefore(pane.container, paneview.children[1]);
@@ -71,7 +72,6 @@ var app = {
 				paneview.appendChild(pane.container);
 			}
             app.panes.push(pane);
-			app.showMenu("none");
 			window.scrollTo(0, 0);
 			return pane;
         },
@@ -81,7 +81,7 @@ var app = {
 			[].forEach.call(menus, function (togglingMenu, index) {
 				togglingMenu.setAttribute("style", "display: " + (togglingMenu.getAttribute("class") == menu ? "block" : "none") + ";");
 			});
-			lightbox.setAttribute("style", "display: " + (menu == "none" ? "none" : "block")+ ";");
+			lightbox.setAttribute("style", "display: " + ((menu == "none") ? "none" : "block")+ ";"+(menu == "lightbox" ? "z-index: 2 !important;" : ""));
 			lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " light" : ""));
 			if (menu == "launcher") {
 				app.initLauncher();
