@@ -365,6 +365,38 @@ section.launcher.show {
     opacity: 1;
 }
 
+/* start menu styles */
+
+aside.startMenu {
+    display: block;
+    width: 220px;
+    background-color: rgba(255, 255, 255, 0.94) !important;
+    padding-top: 28px !important;
+    left: 88px;
+}
+
+aside.startMenu nav {
+    width: 220px;
+}
+
+.startMenu nav ul {
+
+}
+
+.startMenu nav ul li {
+    display: block;
+    cursor: pointer;
+    color: grey;
+    padding-top: 0;
+    padding-bottom: 2.5em;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.startMenu nav ul li: hover {
+
+}
+
 section.launcher p {
    	color: #636363;
     text-align: center;

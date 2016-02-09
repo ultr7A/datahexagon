@@ -72,6 +72,18 @@
                     <a  class="sort" href="javascript:void(0);" onclick="app.showMenu('sort');" title="Change Settings"></a>
                 </nav>
             </aside>
+            <aside class="startMenu" style="display: none;">
+            	<nav>
+            		<ul>
+            		    <li class="search">Search</li>
+                        <li class="userProfile">Sign In</li>
+                        <li class="create">Create</li>
+                        <li class="upload">Upload</li>
+                        <li class="messaging">Messaging</li>
+                        <li class="notifications">Notifications</li>
+                    </ul>
+				</nav>
+            </aside>
              <aside class="creation" style="display: none;">
             	<nav>
             		<a class="upload" href="javascript:void(0);" title="Upload File"><span>Upload</span>

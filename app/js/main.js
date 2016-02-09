@@ -76,12 +76,12 @@ var app = {
 			return pane;
         },
 		showMenu: function (menu) {
-			var menus = document.querySelectorAll("aside.view, aside.sort, aside.file, aside.creation, section.launcher"),
+			var menus = document.querySelectorAll("aside.view, aside.sort, aside.file, aside.creation, aside.startMenu, section.launcher"),
 				lightbox = document.querySelector(".lightbox");
 			[].forEach.call(menus, function (togglingMenu, index) {
 				togglingMenu.setAttribute("style", "display: " + (togglingMenu.getAttribute("class") == menu ? "block" : "none") + ";");
 			});
-			lightbox.setAttribute("style", "display: " + ((menu == "none") ? "none" : "block")+ ";"+(menu == "lightbox" ? "z-index: 2 !important;" : ""));
+			lightbox.setAttribute("style", "display: " + ((menu == "none" || menu == "startMenu") ? "none" : "block")+ ";"+(menu == "lightbox" ? "z-index: 2 !important;" : ""));
 			lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " light" : ""));
 			if (menu == "launcher") {
 				app.initLauncher();
@@ -93,7 +93,6 @@ var app = {
 			var sort = document.querySelector("aside.sort"),
 				lightbox = document.querySelector(".lightbox");
 			sort.setAttribute("style", "display: none;");
-			//lightbox.setAttribute("style", "display: none;");
 			app.showMenu("none");
 			this.sortMode = mode;
 			openFolder(this.cwd);
