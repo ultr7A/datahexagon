@@ -1297,25 +1297,14 @@ aside.creation nav a span {
 	}
 
 	.launcher .UI-App-Icon {
-		width: 128px;
-		height: 96px;
-		display: inline-block;
-		border-radius: 18%;
-		box-shadow: 0px 6px 12px rgba(255,255,255,0.20);
-		-webkit-transition: all ease-out 0.25s;
-		-moz-transition: all ease-out 0.25s;
-		transition: all ease-out 0.25s;
-		margin-right: 0%;
-		margin-bottom: -6%;
-		margin-left: 9.75%;
-		margin-top: 21.75%;
-		padding: 1em;
-		padding-top: 64px;
-		padding-bottom: 0;
-		background-color: rgba(255, 255, 255, 0.25);
-		background-size: contain;
-		text-align: center;
-		cursor: pointer;
+		    width: 42px !important;
+		height: 11px !important;
+		display: inline-block !important;
+		margin-right: 0% !important;
+		margin-bottom: 0 !important;
+		margin-left: 7.75% !important;
+		margin-top: 0.75% !important;
+		background-repeat: no-repeat;
 	}
 	.launcher .UI-App-Icon.up {
 	    bottom: 4em !important;
