@@ -415,6 +415,7 @@ DataPane.prototype.getCloseMethod = function (save) {
 		if (!leaveOpen) {
 			pane.container.parentNode.removeChild(pane.container);
 			panes.splice(panes.indexOf(pane));
+			app.showMenu("none");
 		}
     };
 };

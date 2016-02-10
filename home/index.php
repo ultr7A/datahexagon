@@ -4,7 +4,7 @@
         <?php
             ini_set('display_errors', '1');
             error_reporting(E_ALL);
-			require("db.php");
+			require("../app/db.php");
             if (!$connection) {
                 echo 'Connect Error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error();
             }

@@ -82,7 +82,7 @@ var app = {
 				togglingMenu.setAttribute("style", "display: " + (togglingMenu.getAttribute("class") == menu ? "block" : "none") + ";");
 			});
 			lightbox.setAttribute("style", "display: " + ((menu == "none" || menu == "startMenu") ? "none" : "block")+ ";"+(menu == "lightbox" ? "z-index: 2 !important;" : ""));
-			lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " light" : ""));
+			lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " dark" : ""));
 			if (menu == "launcher") {
 				app.initLauncher();
 			} else {

@@ -353,7 +353,7 @@ section.launcher {
     max-width: 800px;
     max-height: 800px;
     margin: auto;
-	background: rgba(146, 146, 146, 0.66);
+	background: transparent;
     border-radius: 2%;
     -webkit-transform: perspective(50px) translateZ(268px);
     -moz-transition: all 0.25s cubic-bezier(0.07, 0.93, 0.2, 0.92);
@@ -889,10 +889,16 @@ body.light  {
 	transition: all 0.333s ease;
 }
 
-.light .lightbox, .lightbox.light {
+.lightbox.light, .light .lightbox {
 	background-color: rgba(255, 255, 255, 0.9) !important;
     color: black;
     text-shadow: none;
+}
+
+.lightbox.dark {
+	background-color: rgba(0, 0, 0, 0.9) !important;
+	color: white !important;
+	text-shadow: none;
 }
 
 @media screen and (max-width:1568px) {
@@ -1288,18 +1294,24 @@ aside.creation nav a span {
 	}
 
 	.launcher .UI-App-Icon {
-		width: 32px !important;
-		height: 50px !important;
-		display: inline-block !important;
-		border-radius: 18% !important;
-		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.10),inset 0px 0px 20px rgba(0, 0, 0, 0.25) !important;
-		margin-right: 0% !important;
-		margin-bottom: -9% !important;
-		margin-left: 9.75% !important;
-		margin-top: 18.75% !important;
-		padding: 1em !important;
-		padding-top: 16px !important;
-		padding-bottom: 0 !important;
+		width: 128px;
+		height: 96px;
+		display: inline-block;
+		border-radius: 18%;
+		box-shadow: 0px 6px 12px rgba(255,255,255,0.20);
+		-webkit-transition: all ease-out 0.25s;
+		-moz-transition: all ease-out 0.25s;
+		transition: all ease-out 0.25s;
+		margin-right: 0%;
+		margin-bottom: -6%;
+		margin-left: 9.75%;
+		margin-top: 21.75%;
+		padding: 1em;
+		padding-top: 64px;
+		padding-bottom: 0;
+		background-color: rgba(255, 255, 255, 0.25);
+		background-size: contain;
+		text-align: center;
 		cursor: pointer;
 	}
 	.launcher .UI-App-Icon.up {
@@ -1493,7 +1505,7 @@ div.formContainer {
     padding: 1em;
     padding-top: 64px;
     padding-bottom: 0;
-	background-color: rgba(0, 0, 0, 0.32);
+	background-color: rgb(95, 95, 95);
 	background-size: contain;
     text-align: center;
     cursor: pointer;
@@ -1502,8 +1514,16 @@ div.formContainer {
 	  color: rgba(255, 255, 255, 0);
 }
 .launcher .UI-App-Icon:hover span {
-	color: white !important;
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+    color: white !important;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.68);
+    width: auto;
+    height: auto;
+    padding-top: 0.25em;
+    padding-bottom: 0.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border-radius: 3px;
 }
 
 .UI-App-Icon.up {
