@@ -217,6 +217,7 @@ aside nav a.name {
 }
 
 aside nav a.date {
+	display: none; /* until I get this working again */
 	background-image: url(/app/data/horizontal-split.png);
 }
 
