@@ -388,6 +388,7 @@ DataPane.prototype.close = function () {
         pane = this;
     pane.container.parentNode.removeChild(pane.container);
     panes.splice(panes.indexOf(pane));
+	app.showMenu("none");
 };
 
 DataPane.prototype.getCloseMethod = function (save) {
@@ -415,8 +416,8 @@ DataPane.prototype.getCloseMethod = function (save) {
 		if (!leaveOpen) {
 			pane.container.parentNode.removeChild(pane.container);
 			panes.splice(panes.indexOf(pane));
-			app.showMenu("none");
 		}
+		app.showMenu("none");
     };
 };
 

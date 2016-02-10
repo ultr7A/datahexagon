@@ -1494,8 +1494,8 @@ div.formContainer {
     height: 96px;
     display: inline-block;
     border-radius: 18%;
-    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.10);
-	-webkit-transition: all ease-out 0.25s;
+    box-shadow: 0px 6px 12px rgba(255,255,255,0.20);
+    -webkit-transition: all ease-out 0.25s;
     -moz-transition: all ease-out 0.25s;
     transition: all ease-out 0.25s;
     margin-right: 0%;
@@ -1505,8 +1505,8 @@ div.formContainer {
     padding: 1em;
     padding-top: 64px;
     padding-bottom: 0;
-	background-color: rgb(95, 95, 95);
-	background-size: contain;
+    background-color: rgba(255, 255, 255, 0.25);
+    background-size: contain;
     text-align: center;
     cursor: pointer;
 }
