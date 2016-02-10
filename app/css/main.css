@@ -1059,8 +1059,10 @@ body.light  {
 	    margin-bottom: 15px
 	}
 	nav a.sort {
-		margin-bottom: 15px
+		margin-bottom: 15px;
+		margin-top: 14px !important;
 	}
+
 	nav ul li {
 		padding-left: 0;
 		width: 100%;
