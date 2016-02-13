@@ -583,6 +583,7 @@ input[type=text], input[type=password] {
     background-repeat: no-repeat;
     background-color: #FFF;
     border-top: 0;
+	cursor: pointer;
 }
 .Card.Image input.close {
     color: black;
@@ -622,6 +623,14 @@ input[type=text], input[type=password] {
 	width: 100%;
 }
 
+.showMenu .UI-Context-Menu {
+	opacity: 1;
+    z-index: 2;
+	pointer-events: all;
+    -webkit-transform: scale(1,1) perspective(100px) rotateX(0deg) translateY(0px) !important;
+    -moz-transform: scale(1,1) perspective(100px) rotateX(0deg) translateY(0px) !important;
+    transform: scale(1,1) perspective(100px) rotateX(0deg) translateY(0px) !important;
+}
 
 .light .Card {
     background-color: #EDEDED !important;
@@ -1746,18 +1755,17 @@ div.formContainer {
 	color: #383838 !important;
 }
 
+
+
 .UI-Context-Menu ul li a {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
 
+/*
 .Card:hover .UI-Context-Menu {
-	opacity: 1;
-    z-index: 9999999;
-	pointer-events: all;
-    -webkit-transform: scale(1,1) perspective(100px) rotateX(0deg) translateY(0px);
-    -moz-transform: scale(1,1) perspective(100px) rotateX(0deg) translateY(0px);
-    transform: scale(1,1) perspective(100px) rotateX(0deg) translateY(0px);
+
 }
+*/
 
 .UI-Context-Menu ul li a {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);

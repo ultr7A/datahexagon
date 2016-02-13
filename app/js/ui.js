@@ -480,7 +480,7 @@ function Card (name, resource, options) {
                     openFolder(resource);
                 }
 				return false;
-			}, false);
+			}, true);
 			e.setAttribute("class", "Card Folder");
 		} else {
 			if (!contextMenu) {
@@ -501,6 +501,23 @@ function Card (name, resource, options) {
 	//	Experimental..
 	if (contextMenu) {
 		var menu = new UI.ContextMenu(contextMenuData);
+		e.addEventListener("click", function (evt) {
+			var style = e.getAttribute("class");
+			if (style.search("showMenu") < 0) {
+				setTimeout(function () {
+					e.setAttribute("class", style+" showMenu");
+				}, 100);
+			}
+
+		}, false);
+
+//		e.addEventListener("mouseout", function (evt) {
+//			var style = e.getAttribute("class");
+//			if (style.search("showMenu") > -1) {
+//				e.setAttribute("class", style.replace("showMenu", ""));
+//			}
+//
+//		}, true);
 		if (isImage) {
 			e.appendChild(menu.element);
 		} else {
