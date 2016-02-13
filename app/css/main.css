@@ -221,6 +221,10 @@ aside nav a.date {
 	background-image: url(/app/data/horizontal-split.png);
 }
 
+aside nav a.logout {
+	background-image: url(/app/data/192/logout.png);
+}
+
 aside nav a.type {
 	background-image: url(/app/data/type3.png);
 }

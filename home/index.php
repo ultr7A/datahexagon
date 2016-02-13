@@ -97,6 +97,7 @@
             </aside>
             <aside class="sort" style="display: none;">
             	<nav>
+            		<a class="logout" title="Log Out" href="/"></a>
             		<a class="type" title="Sort by File Type" onclick="app.changeSortMode('type');"  href="javascript:void(0);"></a>
             		<a class="name" title="Sort Alphabetically" onclick="app.changeSortMode('name');"  href="javascript:void(0);"></a>
             		<a class="date" title="Sort by Creation Date" onclick="app.changeSortMode('date');"  href="javascript:void(0);"></a>
