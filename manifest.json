@@ -1,0 +1,14 @@
+{
+  "short_name": "Datahexagon",
+  "name": "Datahexagon Desktop Environment",
+  "icons": [
+    {
+      "src": "app/data/gradient-shadow-hexagon-white-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "gcm_sender_id": "527592619483"
+}

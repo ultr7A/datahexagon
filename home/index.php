@@ -56,6 +56,7 @@
         <link rel="icon" sizes="192x192" href="/app/data/gradient-shadow-hexagon-white-192.png">
         <link rel="stylesheet" href="/app/css/main.css" type="text/css" >
         <link rel="stylesheet" href="/app/lib/codemirror/codemirror.css" type="text/css" >
+        <link rel="manifest" href="/manifest.json">
     </head>
     <body>
         <header>
