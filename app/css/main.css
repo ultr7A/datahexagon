@@ -1693,6 +1693,10 @@ div.formContainer {
     display: inline-block;
 }
 
+.UI-Applet .UI-SidebarItem {
+
+}
+
 .light .UI-Applet .UI-Sidebar {
 	 background: #ECECEC !important;
 	background-color: #ECECEC !important;

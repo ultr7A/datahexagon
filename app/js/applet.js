@@ -64,6 +64,12 @@ Applet.prototype.open = function (params) {
 	}
 };
 
+Applet.prototype.update = function (params) {
+	if (!!this.data.update) {
+		this.data.update(params);
+	}
+};
+
 
 app.applets["alarm-clock"] = function () {
 	return {
@@ -441,6 +447,9 @@ app.applets["sharing"] = function () {
 	return {
 		name: "Sharing",
 		icon: "/app/data/192/share.png",
+		view: null,
+		menu: null,
+		sidebar: null,
 		options: {
 			"New Share": function (p) {},
 			"New Shortcut": function (p) {}
@@ -486,11 +495,13 @@ app.applets["sharing"] = function () {
 				span = null,
 				shares = this.models.share,
 				share = null;
-			//			span = document.createElement("span");
-			//			nameLabel.innerHTML = "Name";
-			//			span.appendChild(nameLabel);
-			//			span.appendChild(nameInput);
-			//			element.appendChild(span);
+			view = new UI.Frame("custom", {
+				"element": element
+			});
+			this.sidebar = sidebar;
+			this.menu = menu;
+			this.view = view;
+
 			resourceLabel.innerHTML = "Resource";
 			span = document.createElement("span");
 			span.appendChild(resourceLabel);
@@ -529,29 +540,50 @@ app.applets["sharing"] = function () {
 			span.appendChild(whiteListInput);
 			element.appendChild(span);
 
-			view = new UI.Frame("custom", {
-				"element": element
-			});
-
-			app.sharing.listAllShares(app.user.name, function (share) {
-				console.log("init app get shares", share);
-
-			});
+			app.sharing.listAllShares(app.user.name, (function (sidebarList) {
+					return function (share) {
+						console.log("init app get shares", share);
+						if (!! share) {
+							var item = new UI.SidebarItem("standard", {title: share.name});
+							sidebarList.options.items.push(item);
+							sidebarList.element.appendChild(item.element);
+						}
+					};
+			})(sidebar))
 
 			return [menu, sidebar, view];
 		},
+		update: function (p) {
+				console.log("update inputs... need to implement");
+			console.log(this.sidebar);
+			console.log(this.sidebar.element.querySelectorAll("input"));
+		},
 		add: function (p) {
-			var shares = this.models.share,
-				share = Object.create(this.models.share.schema);
+			var sidebar = this.sidebar,
+				shares = this.models.share,
+				share = Object.create(this.models.share.schema),
+				item = new UI.SidebarItem("standard", {title: share.name});
 			shares.all.push(share);
 			shares.current = shares.all.length - 1;
+			sidebar.options.items.push(item);
+			sidebar.element.appendChild(item.element);
+			this.update();
 		},
 		save: function (p) {
-			app.sharing.saveShare(path, path, users, public, data, whitelist, function (resp) {
+			var shares = this.models.share,
+				share = shares.all[shares.current],
+				path = share.path,
+				users = share.whitelist,
+				public = share.public,
+				data = share.data;
+			app.sharing.saveShare(path, path, users, public, data, function (resp) {
 				console.log("saveShare... ", resp);
 			});
 		},
 		delete: function (p) {
+			var shares = this.models.share,
+				share = shares.all[shares.current],
+				path = share.path;
 			app.sharing.deleteShare(path);
 		},
 		close: function (p) {
@@ -559,3 +591,40 @@ app.applets["sharing"] = function () {
 		}
 	};
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

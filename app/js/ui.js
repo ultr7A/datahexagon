@@ -66,6 +66,19 @@ var UI = {
 			break;
 		}
 	},
+	SidebarItem: function SidebarItem (type, options) {
+		var div = document.createElement("div");
+		div.setAttribute("class", "UI-SidebarItem");
+		this.element = div;
+		switch (type) {
+			case "standard":
+				div.innerHTML = options.title;
+			break;
+			case "custom":
+
+			break;
+		}
+	},
 	Toolbar: function Toolbar (type, options) {
 		var aside = document.createElement("aside");
 		aside.setAttribute("class", "UI-Toolbar");
@@ -254,7 +267,7 @@ var UI = {
 
 function AppIcon (name, index) {
 	var element = document.createElement("div"),
-		applet = app.applets[name],
+		applet = app.applets[name](),
 		directionClass = "";
 	if (!! index) {
 		if (index == 1) {
