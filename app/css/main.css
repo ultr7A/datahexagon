@@ -1551,10 +1551,9 @@ div.formContainer {
 
 .UI-Applet, .DataPane.UI-Applet, .light .DataPane.UI-Applet {
 	background-color: rgb(255, 255, 255);
-    border-radius: 2px;
+    border-radius: 3px;
     border-top: none !important;
     border-bottom: none;
-    box-shadow: 1px 1px 2px rgba(0,0,0, 0.15), 0px 0px 60px rgba(0,0,0, 0.65);
     width: 1280px;
     height: 840px;
     max-width: 100%;
@@ -1568,6 +1567,14 @@ div.formContainer {
     pointer-events: all;
     margin-left: 2em;
     margin-right: 2em;
+}
+
+.UI-Applet {
+	box-shadow: 1px 1px 2px rgba(255,255,255, 0.15), 0px 0px 30px rgba(255,255,255, 0.65);
+}
+
+.light .UI-Applet {
+	box-shadow: 1px 1px 2px rgba(0,0,0, 0.15), 0px 0px 60px rgba(0,0,0, 0.65);
 }
 
 .UI-Frame {
@@ -1647,7 +1654,6 @@ div.formContainer {
     top: 0;
     left: 60px;
     border: 0;
-	border-radius: 3px;
     float: left;
     display: inline-block;
 }
