@@ -10,5 +10,9 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "gcm_sender_id": "527592619483"
+  "gcm_sender_id": "527592619483",
+  "developer": {
+    "name": "Jeremy Evans",
+    "url": "https://spacehexagon.com"
+  }
 }
