@@ -925,14 +925,22 @@ body.light  {
 }
 
 ::-webkit-scrollbar-track {
-	background: rgba(255,255,255,0.75);
+	background: rgba(0,0,0,0.5);
 
 }
 
 ::-webkit-scrollbar-thumb {
-	background: rgba(0,0,0,0.25);
+	background: rgba(255,255,255,0.66);
 }
 
+.light ::-webkit-scrollbar-track {
+	background: rgba(255,255,255,0.66);
+
+}
+
+.light  ::-webkit-scrollbar-thumb {
+	background: rgba(0,0,0,0.66);
+}
 
 
 
