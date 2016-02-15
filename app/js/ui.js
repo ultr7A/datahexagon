@@ -230,7 +230,7 @@ var UI = {
 						app.openPane("sharing", "Sharing", { "applet": {
                             "name":"sharing",
                             "open": {
-                                "resource":resource,
+                                "resource": resource,
                                 "type": "share"
                             }
                         }});
@@ -301,7 +301,7 @@ function DataPane (type, name, data) {
 	close.addEventListener("click", this.getCloseMethod(), true);
     if (!!data.applet) {
         // load applet form data.applet
-        applet = new Applet(data.applet.name);
+        applet = new Applet(data.applet.name, {open: (!! data.applet.open ? data.applet.open : null)});
 		applet.dataPane = this; // won't be needed once DataPane is deprecated
 		this.applet = applet;
 		container = applet.div;

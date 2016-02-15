@@ -164,6 +164,9 @@
 		</div>
         <?php } ?>
         <script src="/app/lib/three.js"></script>
+        <script src="/app/lib/three.js-extensions/sources/RenderManager.js"></script>
+        <script src="/app/lib/three.js-extensions/sources/Shaders.js"></script>
+        <script src="/app/lib/three.js-extensions/sources/Utils.js"></script>
         <script src="/app/lib/socket.io/socket.io.js"></script>
         <script src="/app/js/ui.js"></script>
         <script src="/app/js/main.js"></script>

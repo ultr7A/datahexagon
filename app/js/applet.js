@@ -412,7 +412,7 @@ app.applets["sharing"] = {
           schema: {
               name: "",
               resource: "",
-              public: "",
+              public: "1",
               whitelist: "",
               data: ""
           },
@@ -434,26 +434,45 @@ app.applets["sharing"] = {
 			dataLabel = document.createElement("label"),
 			nameInput = document.createElement("input"),
 			resourceInput = document.createElement("input"),
-			publicInput = document.createElement("input"),
+			publicInput = document.createElement("select"),
 			whiteListInput = document.createElement("textarea"),
 			dataInput = document.createElement("input"),
+			option = document.createElement("option"),
 			view = null,
-			span = null;
-			span = document.createElement("span");
-			nameLabel.innerHTML = "Name";
-			span.appendChild(nameLabel);
-			span.appendChild(nameInput);
-			element.appendChild(span);
+			span = null,
+			shares = this.models.share,
+			share = null;
+//			span = document.createElement("span");
+//			nameLabel.innerHTML = "Name";
+//			span.appendChild(nameLabel);
+//			span.appendChild(nameInput);
+//			element.appendChild(span);
 			resourceLabel.innerHTML = "Resource";
 			span = document.createElement("span");
 			span.appendChild(resourceLabel);
+			if (!! p.open) {
+				this.add();
+				share = shares.all[shares.current];
+				share.name = p.open.resource;
+				share.resource = p.open.resource;
+				resourceInput.value = share.resource;
+			}
 			span.appendChild(resourceInput);
 			element.appendChild(span);
+
 			publicLabel.innerHTML = "Public";
 			span = document.createElement("span");
 			span.appendChild(publicLabel);
+			option.setAttribute("value", "1");
+			option.innerHTML = "Yes";
+			publicInput.appendChild(option);
+			option = document.createElement("option");
+			option.setAttribute("value", "0");
+			option.innerHTML = "No";
+			publicInput.appendChild(option);
 			span.appendChild(publicInput);
 			element.appendChild(span);
+
 		    dataLabel.innerHTML = "Data";
 			span = document.createElement("span");
 			span.appendChild(dataLabel);
@@ -462,11 +481,11 @@ app.applets["sharing"] = {
 			whiteListLabel.innerHTML = "White List";
 			span = document.createElement("span");
 			span.appendChild(whiteListLabel);
+			whiteListInput.setAttribute("style", "margin-top: 0px; margin-bottom: 0px; height: 485px;");
 			span.appendChild(whiteListInput);
 			element.appendChild(span);
 
-
-			view = new UI.Frame("custom", {"element":element});
+			view = new UI.Frame("custom", {"element": element});
 
 			app.sharing.listAllShares(app.user.name, function (share) {
 				console.log("init app get shares", share);
@@ -475,6 +494,21 @@ app.applets["sharing"] = {
 
 			return [menu, sidebar, view];
 	},
-    save: function (p) { },
-    close: function (p) { }
+	add: function (p) {
+		var shares = this.models.share,
+			share = Object.create(this.models.share.schema);
+		shares.all.push(share);
+		shares.current = shares.all.length -1;
+	},
+    save: function (p) {
+		app.sharing.saveShare(path, path, users, public, data, whitelist, function (resp) {
+			console.log("saveShare... ", resp);
+		});
+	},
+	delete: function (p) {
+		app.sharing.deleteShare(path);
+	},
+    close: function (p) {
+
+	}
 };

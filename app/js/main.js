@@ -15,6 +15,7 @@ var app = {
 		sortMode: "type",
 		viewMode: "grid",
         lightbox: null,
+		mobile: false,
 		logo: null,
     	light: null,
 		thumbSize: false,
@@ -207,7 +208,6 @@ function openFolder (dir) {
 				nodes = path.length,
 				directory = "",
 				n = 0;
-			console.log(n, i, path)
 			el.innerHTML = "/" + link + " ";
 			el.setAttribute("href", "#");
 
@@ -410,8 +410,10 @@ function uploadFiles (pane) {
 			app.lightbox.setAttribute("title", "Close");
 			app.lightbox.setAttribute("style", "display: none;");
 			app.lightbox.innerHTML = "";
-			openFolder(app.cwd);
-			app.panes = [];
+			//openFolder(app.cwd);
+			//app.panes = [];
+			// let other signed in devices know to refresh the page
+			socket.emit("datahexagon event", {user: app.user.name, dir: app.cwd, type: "refresh"});
 		}
 	};
 	xhr.open("POST", "/app/data.php", true);
@@ -423,16 +425,16 @@ function uploadFiles (pane) {
 		pane.done.setAttribute("disabled", "disabled");
 		pane.done.setAttribute("value", "Uploading...");
 	}
-//    if ("upload" in new XMLHttpRequest) {
-//        if (!! document.querySelector(".uploadProgress")) {
-//            xhr.upload.onprogress = function (event) {
-//            if (event.lengthComputable) {
-//                var complete = (event.loaded / event.total * 100 | 0);
-//                   document.querySelector(".uploadProgress").innerHTML = complete + " Complete";
-//                }
-//            }
-//        }
-//    }
+    if ("upload" in new XMLHttpRequest) {
+        if (!! app.lightbox) {
+            xhr.upload.onprogress = function (event) {
+            if (event.lengthComputable) {
+                var complete = (event.loaded / event.total * 100 | 0);
+                   app.lightbox.innerHTML = "Uploading "+complete+"%";
+                }
+            }
+        }
+    }
 	return false;
 }
 
@@ -481,7 +483,7 @@ function init () {
         sky, ground, logo,
         geometry,
         material;
-
+	app.mobile = window.innerWidth <= 640;
     console.log("Data Hexagon (C) "+(new Date().getFullYear()) + " jeremy@spacehexagon.com");
 	console.log("https://github.com/SpaceHexagon/datahexagon");
 
@@ -510,13 +512,17 @@ function init () {
 		}
 	});
 
-	socket.on('nexus event', function (data) {
+	socket.on('datahexagon event', function (data) {
 		var user,
-			sys = app,
-			eventData = JSON.parse(eventData);
+			sys = app;
 		console.log("socket event...");
-		if (eventData.user != sys.user.name) {
+		if (data.user == sys.user.name) {
 				//user = sys.users[userData.user];
+			if (data.type == "refresh") {
+				if (data.dir == app.cwd) {
+					openFolder(app.cwd);
+				}
+			}
 
 		}
 	});
@@ -590,6 +596,8 @@ function init () {
 
 	console.log(page);
 
+
+
 	if (page == "/home/?") {
 		if (!! app && !! app.container) {
 			app.container.ondragover = function () { app.lightbox.setAttribute("class", "lightbox hover"); return false; };
@@ -606,7 +614,7 @@ function init () {
 
 	} else {
         scene = three.scene =  new THREE.Scene();
-		camera = three.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.2, 80000 );
+		camera = three.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.2, 80000 );
 		renderer = three.renderer = new THREE.WebGLRenderer({alpha: true, antialias: (window.innerWidth <= 1440)});
 		renderer.setClearColor( 0x000000, 0 );
 		renderer.setSize( window.innerWidth, window.innerHeight );
@@ -615,11 +623,11 @@ function init () {
 		if (page == "/neo/") {
             var skyMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
 				sunMat = new THREE.MeshBasicMaterial({ color: 0xffffff }),
-                cloudMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
+                cloudMat = (app.mobile ? new THREE.MeshLambertMaterial({ color: 0xffffff }) : new THREE.MeshPhongMaterial({ color: 0xffffff })),
                 groundMat = new THREE.MeshLambertMaterial({ color: 0xffffff, wireframe: true }),
                 panelMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
-                zenithGeometry = new THREE.PlaneGeometry(96000, 96000, 24, 24),
-				nadirGeometry = new THREE.PlaneGeometry(32000, 32000, 24, 24),
+                zenithGeometry = (app.mobile ? new THREE.PlaneGeometry(120000, 120000, 28, 28) : new THREE.PlaneGeometry(120000, 120000, 16, 16)),
+				nadirGeometry = new THREE.PlaneGeometry(64000, 64000, 24, 24),
                 cellGeometry = new THREE.CylinderGeometry(192, 192, 320, 6),
 				sunGeometry = new THREE.BoxGeometry(360, 360, 360),
 				sun = new THREE.Mesh(cellGeometry, sunMat),
@@ -627,11 +635,12 @@ function init () {
 			var zenith = app.zenith = new THREE.Mesh(zenithGeometry, cloudMat);
 			var nadir = app.nadir = new THREE.Mesh(nadirGeometry, groundMat);
 			renderer.setClearColor( 0x000000, 1);
+			app.sun = sun;
 			scene.add(zenith);
 			zenith.position.set(0, 2000, 0);
             zenith.rotation.x = Math.PI / 2;
 			scene.add(nadir);
-			nadir.position.set(0, -600, 0);
+			nadir.position.set(0, -2000, 0);
             nadir.rotation.x = -Math.PI / 2;
 			camera.position.set(0, 280, 0);
 			light = app.light = new THREE.PointLight(0xff00ff, 1.5, 300000);
@@ -644,13 +653,13 @@ function init () {
 			sun.position.set(0, 300, -6000);
 			var x = 0,
 				y = 0,
-				r = 5;
+				r = 1;
 			while (x < 24) {
 				while (y < 24) {
 					if (Math.random() < 0.50) {
 						cell = new THREE.Mesh(cellGeometry, panelMat);
 						three.scene.add(cell);
-						cell.position.set(x*r*360, 80, ((y*r)+((x%2)*0.5))*360);
+						cell.position.set(x*r*8000, 100, ((y*r)+((x%2)*0.5))*8000);
 					}
 					y++;
 				}

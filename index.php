@@ -46,7 +46,7 @@
         <title>Login | DataHexagon</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name='theme-color' content='rgb(40, 40, 40)'>
-		<meta name="description" content="Open source, cloud desktop environment, dropbox and file sharing for all your devices." >
+		<meta name="description" content="Open source desktop environment, dropbox and file sharing for all your devices." >
         <meta name="msapplication-TileColor" content="#282828">
         <meta name="msapplication-TileImage" content="/app/data/gradient-shadow-hexagon-white-192.png">
 		<meta name="application-name" content="DataHexagon">
@@ -98,6 +98,9 @@
             </form>
 		</div>
         <script src="/app/lib/three.js"></script>
+        <script src="/app/lib/three.js-extensions/sources/RenderManager.js"></script>
+        <script src="/app/lib/three.js-extensions/sources/Shaders.js"></script>
+        <script src="/app/lib/three.js-extensions/sources/Utils.js"></script>
         <script src="app/lib/socket.io/socket.io.js"></script>
         <script src="app/js/ui.js"></script>
         <script src="app/js/main.js"></script>
