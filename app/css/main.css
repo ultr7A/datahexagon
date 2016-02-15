@@ -920,6 +920,22 @@ body.light  {
     padding-top: 0;
 }
 
+::-webkit-scrollbar {
+	width: 14px;
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(255,255,255,0.75);
+
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(0,0,0,0.25);
+}
+
+
+
+
 @media screen and (max-width:1568px) {
 	.UI-Applet {
 		max-width: 1024px;
@@ -1651,6 +1667,7 @@ div.formContainer {
     width: 320px;
 	background: #252525;
     background-color: #252525;
+	box-shadow: none;
     top: 0;
     left: 60px;
     border: 0;
@@ -1659,8 +1676,8 @@ div.formContainer {
 }
 
 .light .UI-Applet .UI-Sidebar {
-	 background: #AFAFAF !important;
-	background-color: #DEDEDE !important;
+	 background: #ECECEC !important;
+	background-color: #ECECEC !important;
 }
 
 .UI-Sidebar .icon {
