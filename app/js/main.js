@@ -616,26 +616,27 @@ function init () {
             var skyMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
 				sunMat = new THREE.MeshBasicMaterial({ color: 0xffffff }),
                 cloudMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
-                groundMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
+                groundMat = new THREE.MeshLambertMaterial({ color: 0xffffff, wireframe: true }),
                 panelMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
-                planeGeometry = new THREE.PlaneGeometry(32000, 32000, 24, 24),
+                zenithGeometry = new THREE.PlaneGeometry(96000, 96000, 24, 24),
+				nadirGeometry = new THREE.PlaneGeometry(32000, 32000, 24, 24),
                 cellGeometry = new THREE.CylinderGeometry(192, 192, 320, 6),
 				sunGeometry = new THREE.BoxGeometry(360, 360, 360),
 				sun = new THREE.Mesh(cellGeometry, sunMat),
 				cell = null;
-			var zenith = app.zenith = new THREE.Mesh(planeGeometry, cloudMat);
-			var nadir = app.nadir = new THREE.Mesh(planeGeometry, groundMat);
-			renderer.setClearColor( 0x0B0B0B, 1);
+			var zenith = app.zenith = new THREE.Mesh(zenithGeometry, cloudMat);
+			var nadir = app.nadir = new THREE.Mesh(nadirGeometry, groundMat);
+			renderer.setClearColor( 0x000000, 1);
 			scene.add(zenith);
-			zenith.position.set(0, 600, 0);
+			zenith.position.set(0, 2000, 0);
             zenith.rotation.x = Math.PI / 2;
 			scene.add(nadir);
-			nadir.position.set(0, 0, 0);
+			nadir.position.set(0, -600, 0);
             nadir.rotation.x = -Math.PI / 2;
-			camera.position.set(0, 300, 0);
-			light = app.light = new THREE.PointLight(0xffffff, 1.5, 64000);
+			camera.position.set(0, 280, 0);
+			light = app.light = new THREE.PointLight(0xff00ff, 1.5, 300000);
 			scene.add(light);
-			light.position.z = -6000;
+			light.position.z = -14000;
 			light.position.y = 300;
 			light.position.x = 0;
 			sun.rotation.set(Math.PI/2, 0, 0);
@@ -670,11 +671,11 @@ function init () {
 			light.position.z = 0;
 			light.position.y = -16;
 			light.position.x = -16;
-
-		}
-		for (var p = 0; p < appData.length; p++) {
+			for (var p = 0; p < appData.length; p++) {
 				app.actors.push(new ProjectionBot(appData[p].image, appData[p].url));
 			}
+		}
+
 		animate();
     }
 }

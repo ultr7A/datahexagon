@@ -910,9 +910,14 @@ body.light  {
 }
 
 .lightbox.dark {
-	background-color: rgba(0, 0, 0, 0.9) !important;
-	color: white !important;
-	text-shadow: none;
+	-webkit-background-image: radial-gradient(circle,rgba(0, 0, 0, 0), #000000) !important;
+	-moz-background-image: radial-gradient(circle,rgba(0, 0, 0, 0), #000000) !important;
+	background-image: radial-gradient(circle,rgba(0, 0, 0, 0), #000000) !important;
+    color: white !important;
+    background-color: transparent !important;
+    text-shadow: none;
+    background-size: contain !important;
+    padding-top: 0;
 }
 
 @media screen and (max-width:1568px) {
@@ -1567,6 +1572,7 @@ div.formContainer {
 
 .UI-Frame {
     background-color: rgba(0, 0, 0, 0.87);
+	border-radius: 3px;
     width: 900px;
     height: 100%;
     max-height: 960px;
@@ -1599,6 +1605,7 @@ div.formContainer {
 .UI-Applet .UI-Menu {
     top: 0;
     left: 0px;
+	border-radius: 3px;
     width: 60px !important;
     height: 100% !important;
     display: inline-block !important;
@@ -1611,19 +1618,18 @@ div.formContainer {
 }
 
 .UI-Menu a {
-	opacity: 0.5;
     display: inline-block;
     height: 50px;
     width: 50px;
     margin: 5px;
     background-size: contain;
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
 }
 
-.UI-Menu:hover a {
-	opacity: 1;
+.UI-Menu a:hover {
+	    box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.37);
 }
 
 .UI-Toolbar {
@@ -1641,6 +1647,7 @@ div.formContainer {
     top: 0;
     left: 60px;
     border: 0;
+	border-radius: 3px;
     float: left;
     display: inline-block;
 }
