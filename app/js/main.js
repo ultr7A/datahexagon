@@ -416,15 +416,6 @@ function uploadFiles (pane) {
 			socket.emit("datahexagon event", {user: app.user.name, dir: app.cwd, type: "refresh"});
 		}
 	};
-	xhr.open("POST", "/app/data.php", true);
-	xhr.send(formData);
-	if (!! document.querySelector(".upload [type=file]")) {
-        document.querySelector(".upload [type=file]").files = [];
-    }
-	if (!! pane && !!pane.done) {
-		pane.done.setAttribute("disabled", "disabled");
-		pane.done.setAttribute("value", "Uploading...");
-	}
     if ("upload" in new XMLHttpRequest) {
         if (!! app.lightbox) {
             xhr.upload.onprogress = function (event) {
@@ -435,6 +426,17 @@ function uploadFiles (pane) {
             }
         }
     }
+
+	xhr.open("POST", "/app/data.php", true);
+	xhr.send(formData);
+
+	if (!! document.querySelector(".upload [type=file]")) {
+        document.querySelector(".upload [type=file]").files = [];
+    }
+	if (!! pane && !!pane.done) {
+		pane.done.setAttribute("disabled", "disabled");
+		pane.done.setAttribute("value", "Uploading...");
+	}
 	return false;
 }
 

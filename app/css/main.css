@@ -944,12 +944,11 @@ body.light  {
 }
 
 .light ::-webkit-scrollbar-track {
-	background: rgba(255,255,255,0.66);
-
+    background: rgba(255,255,255,0.66) !important;
 }
 
 .light  ::-webkit-scrollbar-thumb {
-	background: rgba(0,0,0,0.66);
+	background: rgba(0,0,0,0.66)  !important;
 }
 
 
@@ -1629,11 +1628,15 @@ div.formContainer {
 	width: 100%;
     display: inline-block;
     text-align: left;
+    height: 60px;
 }
 
 .UI-Frame span label {
 	color: #919191;
     padding-left: 1em;
+    min-width: 84px;
+    padding-top: 22px;
+    display: inline-block;
 }
 .light .UI-Frame span label {
 	color: #4E4E4E;
@@ -1641,6 +1644,12 @@ div.formContainer {
 .UI-Frame span input {
 	color: #4E4E4E;
     padding-left: 1em;
+    margin-top: 11px;
+    vertical-align: top;
+}
+
+.UI-Frame span select {
+    margin-left: 1em !important;
 }
 
 .UI-Applet .UI-Menu {
@@ -1655,7 +1664,7 @@ div.formContainer {
 }
 
 .light .UI-Applet .UI-Menu {
-	background-color: rgb(222, 222, 222) !important;
+	background-color: rgb(188, 188, 188) !important;
 }
 
 .UI-Menu a {
@@ -1698,8 +1707,8 @@ div.formContainer {
 }
 
 .light .UI-Applet .UI-Sidebar {
-	 background: #ECECEC !important;
-	background-color: #ECECEC !important;
+	 background: #DDDDDD !important;
+	background-color: #DDDDDD !important;
 }
 
 .UI-Sidebar .icon {
@@ -1713,7 +1722,11 @@ div.formContainer {
     display: inline-block;
     float: left;
     padding-top: 0.4em;
-	margin-left: 2px;
+    margin-left: 0.5em;
+}
+
+.light .UI-Sidebar h2 {
+    color: #737373;
 }
 
 .UI-Sidebar h3 {
