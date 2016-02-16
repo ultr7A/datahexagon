@@ -54,7 +54,7 @@
         <meta property="og:image:width" content="192" />
         <meta property="og:image:height" content="192" />
         <link rel="icon" sizes="192x192" href="/app/data/gradient-shadow-hexagon-white-192.png">
-        <link rel="stylesheet" href="/app/css/main.css" type="text/css" >
+        <link rel="stylesheet" href="/app/dist/css/main.css" type="text/css" >
         <link rel="stylesheet" href="/app/lib/codemirror/codemirror.css" type="text/css" >
         <link rel="manifest" href="/manifest.json">
     </head>
@@ -169,9 +169,9 @@
         <script src="/app/lib/three.js-extensions/sources/Shaders.js"></script>
         <script src="/app/lib/three.js-extensions/sources/Utils.js"></script>
         <script src="/app/lib/socket.io/socket.io.js"></script>
-        <script src="/app/js/ui.js"></script>
-        <script src="/app/js/main.js"></script>
-        <script src="/app/js/applet.js"></script>
+        <script src="/app/dist/js/ui.js"></script>
+        <script src="/app/dist/js/main.js"></script>
+        <script src="/app/dist/js/applet.js"></script>
 		<script src="/app/lib/codemirror/codemirror.js" ></script>
 		<script src="/app/lib/codemirror/css.js" ></script>
 		<script src="/app/lib/codemirror/javascript.js" ></script>

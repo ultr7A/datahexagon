@@ -61,7 +61,7 @@
         <meta name="twitter:description" content="Open source, cloud desktop environment, dropbox and file sharing for all your devices." />
         <meta name="twitter:image" content="https://datahexagon.com/app/data/gradient-shadow-hexagon-white-192.png" />
         <link rel="icon" sizes="192x192" href="/app/data/gradient-shadow-hexagon-white-192.png">
-        <link rel="stylesheet" href="/app/css/main.css" type="text/css" >
+        <link rel="stylesheet" href="/app/dist/css/main.css" type="text/css" >
         <link rel="manifest" href="/manifest.json">
     </head>
     <body>
@@ -103,9 +103,9 @@
         <script src="/app/lib/three.js-extensions/sources/Shaders.js"></script>
         <script src="/app/lib/three.js-extensions/sources/Utils.js"></script>
         <script src="/app/lib/socket.io/socket.io.js"></script>
-        <script src="/app/js/ui.js"></script>
-        <script src="/app/js/main.js"></script>
-        <script src="/app/js/applet.js"></script>
+        <script src="/app/dist/js/ui.js"></script>
+        <script src="/app/dist/js/main.js"></script>
+        <script src="/app/dist/js/applet.js"></script>
          <?php if ($username != "") { ?>
         <script>
             app.user.name = "<?php echo $username; ?>";
