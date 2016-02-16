@@ -13,17 +13,17 @@ Applet.prototype.init = function (params) {
 	var c = 0,
 		components = this.data.init(params);
 	if (typeof components != 'object') {
-		var menu = new UI.Menu("standard", {
+		var menu = new Menu("standard", {
 				"titleButton": {
 					icon: this.data.icon,
 					title: this.data.name
 				}
 			}),
-			sidebar = new UI.Sidebar("standard", {
+			sidebar = new Sidebar("standard", {
 				title: this.data.name,
 				subtitle: ""
 			}),
-			view = new UI.Frame("custom", {
+			view = new Frame("custom", {
 				element: document.createElement("div")
 			});
 		this.components = [menu, sidebar, view];
@@ -241,13 +241,13 @@ app.applets["text-editor"] = function () {
 			}
 		},
 		init: function (p) {
-			var menu = new UI.Menu("standard", {
+			var menu = new Menu("standard", {
 					"titleButton": {
 						icon: this.icon,
 						title: this.name
 					}
 				}),
-				sidebar = new UI.Sidebar("custom", {
+				sidebar = new Sidebar("custom", {
 					title: this.name,
 					subtitle: "",
 					items: []
@@ -258,7 +258,7 @@ app.applets["text-editor"] = function () {
 				span = null;
 			//element.appendChild(textarea)l;
 
-			view = new UI.Frame("text");
+			view = new Frame("text");
 
 			return [menu, sidebar, view];
 		},
@@ -468,13 +468,13 @@ app.applets["sharing"] = function () {
 			}
 		},
 		init: function (p) {
-			var menu = new UI.Menu("standard", {
+			var menu = new Menu("standard", {
 					"titleButton": {
 						icon: this.icon,
 						title: this.name
 					}
 				}),
-				sidebar = new UI.Sidebar("custom", {
+				sidebar = new Sidebar("custom", {
 					title: this.name,
 					subtitle: "",
 					items: []
@@ -495,7 +495,7 @@ app.applets["sharing"] = function () {
 				span = null,
 				shares = this.models.share,
 				share = null;
-			view = new UI.Frame("custom", {
+			view = new Frame("custom", {
 				"element": element
 			});
 			this.sidebar = sidebar;
@@ -544,7 +544,7 @@ app.applets["sharing"] = function () {
 					return function (share) {
 						console.log("init app get shares", share);
 						if (!! share) {
-							var item = new UI.SidebarItem("standard", {title: share.name});
+							var item = new SidebarItem("standard", {title: share.name});
 							sidebarList.options.items.push(item);
 							sidebarList.element.appendChild(item.element);
 						}
@@ -562,7 +562,7 @@ app.applets["sharing"] = function () {
 			var sidebar = this.sidebar,
 				shares = this.models.share,
 				share = Object.create(this.models.share.schema),
-				item = new UI.SidebarItem("standard", {title: share.name});
+				item = new SidebarItem("standard", {title: share.name});
 			shares.all.push(share);
 			shares.current = shares.all.length - 1;
 			sidebar.options.items.push(item);
