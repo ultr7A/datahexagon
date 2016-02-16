@@ -20,6 +20,7 @@ module.exports = {
 		switch (type) {
 		case "standard":
 			// standard features
+			// might want a mode where it enhances / merges with the menu
 			break;
 		case "custom":
 			options.items.forEach(function (sidebarItem) {
