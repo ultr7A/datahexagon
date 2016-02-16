@@ -54,7 +54,7 @@
         <meta property="og:image:width" content="192" />
         <meta property="og:image:height" content="192" />
         <link rel="icon" sizes="192x192" href="/app/data/gradient-shadow-hexagon-white-192.png">
-        <link rel="stylesheet" href="/app/dist/css/main.css" type="text/css" >
+        <link rel="stylesheet" href="/app/dist/css/app.css" type="text/css" >
         <link rel="stylesheet" href="/app/lib/codemirror/codemirror.css" type="text/css" >
         <link rel="manifest" href="/manifest.json">
     </head>

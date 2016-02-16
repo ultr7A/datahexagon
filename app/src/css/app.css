@@ -1423,7 +1423,7 @@ main {
 
 @font-face {
 	font-family: robotoThin;
-	src: url(/app/css/Roboto-Thin.ttf);
+	src: url(/app/dist/css/Roboto-Thin.ttf);
 }
 
 #overworld {
