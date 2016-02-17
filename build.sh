@@ -1,7 +1,7 @@
 #!/bin/bash
 
 output=$1
-if [[ "$output" == "" ]] then
+if [[ "$output" == "" ]]; then
  output="$(dirname $0)/app/dist"
 else
  output=$(realpath $output)

@@ -1,4 +1,4 @@
-function DataPane (type, name, data) {
+ function DataPane (type, name, data) {
 	console.log(data);
     var container = document.createElement("div"),
         titleString = "",
@@ -102,7 +102,7 @@ function DataPane (type, name, data) {
 	this.titleEntry = titleEntry;
     this.uploadInput = upload;
     this.container = container;
-}
+};
 
 DataPane.prototype.snap = function (direction) {
 	this.container.setAttribute("class", "DataPane "+direction);
@@ -146,7 +146,4 @@ DataPane.prototype.getCloseMethod = function (save) {
     };
 };
 
-
-module.exports = {
-	DataPane: DataPane
-};
+module.exports = DataPane;
