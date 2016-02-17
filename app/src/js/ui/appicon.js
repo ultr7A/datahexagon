@@ -9,7 +9,6 @@ module.exports = function AppIcon(name, index) {
 			directionClass = " down";
 		}
 	}
-	console.log("name", name);
 	element.setAttribute("class", "UI-App-Icon" + directionClass);
 	element.setAttribute("style", "background-image: url(" + applet.icon + ");");
 	element.innerHTML = "<span>" + applet.name + "</span>";
