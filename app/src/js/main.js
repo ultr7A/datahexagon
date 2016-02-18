@@ -631,8 +631,8 @@ function init () {
                 zenithGeometry = (app.mobile ? new THREE.PlaneGeometry(120000, 120000, 28, 28) : new THREE.PlaneGeometry(120000, 120000, 16, 16)),
 				nadirGeometry = new THREE.PlaneGeometry(64000, 64000, 24, 24),
                 cellGeometry = new THREE.CylinderGeometry(192, 192, 320, 6),
-				sunGeometry = new THREE.BoxGeometry(360, 360, 360),
-				sun = new THREE.Mesh(cellGeometry, sunMat),
+				sunGeometry = new THREE.CylinderGeometry(256, 256, 256, 6),
+				sun = new THREE.Mesh(sunGeometry, sunMat),
 				cell = null;
 			var zenith = app.zenith = new THREE.Mesh(zenithGeometry, cloudMat);
 			var nadir = app.nadir = new THREE.Mesh(nadirGeometry, groundMat);
@@ -644,6 +644,18 @@ function init () {
 			scene.add(nadir);
 			nadir.position.set(0, -2000, 0);
             nadir.rotation.x = -Math.PI / 2;
+
+            var nvs = nadirGeometry.vertices,
+			nvl = nvs.length,
+			nv = null;
+            for (var n = 0; n < nvl; n++) {
+                nv = nvs[n];
+                nv.z = 1200 * Math.sin(nv.x * 4) + Math.cos(nv.y * 4); //Math.sin(time/2)*0.5+Math.sin(time + (e/4));
+            }
+            nadirGeometry.verticesNeedUpdate = true;
+            nadirGeometry.computeFaceNormals();
+
+
 			camera.position.set(0, 280, 0);
 			light = app.light = new THREE.PointLight(0xff00ff, 1.5, 300000);
 			scene.add(light);

@@ -1541,6 +1541,21 @@ form.fileManagement {
   width: 330px;
 }
 
+.neo .formContainer form {
+  margin: auto;
+  max-width: 816px !important;
+}
+
+.neo .auth_field label {
+  display: inline-block;
+  min-width: 80px;
+}
+
+.neo .auth_field input[type=text],
+.neo .auth_field  input[type=password] {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
 .hidden .auth_field {
   display: none;
 }
