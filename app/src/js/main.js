@@ -630,7 +630,7 @@ function init () {
                 panelMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
                 zenithGeometry = (app.mobile ? new THREE.PlaneGeometry(120000, 120000, 28, 28) : new THREE.PlaneGeometry(120000, 120000, 16, 16)),
 				nadirGeometry = new THREE.PlaneGeometry(64000, 64000, 24, 24),
-                cellGeometry = new THREE.CylinderGeometry(192, 192, 320, 6),
+                cellGeometry = new THREE.CylinderGeometry(192, 192, 128, 6),
 				sunGeometry = new THREE.CylinderGeometry(256, 256, 256, 6),
 				sun = new THREE.Mesh(sunGeometry, sunMat),
 				cell = null;
@@ -647,10 +647,13 @@ function init () {
 
             var nvs = nadirGeometry.vertices,
 			nvl = nvs.length,
-			nv = null;
+			nv = null,
+            row = Math.floor(Math.sqrt(nvl));
             for (var n = 0; n < nvl; n++) {
-                nv = nvs[n];
-                nv.z = 1200 * Math.sin(nv.x * 4) + Math.cos(nv.y * 4); //Math.sin(time/2)*0.5+Math.sin(time + (e/4));
+                if (Math.floor(n / row) % 2) {
+                    nv = nvs[n];
+                    nv.x -= 800; //Math.sin(time/2)*0.5+Math.sin(time + (e/4));
+                }
             }
             nadirGeometry.verticesNeedUpdate = true;
             nadirGeometry.computeFaceNormals();
@@ -668,12 +671,12 @@ function init () {
 			var x = 0,
 				y = 0,
 				r = 1;
-			while (x < 24) {
-				while (y < 24) {
+			while (x < 16) {
+				while (y < 16) {
 					if (Math.random() < 0.50) {
 						cell = new THREE.Mesh(cellGeometry, panelMat);
 						three.scene.add(cell);
-						cell.position.set(x*r*8000, 100, ((y*r)+((x%2)*0.5))*8000);
+						cell.position.set(-9600 + (x*r*1200), -1000, -16000 + ((y*r)+((x%2)*0.5))*1000);
 					}
 					y++;
 				}

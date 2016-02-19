@@ -1419,7 +1419,9 @@ main {
 	border-radius: 50%;
 }
 
-.app-info div a {}
+.app-info div a {
+
+}
 
 @font-face {
 	font-family: robotoThin;
@@ -1476,6 +1478,11 @@ form input[type=submit] {
     margin-left: 0;
 }
 
+.neo form input[type=submit] {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
 form.fileManagement {
 	max-width: 100%;
 	width: 100%;
@@ -1487,8 +1494,6 @@ form.fileManagement {
 	background-image: linear-gradient(#000, #000, #313131);
 */
     color: #FFF;
-
-
 }
 
 .auth_field {
@@ -1823,7 +1828,7 @@ div.formContainer {
 }
 
 .UI-Context-Menu ul li {
-       margin-bottom: 0.76em;
+    margin-bottom: 0.76em;
     margin-top: 0.25em;
     font-size: 26px;
     list-style-type: none;
@@ -1897,16 +1902,16 @@ div.formContainer {
 
 
 .neo h2 {
-	    display: inline-block;
+    display: inline-block;
     margin-right: 1em;
 }
 
 
 .neo input[type=button] {
-	    padding: 1em;
+    padding: 1em;
     margin: 1em;
     margin-left: 0;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(255, 255, 255, 0.25);
     color: white;
     border: 0;
     font-size: 16px;
