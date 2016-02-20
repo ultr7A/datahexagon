@@ -459,13 +459,18 @@ h1 a {
 h1.browse {
     margin-bottom: 10px;
     margin-top: 0;
-    margin-left: 30px;
+    margin-left: 0;
     text-align: left;
     padding-bottom: 0.25em;
     padding-top: 0.2em;
     font-size: 38px;
-	text-shadow: none;
+    text-shadow: none;
     z-index: 1;
+    background-image: none;
+    position: relative;
+    left: auto;
+    top: auto;
+    padding-left: 30px;
 }
 
 
@@ -920,11 +925,8 @@ body.light  {
 }
 
 .lightbox.dark {
-	-webkit-background-image: radial-gradient(circle,rgba(0, 0, 0, 0), #000000) !important;
-	-moz-background-image: radial-gradient(circle,rgba(0, 0, 0, 0), #000000) !important;
-	background-image: radial-gradient(circle,rgba(0, 0, 0, 0), #000000) !important;
-    color: white !important;
-    background-color: transparent !important;
+	color: #FFF !important;
+    background-color: rgba(0, 0, 0, 0.9) !important;
     text-shadow: none;
     background-size: contain !important;
     padding-top: 0;
@@ -1473,12 +1475,14 @@ form {
 	max-width: 960px;
 }
 
+/*
 form input[type=submit] {
 	width: 80px;
     margin-left: 0;
 }
+*/
 
-.neo form input[type=submit] {
+form input[type=submit] {
     background-color: rgba(255, 255, 255, 0.25);
     color: white;
 }
@@ -1501,18 +1505,20 @@ form.fileManagement {
     width: 330px;
 }
 
-.neo .formContainer form {
-    margin: auto;
+
+
+.formContainer form {
+    margin: auto !important;
     max-width: 816px !important;
 }
 
-.neo .auth_field label {
-    display: inline-block;
-    min-width: 80px;
+.auth_field label {
+    display: inline-block !important;
+    min-width: 80px !important;
 }
 
-.neo .auth_field input[type=text], .neo .auth_field  input[type=password] {
-    background-color: rgba(255, 255, 255, 0.25);
+.auth_field input[type=text],  .auth_field  input[type=password] {
+    background-color: rgba(255, 255, 255, 0.25) !important;
 }
 
 
@@ -1887,7 +1893,7 @@ div.formContainer {
 
 
 
-.neo h1 {
+ h1 {
 	position: fixed;
     top: 0;
     left: 2px;
@@ -1901,13 +1907,13 @@ div.formContainer {
 }
 
 
-.neo h2 {
+ h2 {
     display: inline-block;
     margin-right: 1em;
 }
 
 
-.neo input[type=button] {
+ input[type=button] {
     padding: 1em;
     margin: 1em;
     margin-left: 0;
@@ -1918,7 +1924,7 @@ div.formContainer {
     cursor: pointer;
 }
 
-.neo input[type=button]:hover {
+ input[type=button]:hover {
     background-color: rgba(255, 255, 255, 0.85);
     color: black;
 }

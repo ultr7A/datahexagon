@@ -79,16 +79,19 @@ var app = {
 		showMenu: function (menu) {
 			var menus = document.querySelectorAll("aside.view, aside.sort, aside.file, aside.creation, aside.startMenu, section.launcher"),
 				lightbox = document.querySelector(".lightbox");
-			[].forEach.call(menus, function (togglingMenu, index) {
-				togglingMenu.setAttribute("style", "display: " + (togglingMenu.getAttribute("class") == menu ? "block" : "none") + ";");
-			});
-			lightbox.setAttribute("style", "display: " + ((menu == "none" || menu == "startMenu") ? "none" : "block")+ ";"+(menu == "lightbox" ? "z-index: 2 !important;" : ""));
-			lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " dark" : ""));
-			if (menu == "launcher") {
-				app.initLauncher();
-			} else {
-				document.querySelector("section.launcher").setAttribute("class", "launcher");
+				if (!! lightbox) {
+					[].forEach.call(menus, function (togglingMenu, index) {
+					togglingMenu.setAttribute("style", "display: " + (togglingMenu.getAttribute("class") == menu ? "block" : "none") + ";");
+				});
+				lightbox.setAttribute("style", "display: " + ((menu == "none" || menu == "startMenu") ? "none" : "block")+ ";"+(menu == "lightbox" ? "z-index: 2 !important;" : ""));
+				lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " dark" : ""));
+				if (menu == "launcher") {
+					app.initLauncher();
+				} else {
+					document.querySelector("section.launcher").setAttribute("class", "launcher");
+				}
 			}
+
 		},
 		changeSortMode: function (mode) {
 			var sort = document.querySelector("aside.sort"),
@@ -137,7 +140,9 @@ var app = {
 		toggleThumbSize: function () {
 			this.thumbSize = ! this.thumbSize;
 			app.showMenu("none");
-			app.container.setAttribute("class", "content" + (this.thumbSize ? " doubleSurface" : ""));
+			if (!! app.container) {
+				app.container.setAttribute("class", "content" + (this.thumbSize ? " doubleSurface" : ""));
+			}
 		},
 		startUpload: function (input, files) {
 			var pane = {
@@ -622,12 +627,12 @@ function init () {
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		renderer.domElement.setAttribute("class", "viewport");
 		document.body.appendChild( renderer.domElement );
-		if (page == "/neo/") {
+		if (page == "/") {
             var skyMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
 				sunMat = new THREE.MeshBasicMaterial({ color: 0xffffff }),
-                cloudMat = (app.mobile ? new THREE.MeshLambertMaterial({ color: 0xffffff }) : new THREE.MeshPhongMaterial({ color: 0xffffff })),
-                groundMat = new THREE.MeshLambertMaterial({ color: 0xffffff, wireframe: true }),
-                panelMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
+                cloudMat = (app.mobile ? new THREE.MeshLambertMaterial({ color: 0x9000ff }) : new THREE.MeshPhongMaterial({ color: 0x9000ff })),
+                groundMat = new THREE.MeshLambertMaterial({ color: 0x9000ff, wireframe: true }),
+                panelMat = new THREE.MeshLambertMaterial({ color: 0xe1e1e1 }),
                 zenithGeometry = (app.mobile ? new THREE.PlaneGeometry(120000, 120000, 28, 28) : new THREE.PlaneGeometry(120000, 120000, 16, 16)),
 				nadirGeometry = new THREE.PlaneGeometry(64000, 64000, 24, 24),
                 cellGeometry = new THREE.CylinderGeometry(192, 192, 128, 6),
@@ -660,10 +665,10 @@ function init () {
 
 
 			camera.position.set(0, 280, 0);
-			light = app.light = new THREE.PointLight(0xff00ff, 1.5, 300000);
+			light = app.light = new THREE.PointLight(0xffffff, 1.5, 300000);
 			scene.add(light);
 			light.position.z = -14000;
-			light.position.y = 300;
+			light.position.y = 150;
 			light.position.x = 0;
 			sun.rotation.set(Math.PI/2, 0, 0);
 			scene.add(sun);
@@ -671,36 +676,36 @@ function init () {
 			var x = 0,
 				y = 0,
 				r = 1;
-			while (x < 16) {
-				while (y < 16) {
-					if (Math.random() < 0.50) {
+			while (x < 12) {
+				while (y < 12) {
+					if (Math.random() < 0.25) {
 						cell = new THREE.Mesh(cellGeometry, panelMat);
 						three.scene.add(cell);
-						cell.position.set(-9600 + (x*r*1200), -1000, -16000 + ((y*r)+((x%2)*0.5))*1000);
+						cell.position.set(-6000 + (x*r*1200), -1000 + Math.floor(Math.random()*4)*256, -10000 + ((y*r)+((x%2)*0.5))*1000);
 					}
 					y++;
 				}
 				y = 0;
 				x++;
 			}
-
-		} else {
-			material = new THREE.MeshLambertMaterial( { color: 0xFD005F, wireframe: true } ); // 0xDE002B
-			geometry = new THREE.TorusGeometry(10, 6, 6, 6 );
-			logo = app.logo = new THREE.Mesh( geometry, material );
-			scene.add(logo);
-			logo.position.set(-16, -16, -10);
-			camera.position.z = 10;
-			camera.position.x = -5;
-			light = app.light = new THREE.PointLight(0xffffff, 1.1, 120);
-			scene.add(light);
-			light.position.z = 0;
-			light.position.y = -16;
-			light.position.x = -16;
-			for (var p = 0; p < appData.length; p++) {
-				app.actors.push(new ProjectionBot(appData[p].image, appData[p].url));
-			}
 		}
+//		 else {
+//			material = new THREE.MeshLambertMaterial( { color: 0xFD005F, wireframe: true } ); // 0xDE002B
+//			geometry = new THREE.TorusGeometry(10, 6, 6, 6 );
+//			logo = app.logo = new THREE.Mesh( geometry, material );
+//			scene.add(logo);
+//			logo.position.set(-16, -16, -10);
+//			camera.position.z = 10;
+//			camera.position.x = -5;
+//			light = app.light = new THREE.PointLight(0xffffff, 1.1, 120);
+//			scene.add(light);
+//			light.position.z = 0;
+//			light.position.y = -16;
+//			light.position.x = -16;
+//			for (var p = 0; p < appData.length; p++) {
+//				app.actors.push(new ProjectionBot(appData[p].image, appData[p].url));
+//			}
+//		}
 
 		animate();
     }
@@ -718,9 +723,9 @@ function animate () {
         gravity = [],
         pbv = new THREE.Vector3(0, 0, 0),
 		mod = 5;
-	if (app.page != "/neo/") {
-    	three.camera.position.set(-16, -16.5, 10-0.5 * Math.sin(Date.now()/1600));
-	}
+//	if (app.page != "/neo/") {
+//    	three.camera.position.set(-16, -16.5, 10-0.5 * Math.sin(Date.now()/1600));
+//	}
     while (p-- > 0) {
         pb = pbs[p];
         pbpos = pb.mesh.position;
