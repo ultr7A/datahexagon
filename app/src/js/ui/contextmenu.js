@@ -14,7 +14,7 @@ module.exports = function ContextMenu(options) {
 	}
 	if (options.menuItems.length == 0) {
 		options.menuItems = UI.defaults.contextMenu.options.menuItems;
-		item.innerHTML = "<a target='_blank' class='icon' style='background-image:url(/app/data/192/dark/download.png);' href='" + options.resource + "' >Download</a>";
+		item.innerHTML = "<a target='_blank' class='icon' style='background-image:url(/app/data/192/dark/download.png);' href='" + options.resource + "' title='Open'>Open</a>";
 	}
 	options.menuItems.forEach(function (menuItem) {
 		item = document.createElement("li");

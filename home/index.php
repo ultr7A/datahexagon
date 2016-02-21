@@ -66,10 +66,10 @@
         <form class='fileManagement' action="?" method="POST" enctype="multipart/form-data">
             <aside class="root">
             	<nav>
-                	<a class="sh" href="javascript:void(0);" onclick="app.showMenu('launcher');" title="Launch Applets" ></a>
-                	<a  class="sort" href="javascript:void(0);" onclick="app.showMenu('sort');" title="Change Settings"></a>
-                	<a onclick="app.showMenu('creation');" href="javascript:void(0);" class='create' title="Create and Upload"></a>
-					<a onclick='openFolder(".."); return false;' href="javascript:void(0);" class='up' title="Up One Level"></a>
+                	<a class="sh" href="javascript:void(0);" onclick="app.showMenu('launcher');" title="Launch Applets"></a>
+                	<a onclick="openFolder(&quot;..&quot;); return false;" href="javascript:void(0);" class="up" title="Up One Level"></a>
+                	<a class="sort" href="javascript:void(0);" onclick="app.showMenu('sort');" title="Change Settings"></a>
+                	<a onclick="app.showMenu('creation');" href="javascript:void(0);" class="create" title="Create and Upload"></a>
 <!--                    <a class="view" href="javascript:void(0);" onclick="app.showMenu('launcher');" title="Launch Applets"></a>-->
                 </nav>
             </aside>

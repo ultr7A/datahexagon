@@ -1,4 +1,5 @@
 /* Card.js */
+
 var ContextMenu = require("./contextmenu.js");
 
 module.exports = function Card(name, resource, options) {
@@ -88,6 +89,9 @@ module.exports = function Card(name, resource, options) {
 			var style = e.getAttribute("class");
 			if (style.search("showMenu") < 0) {
 				setTimeout(function () {
+					[].forEach.call(document.querySelectorAll(".showMenu"), function (item, index) {
+						item.setAttribute("class", item.getAttribute("class").replace("showMenu",""));
+					});
 					e.setAttribute("class", style + " showMenu");
 				}, 100);
 			}
