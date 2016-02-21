@@ -471,6 +471,10 @@ h1.browse {
     padding-left: 30px;
 }
 
+.light h1.browse {
+	color: grey;
+}
+
 
 h2 {
 	    margin-bottom: 3em;
