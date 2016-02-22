@@ -562,7 +562,9 @@ function init () {
 		}
 	}
 
-	app.user.pass = document.querySelector(".fileManagement [name=password]").value;
+	if (!! document.querySelector(".fileManagement [name=password]")) {
+		app.user.pass = document.querySelector(".fileManagement [name=password]").value;
+	}
 
 	function handleMouseWheel (e) {
         	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
@@ -607,7 +609,7 @@ function init () {
 
 
 
-	if (page == "/home/?") {
+	if (page == "/home/?" || page.split("/").length > 2) {
 		if (!! app && !! app.container) {
 			app.container.ondragover = function () { app.lightbox.setAttribute("class", "lightbox hover"); return false; };
 			app.container.ondragend = function () { app.lightbox.setAttribute("class", "lightbox"); return false; };

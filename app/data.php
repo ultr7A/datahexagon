@@ -45,9 +45,6 @@ function thumbnail ($location, $file, $tmp_name) {
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     require("db.php");
-    if (!$connection) {
-        echo 'Connect Error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error();
-    }
     $username  = "";
     $user_id   = -1;
     $serverMSG = "";

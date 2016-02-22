@@ -5,13 +5,11 @@
             ini_set('display_errors', '1');
             error_reporting(E_ALL);
 			require("../app/db.php");
-            if (!$connection) {
-                echo 'Connect Error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error();
-            }
             $username = "";
             $user_id = -1;
             $serverMSG = "";
 			$createUser = false;
+
             if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 				if (isset($_POST["register"])) {
 					$password =  password_hash($_POST["password"], PASSWORD_BCRYPT);
@@ -38,7 +36,16 @@
                     }
 				}
 
-            }
+            } else {
+				if (count(explode("/", $_SERVER['REQUEST_URI'])) > 3) {
+					$dir = substr($_SERVER['REQUEST_URI'], 0, strlen($_SERVER['REQUEST_URI'])-1);
+					$shares = mysqli_query($connection, "select * from `Shares` where directory = '" . $dir . "';");
+					$share = mysqli_fetch_array($shares);
+					if ($share["public"] == 1) {
+						$username = "anonymous";
+					}
+				}
+			}
 			mysqli_close($connection);
         ?>
         <title>Home | DataHexagon</title>
