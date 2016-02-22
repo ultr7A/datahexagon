@@ -21,6 +21,15 @@
                         mysqli_query($connection,"insert into `Users` (username,password,email,user_data) values ('" .
                                      $_POST["username"] . "','" . $password . "','" . $_POST["email"] . "','" . $user_data . "');");
                         $createUser = true;
+
+                        if ($createUser) {
+                            mkdir(getcwd()."/".strtolower($_POST["username"]), 0775);
+                            $text = "<h1>Welcome to Data Hexagon</h1>";
+                            touch(getcwd()."/".strtolower($_POST["username"]) . "/Welcome.htm");
+                            $textFile = fopen(getcwd()."/".strtolower($_POST["username"]) . "/Welcome.htm", "w");
+                            fwrite($textFile, $text);
+                            fclose($textFile);
+                        }
                     }  else {    // else the user already exists:
                        $serverMSG = "Unfortunately the username entered is not available; please try another.";
                     }
@@ -206,12 +215,3 @@
 		<?php } ?>
     </body>
 </html>
-<?php
-	if ($createUser) {
-		mkdir(getcwd()."/".strtolower($_POST["username"]), 0775);
-		$text = "<h1>Welcome to Data Hexagon</h1>";
-		touch(getcwd()."/".strtolower($_POST["username"]) . "/Welcome.htm");
-		$textFile = fopen(getcwd()."/".strtolower($_POST["username"]) . "/Welcome.htm", "w") or die("Unable to open file!");
-		fwrite($textFile, $text);
-		fclose($textFile);
-	}
