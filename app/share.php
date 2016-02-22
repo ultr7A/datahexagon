@@ -13,18 +13,18 @@
         $username = $_POST["username"];
         $user_id  = $user["id"];
 		$cwd = getcwd();
-        if (strpos($_POST["path"], "/" . strtolower($username)) !== 0) {
-            mysqli_close($connection);
-            die();
-        }
+		if (isset($_POST["path"])) {
+			if (strpos($_POST["path"], "/" . strtolower($username)) !== 0) {
+            	mysqli_close($connection);
+            	die();
+        	}
+		}
         switch ($_POST["operation"]) {
             case "list":
                 $shares = mysqli_query($connection, "select * from `Shares` where username = '" . $_POST["username"] . "';");
-                echo json_encode($shares);
             break;
             case "read":
                 $shares = mysqli_query($connection, "select * from `Shares` where id = " . $_POST["id"] . ";");
-                echo json_encode($shares);
             break;
             case "update":
 				if (mysqli_num_rows(mysqli_query($connection, "select * from `Shares` where directory = '".$_POST["path"]."';")) < 1) {
@@ -36,11 +36,18 @@
 				}
             break;
             case "delete":
-				$shares = mysqli_query($connection, "delete from `Shares` where directory = '".$_POST["path"]."';");
+				mysqli_query($connection, "delete from `Shares` where directory = '".$_POST["path"]."';");
             break;
             default:
             break;
         }
+		if ($_POST["operation"] == "list" || $_POST["operation"] == "read") {
+			$allShares = array();
+            while ($share = mysqli_fetch_array($shares, MYSQLI_ASSOC)) {
+				array_push($allShares, $share);
+			}
+			echo json_encode($allShares);
+		}
     }
     mysqli_close($connection);
 }

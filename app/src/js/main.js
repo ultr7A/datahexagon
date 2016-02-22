@@ -42,16 +42,16 @@ var app = {
 		},
 		sharing: {
 			listAllShares: function (username, callback) {
-				app.request("POST", "/app/share.php", "operation=list&username="+username, callback);
+				app.request("POST", "/app/share.php", "operation=list&username="+app.user.name+"&password="+app.user.pass, callback);
 			},
-			readShare: function (id, callback) {
-				app.request("POST", "/app/share.php", "operation=read&id="+id, callback);
+			readShare: function (id, username, callback) {
+				app.request("POST", "/app/share.php", "operation=read&username="+app.user.name+"&password="+app.user.pass+"&id="+id, callback);
 			},
-			saveShare: function (path, name, users, public, data, callback) {
-				app.request("POST", "/app/share.php", "operation=update&path="+path+"&name="+name+"&users="+users+"&public="+public+"&data="+data, callback);
+			saveShare: function (path, username, users, public, data, callback) {
+				app.request("POST", "/app/share.php", "operation=update&path="+path+"&username="+app.user.name+"&password="+app.user.pass+"&users="+users+"&public="+public+"&data="+data, callback);
 			},
-			deleteShare: function (path, callback) {
-				app.request("POST", "/app/share.php", "operation=delete&path="+path, callback);
+			deleteShare: function (path, username, callback) {
+				app.request("POST", "/app/share.php", "operation=delete&path="+path+"&username="+app.user.name+"&password="+app.user.pass, callback);
 			}
 		},
         openPane: function (type, name, data) {
@@ -561,6 +561,8 @@ function init () {
 			}
 		}
 	}
+
+	app.user.pass = document.querySelector(".fileManagement [name=password]").value;
 
 	function handleMouseWheel (e) {
         	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));

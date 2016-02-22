@@ -541,15 +541,22 @@ app.applets["sharing"] = function () {
 			element.appendChild(span);
 
 			app.sharing.listAllShares(app.user.name, (function (sidebarList) {
-					return function (share) {
-						console.log("init app get shares", share);
-						if (!! share) {
-							var item = new SidebarItem("standard", {title: share.name});
-							sidebarList.options.items.push(item);
-							sidebarList.element.appendChild(item.element);
+					return function (response) {
+						var s = 0,
+							shares = null,
+							item = null;
+						if (!! response) {
+							shares = JSON.parse(response);
+							console.log("init app get shares", shares);
+							while (s < shares.length) {
+								item = new SidebarItem("standard", {title: shares[s].directory});
+								sidebarList.options.items.push(item);
+								sidebarList.element.appendChild(item.element);
+								s ++;
+							}
 						}
 					};
-			})(sidebar))
+			})(sidebar));
 
 			return [menu, sidebar, view];
 		},

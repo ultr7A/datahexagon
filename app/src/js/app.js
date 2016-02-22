@@ -11,7 +11,3 @@
  window.ModalWindow = require("./ui/modalwindow.js");
  window.Toolbar = require("./ui/toolbar.js");
  window.VectorEditor = require("./ui/vectoreditor.js");
-
-console.log(Card, Menu, DataPane);
-console.log("test2");
-//test
