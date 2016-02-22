@@ -5,6 +5,7 @@
             ini_set('display_errors', '1');
             error_reporting(E_ALL);
 			require("../app/db.php");
+            $dir = "";
             $username = "";
             $user_id = -1;
             $serverMSG = "";
@@ -30,6 +31,7 @@
                     $user = mysqli_fetch_array($user);
                     if (password_verify($_POST["password"], $user["password"])) {
                         $username = $_POST["username"];
+                        $password = $_POST["password"];
                         $user_id = $user["id"];
                     } else {
                         $serverMSG = "Incorrect Username Or Password.";
@@ -43,6 +45,7 @@
 					$share = mysqli_fetch_array($shares);
 					if ($share["public"] == 1) {
 						$username = "anonymous";
+                        $password = "anonymous";
 					}
 				}
 			}
@@ -132,8 +135,8 @@
 
             </section>
             <input type="hidden" name="login" value="1" />
-            <input name="username" type="hidden" value="<?php echo $_POST["username"]; ?>" />
-            <input name="password" type='hidden' value="<?php echo $_POST["password"]; ?>" />
+            <input name="username" type="hidden" value="<?php echo $username; ?>" />
+            <input name="password" type='hidden' value="<?php echo $password; ?>" />
         </form>
         <div class="lightbox" style="display: none;" onclick="app.showMenu('none')"></div>
         <?php } else { ?>
@@ -193,7 +196,11 @@
             app.user.name = "<?php echo $username; ?>";
             app.user.id = <?php echo $user_id; ?>;
             document.addEventListener("DOMContentLoaded", function () {
-				openFolder("/"+app.user.name.toLowerCase());
+            <?php if ($username == "anonymous") { ?>
+                    openFolder("<?php echo $dir; ?>");
+            <?php } else { ?>
+                    openFolder("/"+app.user.name.toLowerCase());
+            <?php } ?>
 			});
         </script>
 		<?php } ?>

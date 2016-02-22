@@ -50,11 +50,21 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $serverMSG = "";
     $user      = mysqli_query($connection, "select * from `Users` where username = '" . $_POST["username"] . "';");
     $user      = mysqli_fetch_array($user);
-    if (password_verify($_POST["password"], $user["password"])) {
+    $shared = false;
+
+    if ($_POST["username"] == "anonymous") {
+        $shares = mysqli_query($connection, "select * from `Shares` where directory = '" . $_POST["path"] . "';");
+        $share = mysqli_fetch_array($shares);
+        if ($share["public"] == 1) {
+              $shared = true;
+        }
+    }
+
+    if (password_verify($_POST["password"], $user["password"]) || $shared) {
         $username = $_POST["username"];
         $user_id  = $user["id"];
 		$cwd = getcwd();
-        if (strpos($_POST["path"], "/" . strtolower($username)) !== 0) {
+        if ((strpos($_POST["path"], "/" . strtolower($username)) !== 0) && !$shared) {
             mysqli_close($connection);
             die();
         }
