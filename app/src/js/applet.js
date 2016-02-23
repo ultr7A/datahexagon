@@ -491,10 +491,12 @@ app.applets["sharing"] = function () {
 				whiteListInput = document.createElement("textarea"),
 				dataInput = document.createElement("input"),
 				option = document.createElement("option"),
+				doneInput = document.createElement("input"),
 				view = null,
 				span = null,
 				shares = this.models.share,
-				share = null;
+				share = null,
+				self = this;
 			view = new Frame("custom", {
 				"element": element
 			});
@@ -505,13 +507,6 @@ app.applets["sharing"] = function () {
 			resourceLabel.innerHTML = "Resource";
 			span = document.createElement("span");
 			span.appendChild(resourceLabel);
-			if (!!p.open) {
-				this.add();
-				share = shares.all[shares.current];
-				share.name = p.open.resource;
-				share.resource = p.open.resource;
-				resourceInput.value = share.resource;
-			}
 			span.appendChild(resourceInput);
 			element.appendChild(span);
 
@@ -536,9 +531,27 @@ app.applets["sharing"] = function () {
 			whiteListLabel.innerHTML = "White List";
 			span = document.createElement("span");
 			span.appendChild(whiteListLabel);
-			whiteListInput.setAttribute("style", "margin-top: 0px; margin-bottom: 0px; height: 485px;");
+			whiteListInput.setAttribute("class", "small");
 			span.appendChild(whiteListInput);
 			element.appendChild(span);
+
+
+			if (!!p.open) {
+				this.add();
+				share = shares.all[shares.current];
+				share.name = p.open.resource;
+				share.resource = p.open.resource;
+				resourceInput.value = share.resource;
+				doneInput.setAttribute("type", "button");
+				doneInput.setAttribute("value", "Share Folder");
+				doneInput.setAttribute("class", "complete");
+				doneInput.addEventListener("click", function (evt) {
+					self.save();
+				}, true);
+			}
+			span = document.createElement("span");
+			element.appendChild(span);
+			span.appendChild(doneInput);
 
 			app.sharing.listAllShares(app.user.name, (function (sidebarList) {
 					return function (response) {
@@ -570,6 +583,7 @@ app.applets["sharing"] = function () {
 				shares = this.models.share,
 				share = Object.create(this.models.share.schema),
 				item = new SidebarItem("standard", {title: share.name});
+			share.resource = share.name;
 			shares.all.push(share);
 			shares.current = shares.all.length - 1;
 			sidebar.options.items.push(item);
@@ -579,7 +593,7 @@ app.applets["sharing"] = function () {
 		save: function (p) {
 			var shares = this.models.share,
 				share = shares.all[shares.current],
-				path = share.path,
+				path = share.resource,
 				users = share.whitelist,
 				public = share.public,
 				data = share.data;
