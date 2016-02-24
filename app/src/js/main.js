@@ -14,10 +14,12 @@ var app = {
 		bgImage: "",
 		sortMode: "type",
 		viewMode: "grid",
-        lightbox: null,
+        uploading: false,
 		mobile: false,
 		logo: null,
     	light: null,
+        lightbox: null,
+        lightboxTimeout: 0,
 		thumbSize: false,
 		layoutTimeout: 0,
         scrollDepth: 0,
@@ -290,8 +292,7 @@ function adjustLayout () {
 		cols = Math.floor((window.innerWidth - 87) / 290),
 		files = document.querySelectorAll(".Card"),
 		tidiedImages = false,
-		images = 0,
-		breaks = 0;
+		images = 0;
 	[].forEach.call(document.querySelectorAll(".content br"), function (br) {
 		br.parentNode.removeChild(br);
 	});
@@ -304,10 +305,8 @@ function adjustLayout () {
 			if (tidiedImages == false) {
 				if (col == 0) {
 					images = 0;
-					breaks = 0;
 				}
 				if (/(\.jpg|\.png|\.gif|\.jpeg|\.webp)/i.test(f.getAttribute("data-resource"))) {
-					breaks ++;
 					tidiedImages = true;
 					container.insertBefore(document.createElement("br"), f); //files[i-1]);
 				}
@@ -315,30 +314,6 @@ function adjustLayout () {
     	});
 	}
 }
-
-
-function showWidget (selector) {
-	var uploadWidget = document.querySelector(selector), // "form.mkdir", "form.upload"
-		state = uploadWidget.style.display == 'block' ? true : false;
-	state = !state;
-	if (selector == "#delete-form") {
-		app.deleteMode = state;
-		if (state == false) {
-			[].forEach.call(
-				document.querySelectorAll("[data-selected=yes]"),
-				function (card) {
-					deletePath(card.parentNode.getAttribute("data-resource"));
-					console.log("trying to delete");
-				}
-			);
-			document.querySelector("a.rm").setAttribute("style", "");
-		} else {
-			document.querySelector("a.rm").setAttribute("style", "color: #ff8000;");
-		}
-	}
-	uploadWidget.style.display = state ? 'block' : 'none';
-}
-
 
 function initForm (formData, mode, directory) {
 	formData.append("dataOperation", mode);
@@ -400,28 +375,31 @@ function uploadFiles (pane) {
 		formData = new FormData(),
 		files = !!pane ? pane.uploadInput.files : document.querySelector(".upload [type=file]").files,
 		ins = files.length;
+    app.uploading = true;
 	app.lightbox.setAttribute("class", "lightbox hover");
 	app.lightbox.setAttribute("title", "Uploading...");
 	app.lightbox.setAttribute("style", "pointer-events: all;");
 	app.lightbox.innerHTML = "Uploading...";
+
 	initForm(formData, "upload", app.cwd);
 	for (var x = 0; x < ins; x++) {
        formData.append("fileUpload"+x, files[x]);
     }
-	xhr.onload = function () {
+
+    xhr.onload = function () {
 		if (xhr.status == 200) {
 			//!! pane.close && pane.close();
+            app.uploading = false;
 			app.lightbox.setAttribute("class", "lightbox");
 			app.lightbox.setAttribute("title", "Close");
 			app.lightbox.setAttribute("style", "display: none;");
 			app.lightbox.innerHTML = "";
 			//openFolder(app.cwd);
-			//app.panes = [];
 			// let other signed in devices know to refresh the page
 			socket.emit("datahexagon event", {user: app.user.name, dir: app.cwd, type: "refresh"});
 		}
 	};
-    if ("upload" in new XMLHttpRequest) {
+    if ("upload" in new XMLHttpRequest) { // add upload progress event
         if (!! app.lightbox) {
             xhr.upload.onprogress = function (event) {
             if (event.lengthComputable) {
@@ -434,7 +412,6 @@ function uploadFiles (pane) {
 
 	xhr.open("POST", "/app/data.php", true);
 	xhr.send(formData);
-
 	if (!! document.querySelector(".upload [type=file]")) {
         document.querySelector(".upload [type=file]").files = [];
     }
@@ -607,11 +584,19 @@ function init () {
 
 	console.log(page);
 
-
-
 	if (page == "/home/?" || page.split("/").length > 2) {
 		if (!! app && !! app.container) {
-			app.container.ondragover = function () { app.lightbox.setAttribute("class", "lightbox hover"); return false; };
+			app.container.ondragover = function () {
+                app.lightbox.setAttribute("class", "lightbox hover");
+                clearTimeout(app.lightboxTimeout);
+                app.lightboxTimeout = setTimeout(function () {
+                    if (!app.uploading) {
+                        app.lightbox.setAttribute("class", "lightbox");
+                        app.lightbox.setAttribute("style", "display: none;");
+                    }
+                }, 1000);
+                return false;
+            };
 			app.container.ondragend = function () { app.lightbox.setAttribute("class", "lightbox"); return false; };
 	//        window.onblur = function () {
 	//            app.lightbox.setAttribute("class", "lightbox");
@@ -693,24 +678,6 @@ function init () {
 				x++;
 			}
 		}
-//		 else {
-//			material = new THREE.MeshLambertMaterial( { color: 0xFD005F, wireframe: true } ); // 0xDE002B
-//			geometry = new THREE.TorusGeometry(10, 6, 6, 6 );
-//			logo = app.logo = new THREE.Mesh( geometry, material );
-//			scene.add(logo);
-//			logo.position.set(-16, -16, -10);
-//			camera.position.z = 10;
-//			camera.position.x = -5;
-//			light = app.light = new THREE.PointLight(0xffffff, 1.1, 120);
-//			scene.add(light);
-//			light.position.z = 0;
-//			light.position.y = -16;
-//			light.position.x = -16;
-//			for (var p = 0; p < appData.length; p++) {
-//				app.actors.push(new ProjectionBot(appData[p].image, appData[p].url));
-//			}
-//		}
-
 		animate();
     }
 }
@@ -719,60 +686,10 @@ document.addEventListener("DOMContentLoaded", init, false);
 
 function animate () {
     requestAnimationFrame(animate);
-	var gravZone = app.gravityZone,
-        pbs = app.actors,
-        p = pbs.length,
-        pb = null,
-        pbpos = null,
-        gravity = [],
-        pbv = new THREE.Vector3(0, 0, 0),
-		mod = 5;
-//	if (app.page != "/neo/") {
-//    	three.camera.position.set(-16, -16.5, 10-0.5 * Math.sin(Date.now()/1600));
-//	}
-    while (p-- > 0) {
-        pb = pbs[p];
-        pbpos = pb.mesh.position;
-        pb.velocity[0] -= Math.random() * 0.1 + Math.sin(pbpos.x / gravZone[0]) / mod;
-        pb.velocity[1] -= Math.random() * 0.1 + Math.sin(pbpos.y / gravZone[1]) / mod;
-        pb.velocity[2] -= Math.random() * 0.1 + Math.sin(pbpos.z / 180) / 5;
 
-        pbv.set(pb.velocity[0], pb.velocity[1], pb.velocity[2]);
-
-        pbpos.add(pbv);
-        pb.mesh.lookAt(new THREE.Vector3(pb.velocity[0]*10000, pb.velocity[1]*10000, pb.velocity[2]*10000));
-        pb.mesh.updateMatrix();
-    }
-    //three.camera.lookAt(pbs[0].mesh.position);
     render();
 }
 
 function render () {
     three.renderer.render(three.scene, three.camera);
-}
-
-
-function ProjectionBot (image, url) {
-    this.image = image;
-    this.url = url;
-    //this.velocity = [-0.125+Math.random()*0.25, -0.125+Math.random()*0.25, -0.125+Math.random()*0.25];
-	var mat  = new THREE.MeshLambertMaterial( { color: 0xffffff, wireframe: true } );
-    var geom = new THREE.OctahedronGeometry(1.66,0);
-    var limb, limbGeom = new THREE.BoxGeometry(0.5, 0.25, 2);
-    var mesh = new THREE.Mesh(geom, mat);
-    for (var l = 0; l < 3; l++) {
-        limb = new THREE.Mesh(limbGeom, mat);
-        limb.matrixAutoUpdate = false;
-        mesh.add(limb);
-        limb.position.set(Math.sin(l*(2/3*Math.PI)), Math.cos(l*(2/3*Math.PI)), -1.66);
-        limb.rotateZ(l == 0 ? Math.PI/2 : l*(2/3*Math.PI));
-        limb.updateMatrix();
-    }
-    mesh.position.set(-8 + Math.random() * 16, Math.random() * 10, -8 + Math.random()*16);
-    mesh.rotateX(Math.PI / 2);
-    mesh.matrixAutoUpdate = false;
-    three.scene.add(mesh);
-    this.mesh = mesh;
-    this.velocity = [mesh.position.x / 80, mesh.position.y / 80, mesh.position.z / 80];
-    mesh.updateMatrix();
 }
