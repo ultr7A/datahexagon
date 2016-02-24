@@ -51,11 +51,18 @@
 				if (count(explode("/", $_SERVER['REQUEST_URI'])) > 3) {
 					$dir = substr($_SERVER['REQUEST_URI'], 0, strlen($_SERVER['REQUEST_URI'])-1);
 					$shares = mysqli_query($connection, "select * from `Shares` where directory = '" . $dir . "';");
-					$share = mysqli_fetch_array($shares);
-					if ($share["public"] == 1) {
-						$username = "anonymous";
-                        $password = "anonymous";
+					if (mysqli_num_rows($shares) > 0) {
+						$share = mysqli_fetch_array($shares);
+						if ($share["public"] == 1) {
+							$username = "anonymous";
+							$password = "anonymous";
+						} else {
+							header('Location: /');
+						}
+					} else {
+						header('Location: /');
 					}
+
 				}
 			}
 			mysqli_close($connection);
