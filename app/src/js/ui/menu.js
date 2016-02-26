@@ -7,9 +7,11 @@ module.exports = function Menu(type, options) {
 	aside.setAttribute("class", "UI-Menu");
 	this.element = aside;
 	this.applet = null;
-	if (!!options.titleButton) {
-		menuItems.push(options.titleButton);
-	}
+    if (!! options) { // make sure options are defined
+        if (!! options.titleButton) {
+		  menuItems.push(options.titleButton);
+	   }
+    }
 	type = (!!type ? type : "standard");
 	switch (type) {
 	case "standard":

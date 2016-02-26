@@ -13,14 +13,10 @@ Applet.prototype.init = function (params) {
 	var c = 0,
 		components = this.data.init(params);
 	if (typeof components != 'object') {
-		var menu = new Menu("standard", {
-				"titleButton": {
-					icon: this.data.icon,
-					title: this.data.name
-				}
-			}),
+		var menu = new Menu("standard"),
 			sidebar = new Sidebar("standard", {
 				title: this.data.name,
+                icon: this.data.icon,
 				subtitle: ""
 			}),
 			view = new Frame("custom", {
@@ -241,14 +237,10 @@ app.applets["text-editor"] = function () {
 			}
 		},
 		init: function (p) {
-			var menu = new Menu("standard", {
-					"titleButton": {
-						icon: this.icon,
-						title: this.name
-					}
-				}),
+			var menu = new Menu("standard"),
 				sidebar = new Sidebar("custom", {
 					title: this.name,
+                    icon: this.icon,
 					subtitle: "",
 					items: []
 				}),
@@ -468,14 +460,10 @@ app.applets["sharing"] = function () {
 			}
 		},
 		init: function (p) {
-			var menu = new Menu("standard", {
-					"titleButton": {
-						icon: this.icon,
-						title: this.name
-					}
-				}),
+			var menu = new Menu("standard"),
 				sidebar = new Sidebar("custom", {
 					title: this.name,
+                    icon: this.icon,
 					subtitle: "",
 					items: []
 				}),
