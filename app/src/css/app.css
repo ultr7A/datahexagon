@@ -97,6 +97,7 @@ nav a {
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: top;
+	cursor: pointer;
 }
 
 nav a.up {

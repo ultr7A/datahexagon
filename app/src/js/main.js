@@ -95,6 +95,14 @@ var app = {
 			}
 
 		},
+		vibrate: function (data) {
+			if (!! navigator.vibrate ) {
+				if (!data) {
+					data = 50;
+				}
+				navigator.vibrate(data);
+			}
+		},
 		changeSortMode: function (mode) {
 			var sort = document.querySelector("aside.sort"),
 				lightbox = document.querySelector(".lightbox");
@@ -474,6 +482,8 @@ function init () {
 	app.page = page;
 	window.socket = app.socket = io.connect("https://subnexus.fm:8081", {secure:true, port: 8080});
 	// temporarily using subnexus socketio
+
+	UI.MainMenu.init();
 
 	socket.on('user update', function (data) {
 //		var user,

@@ -1,4 +1,30 @@
 var UI = {
+	MainMenu: {
+		init: function () {
+			var launcher = document.querySelector(".sh"),
+				up = document.querySelector(".up"),
+				settings = document.querySelector(".sort"),
+				create = document.querySelector(".create");
+			if (!! launcher) {
+				launcher.addEventListener("click", function (event) {
+					app.showMenu('launcher');
+					app.vibrate();
+				}, true);
+				up.addEventListener("click", function (event) {
+					openFolder("..");
+					app.vibrate();
+				}, true);
+				settings.addEventListener("click", function (event) {
+					app.showMenu('sort');
+					app.vibrate();
+				}, true);
+				create.addEventListener("click", function (event) {
+					app.showMenu('creation');
+					app.vibrate();
+				}, true);
+			}
+		}
+	},
 	defaults: {
 		menu: {
 			options:[
@@ -68,8 +94,6 @@ var UI = {
 			}
 		}
 	}
-
-
-}
+};
 
 
