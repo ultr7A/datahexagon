@@ -15,6 +15,7 @@ var app = {
 		sortMode: "type",
 		viewMode: "grid",
         uploading: false,
+		currentMenu: "none",
 		mobile: false,
 		logo: null,
     	light: null,
@@ -82,6 +83,10 @@ var app = {
 		showMenu: function (menu) {
 			var menus = document.querySelectorAll("aside.view, aside.sort, aside.file, aside.creation, aside.startMenu, section.launcher"),
 				lightbox = document.querySelector(".lightbox");
+				if (app.currentMenu == menu) {
+					menu = "none";
+				}
+				app.currentMenu = menu;
 				if (!! lightbox) {
 					[].forEach.call(menus, function (togglingMenu, index) {
 					togglingMenu.setAttribute("style", "display: " + (togglingMenu.getAttribute("class") == menu ? "block" : "none") + ";");
