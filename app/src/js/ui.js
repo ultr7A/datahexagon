@@ -12,6 +12,7 @@ var UI = {
 				}, true);
 				up.addEventListener("click", function (event) {
 					openFolder("..");
+					app.showMenu("none");
 					app.vibrate();
 				}, true);
 				settings.addEventListener("click", function (event) {

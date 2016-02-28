@@ -894,8 +894,17 @@ textarea.small {
 .light .DataPane textarea {
     background-color: rgba(247, 247, 247, 0.92);
     box-shadow: inset 2px 2px 12px rgba(0,0,0, 0.5), 0px 2px 10px rgba(255, 255, 255, 0);
-    color: #4E4E4E;
+    color: #3C3C3C;
 }
+
+.UI-Applet textarea {
+	min-height: 785px;
+}
+
+.light .UI-Applet textarea {
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 4px;
+}
+
 
 .content.hexagon {
 	position: relative;
@@ -1197,7 +1206,6 @@ aside.creation nav a span {
 	}
 	.UI-Applet .UI-Menu {
         background-color: rgba(76, 76, 76, 0.35) !important;
-        box-shadow: none;
         text-align: left;
         padding-left: 0.5em !important;
         bottom: 0;
@@ -1205,9 +1213,12 @@ aside.creation nav a span {
         z-index: 999;
 	}
     .UI-Applet textarea {
+		min-height: 180px;
 		width: 100%;
 		margin-top: 60px;
+		box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 4px;
 	}
+
     .UI-Context-Menu {
         min-width: 104px !important;
         padding-top: 0.2em !important;
@@ -1618,11 +1629,15 @@ div.formContainer {
 	font-size: initial !important;
 }
 
+.light .DataPane.UI-Applet {
+	background-color: white;
+}
 
-.UI-Applet, .DataPane.UI-Applet, .light .DataPane.UI-Applet {
-	background-color: rgb(255, 255, 255);
+.UI-Applet, .DataPane.UI-Applet {
+	background-color: #4B4B4B;
     border-radius: 3px;
     border-top: none !important;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.35);
     border-bottom: none;
     width: 1280px;
     height: 840px;
@@ -1648,7 +1663,7 @@ div.formContainer {
 }
 
 .UI-Frame {
-    background-color: rgba(0, 0, 0, 0.87);
+    background-color: transparent;
 	border-radius: 3px;
     width: 940px;
     height: 100%;
@@ -1658,7 +1673,7 @@ div.formContainer {
 }
 
 .light .UI-Frame {
-	background-color: rgba(255, 255, 255, 0.87);
+	background-color: #ffffff;
 }
 
 .UI-Frame div span {
@@ -1699,6 +1714,7 @@ div.formContainer {
     top: 0;
     right: 0;
 	border-radius: 3px;
+	box-shadow: none;
     width: 60px !important;
     height: 100% !important;
     display: inline-block !important;
@@ -1707,7 +1723,7 @@ div.formContainer {
 }
 
 .light .UI-Applet .UI-Menu {
-	background-color: rgb(188, 188, 188) !important;
+	background-color: #DDD !important;
 }
 
 .UI-Menu a {
@@ -1741,6 +1757,7 @@ div.formContainer {
     top: 0;
     left: 0px;
     border: 0;
+	border-radius: 3px;
     float: left;
     display: inline-block;
 }

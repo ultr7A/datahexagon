@@ -20,6 +20,7 @@ var app = {
     	light: null,
         lightbox: null,
         lightboxTimeout: 0,
+		historySupport: !!(window.history && history.pushState),
 		thumbSize: false,
 		layoutTimeout: 0,
         scrollDepth: 0,
@@ -98,7 +99,7 @@ var app = {
 		vibrate: function (data) {
 			if (!! navigator.vibrate ) {
 				if (!data) {
-					data = 50;
+					data = 30;
 				}
 				navigator.vibrate(data);
 			}
@@ -182,6 +183,9 @@ var app = {
 			console.log("accessory", accessory);
 			launcher.appendChild(appIcon.element);
 		});
+	},
+	handleBackButton: function (url, addEntry) {
+		openFolder("..");
 	}
 };
 
@@ -197,6 +201,9 @@ function openFolder (dir) {
 		path = cwd;
 		path.splice(path.length-1, 1);
 		dir = path.join("/");
+	}
+	if (app.historySupport) {
+		history.pushState(null, null, dir);
 	}
     app.cwd = dir;
 	path = dir.split("/");
@@ -561,6 +568,13 @@ function init () {
     if (!! document.querySelector(".content")) {
     	document.querySelector(".content").addEventListener("mousewheel", handleMouseWheel, false);
 		document.querySelector(".content").addEventListener("DOMMouseScroll", handleMouseWheel, false);
+	}
+
+	if (app.historySupport) {
+		window.addEventListener("popstate", function(e) {
+        	// Get State value using e.state
+        	app.handleBackButton(app.cwd, false);
+    	});
 	}
 
 	window.onresize = function () {
