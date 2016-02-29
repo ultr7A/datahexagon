@@ -442,13 +442,11 @@ function uploadFiles (pane) {
 	return false;
 }
 
-function saveText (pane) {
+function saveText (name, value) {
 	var xhr = new XMLHttpRequest(),
-		formData = new FormData(),
-        directory = app.cwd+"/"+pane.titleEntry.value, // this will be a problem if widgets get their own working directories
-        text = pane.entry.value;
-	initForm(formData, "touch", directory);
-	formData.append("text", text);
+		formData = new FormData();
+	initForm(formData, "touch", name);
+	formData.append("text", value);
 	xhr.onload = function () {
 		if (xhr.status == 200) {
 			openFolder(app.cwd);

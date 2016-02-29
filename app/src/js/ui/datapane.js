@@ -124,7 +124,7 @@ DataPane.prototype.getCloseMethod = function (save) {
 		if (save) {
 			switch (pane.type) {
                 case "touch":
-                    saveText(pane);
+                    saveText(app.cwd+"/"+pane.titleEntry.value, pane.entry.value);
                 break;
                 case "mkdir":
                     makeDirectory(pane);
@@ -134,7 +134,7 @@ DataPane.prototype.getCloseMethod = function (save) {
 					leaveOpen = true;
                 break;
                 case "edit":
-        			saveText(pane);
+        			saveText(app.cwd+"/"+pane.titleEntry.value, pane.entry.value);
                 break;
             }
 		}

@@ -111,10 +111,11 @@ app.applets["terminal"] = function () {
 			}
 		},
 		init: function (p) {
-			//add event listener to button to submit command
-			// code function to parse command,
-			// call app function,
-			// display result...
+			var menu = new Menu("standard"),
+			view = new Frame("custom", {
+				element: document.createElement("div")
+			});
+			return [view, menu];
 		},
 		add: function (p) {},
 		save: function (p) {},
@@ -225,13 +226,15 @@ app.applets["text-editor"] = function () {
 		options: {
 			"Save Changes": function (p) {}
 		},
+		saveTimeout: 0,
 		models: {
 			document: {
 				current: 0,
 				schema: {
 					resource: "",
 					username: "",
-					type: ""
+					type: "",
+					content: ""
 				},
 				all: []
 			}
@@ -251,12 +254,35 @@ app.applets["text-editor"] = function () {
 			//element.appendChild(textarea)l;
 
 			view = new Frame("text");
+			this.sidebar = sidebar;
+			this.menu = menu;
+			this.view = view;
+
+			this.add();
 
 			return [menu, sidebar, view];
 		},
-		add: function (p) {},
-		save: function (p) {},
-		close: function (p) {}
+		add: function (p) {
+			var sidebar = this.sidebar,
+				documents = this.models.document,
+				document = Object.create(this.models.document.schema),
+				item = new SidebarItem("standard", {title: document.name});
+			document.resource = document.name;
+			documents.all.push(document);
+			documents.current = documents.all.length - 1;
+			sidebar.options.items.push(item);
+			sidebar.element.appendChild(item.element);
+		},
+		save: function (p) {
+			var documents = this.models.document,
+				doc = documents.all[documents.current];
+			saveText(doc.resource, doc.content);
+			this.saveTimeout = setTimeout(function(){ this.save(); }, 60000);
+		},
+		close: function (p) {
+			this.save();
+			clearTimeout(this.saveTimeout);
+		}
 	};
 };
 
