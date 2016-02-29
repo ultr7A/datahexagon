@@ -1021,6 +1021,10 @@ textarea.small {
     padding-bottom: 0.5em;
   }
 
+  h2.title {
+    display: block;
+  }
+
   body.light {
     background-image: none !important;
   }
@@ -1266,7 +1270,8 @@ aside.creation nav a span {
     width: 100%;
     padding-top: 16px !important;
     margin-top: 0px !important;
-    z-index: 999999999;
+    position: fixed!important;
+    z-index: 999999;
   }
 
   section.launcher {

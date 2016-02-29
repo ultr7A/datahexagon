@@ -94,6 +94,7 @@ var app = {
 				lightbox.setAttribute("style", "display: " + ((menu == "none" || menu == "startMenu") ? "none" : "block")+ ";"+(menu == "lightbox" ? "z-index: 2 !important;" : ""));
 				lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " dark" : ""));
 				if (menu == "launcher") {
+					window.scroll(0, 0);
 					app.initLauncher();
 				} else {
 					document.querySelector("section.launcher").setAttribute("class", "launcher");
