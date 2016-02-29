@@ -1,6 +1,6 @@
 module.exports = function AppIcon(name, index) {
 	var element = document.createElement("div"),
-		applet = app.applets[name](),
+		applet = applets[name](),
 		directionClass = "";
 	if (!!index) {
 		if (index == 1) {
