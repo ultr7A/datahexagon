@@ -31,6 +31,7 @@ var UI = {
 			options:[
 				{"name": "Close", "icon":"/app/data/192/x.png", "click": function close (menu) {
 					console.log("Close event handler is happening now");
+					menu.applet.close();
 					menu.applet.dataPane.close();
 				}},
 				{"name": "New", "icon":"/app/data/plus.png", "click": function create (event, menu) {

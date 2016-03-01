@@ -10,7 +10,7 @@ module.exports = function () {
 			document: {
 				current: 0,
 				schema: {
-					resource: "",
+					resource: "New Document",
 					username: "",
 					type: "",
 					content: ""
@@ -45,8 +45,7 @@ module.exports = function () {
 			var sidebar = this.sidebar,
 				documents = this.models.document,
 				document = Object.create(this.models.document.schema),
-				item = new SidebarItem("standard", {title: document.name});
-			document.resource = document.name;
+				item = new SidebarItem("standard", {title: document.resource});
 			documents.all.push(document);
 			documents.current = documents.all.length - 1;
 			sidebar.options.items.push(item);
@@ -61,6 +60,7 @@ module.exports = function () {
 		close: function (p) {
 			this.save();
 			clearTimeout(this.saveTimeout);
+			console.log("actually closing now..");
 		}
 	};
 };
