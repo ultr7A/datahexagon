@@ -39,6 +39,8 @@ module.exports = function () {
 
 			if (!!p && p.open) {
 				this.add({resource: p.open});
+			} else {
+				this.add();
 			}
 
 			return [menu, sidebar, view];
