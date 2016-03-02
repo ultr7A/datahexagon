@@ -1,13 +1,24 @@
-module.exports = function SidebarItem(type, options) {
-	var div = document.createElement("div");
-	div.setAttribute("class", "UI-SidebarItem");
-	this.element = div;
+module.exports = function SidebarItem(type, options, selectionCallback) {
+	var element = document.createElement("div");
 	switch (type) {
-	case "standard":
-		div.innerHTML = options.title;
+		case "standard":
+			element.innerHTML = options.title;
 		break;
-	case "custom":
+		case "editable":
+			element = document.createElement("input");
+			element.setAttribute("value", options.title);
+			element.setAttribute("type", "text");
+		break;
+		case "custom":
 
 		break;
 	}
+	element.addEventListener("click", function (evt) {
+		if (!! selectionCallback) {
+				selectionCallback(evt);
+		}
+	}, true);
+	element.setAttribute("class", "UI-SidebarItem");
+	this.element = element;
 };
+

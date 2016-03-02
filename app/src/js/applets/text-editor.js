@@ -10,7 +10,7 @@ module.exports = function () {
 			document: {
 				current: 0,
 				schema: {
-					resource: "New Document",
+					resource: "New Document.txt",
 					username: "",
 					type: "",
 					content: ""
@@ -37,7 +37,9 @@ module.exports = function () {
 			this.menu = menu;
 			this.view = view;
 
-			this.add();
+			if (!!p && p.open) {
+				this.add({resource: p.open});
+			}
 
 			return [menu, sidebar, view];
 		},
@@ -45,7 +47,13 @@ module.exports = function () {
 			var sidebar = this.sidebar,
 				documents = this.models.document,
 				document = Object.create(this.models.document.schema),
-				item = new SidebarItem("standard", {title: document.resource});
+				item = null;
+			if (!!p && !!p.resource) {
+				document.resource = p.resource;
+			} else {
+				document.resource = app.cwd + "/" + document.resource;
+			}
+			item = new SidebarItem("editable", {title: document.resource});
 			documents.all.push(document);
 			documents.current = documents.all.length - 1;
 			sidebar.options.items.push(item);
@@ -54,8 +62,21 @@ module.exports = function () {
 		save: function (p) {
 			var documents = this.models.document,
 				doc = documents.all[documents.current];
+			doc.content = this.view.element.children[0].value;
 			saveText(doc.resource, doc.content);
-			this.saveTimeout = setTimeout(function(){ this.save(); }, 60000);
+			this.saveTimeout = setTimeout(this.save, 60000);
+		},
+		open: function (p) {
+			var documents = this.models.document,
+				textarea = this.view.element.children[0],
+				applet = this;
+			app.request("get", p, "", function (resp) {
+				var doc = null;
+				applet.add({resource: p});
+				doc = documents.all[documents.current];
+				doc.content = resp;
+				textarea.value = resp;
+			});
 		},
 		close: function (p) {
 			this.save();

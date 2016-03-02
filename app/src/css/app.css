@@ -898,7 +898,7 @@ textarea.small {
 }
 
 .UI-Applet textarea {
-	min-height: 785px;
+/*	min-height: 785px;*/
 }
 
 .light .UI-Applet textarea {
@@ -1769,7 +1769,10 @@ div.formContainer {
 .UI-Applet .UI-SidebarItem {
 	text-align: left;
     padding-left: 14px;
-	color: grey;
+    color: #808080;
+    margin-left: 8px;
+    background: rgba(0, 0, 0, 0);
+    box-shadow: 0px 3px 4px rgba(0,0,0, 0.4);
 }
 
 .light .UI-Applet .UI-Sidebar {
