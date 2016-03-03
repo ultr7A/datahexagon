@@ -43,23 +43,43 @@ module.exports = function () {
 				this.add();
 			}
 
+			setTimeout(this.save, 30000);
+
 			return [menu, sidebar, view];
 		},
 		add: function (p) {
 			var sidebar = this.sidebar,
 				documents = this.models.document,
 				document = Object.create(this.models.document.schema),
-				item = null;
+				item = null,
+				exists = false,
+				filename = "",
+				a = app.files,
+				l = a.length;
+
 			if (!!p && !!p.resource) {
 				document.resource = p.resource;
 			} else {
 				document.resource = app.cwd + "/" + document.resource;
 			}
-			item = new SidebarItem("editable", {title: document.resource});
-			documents.all.push(document);
-			documents.current = documents.all.length - 1;
-			sidebar.options.items.push(item);
-			sidebar.element.appendChild(item.element);
+
+			filename = document.resource.split("/");
+			filename = filename[filename.length -1];
+
+			while ( --l > -1) {
+				if (a[l].name == filename) {
+					console.log(a[l].name);
+					this.open(document.resource);
+					exists = true;
+				}
+			}
+			if (!exists) {
+				documents.all.push(document);
+				item = new SidebarItem("editable", {title: document.resource});
+				documents.current = documents.all.length - 1;
+				sidebar.options.items.push(item);
+				sidebar.element.appendChild(item.element);
+			}
 		},
 		save: function (p) {
 			var documents = this.models.document,
@@ -73,11 +93,18 @@ module.exports = function () {
 				textarea = this.view.element.children[0],
 				applet = this;
 			app.request("get", p, "", function (resp) {
-				var doc = null;
-				applet.add({resource: p});
-				doc = documents.all[documents.current];
+				var doc = Object.create(applet.models.document.schema),
+					documents = applet.models.document,
+					item = null;
+				doc.resource = p;
+				item = new SidebarItem("editable", {title: doc.resource});
+				documents.all.push(doc);
+				documents.current = documents.all.indexOf(doc);
 				doc.content = resp;
 				textarea.value = resp;
+				applet.sidebar.options.items.push(item);
+				applet.sidebar.element.appendChild(item.element);
+
 			});
 		},
 		close: function (p) {
@@ -87,3 +114,12 @@ module.exports = function () {
 		}
 	};
 };
+
+
+
+
+
+
+
+
+
