@@ -104,17 +104,16 @@ var app = {
 
 		},
 		getThemedIcon: function (iconPath) {
-				var iconName = "";
-				if (app.theme != "light") {
-					iconPath = iconPath;
-				} else {
-					iconPath = iconPath.split("/");
-					iconName = iconPath.pop();
-					iconPath.push("dark");
-					iconPath.push(iconName);
-					iconPath = iconPath.join("/");
+				var iconName = "",
+					themedIcon = iconPath;
+				if (app.theme == "light") {
+					themedIcon = themedIcon.split("/");
+					iconName = themedIcon.pop();
+					themedIcon.push("dark");
+					themedIcon.push(iconName);
+					themedIcon = themedIcon.join("/");
 				}
-			return iconPath;
+			return themedIcon;
 		},
 		vibrate: function (data) {
 			if (!! navigator.vibrate ) {

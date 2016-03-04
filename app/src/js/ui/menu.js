@@ -16,9 +16,10 @@ module.exports = function Menu(type, options) {
 	type = (!!type ? type : "standard");
 	switch (type) {
 	case "standard":
-		menuItems = menuItems.concat(UI.defaults.menu.options);
-		menuItems.forEach(function(menuItem){
-			menuItem.icon = getThemedIcon(menuItem.icon);
+		UI.defaults.menu.options.forEach(function(menuItem) {
+			var item = Object.create(menuItem);
+			item.icon = app.getThemedIcon(item.icon);
+			menuItems.push(item);
 		});
 		break;
 	case "custom":
