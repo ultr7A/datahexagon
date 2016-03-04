@@ -11,6 +11,7 @@ var app = {
 		panes: [],
         applets: [],
 		accessories: ["text-editor", "alarm-clock", "image-editor", "messaging", "settings", "3d-editor"],
+		theme: "light",
 		bgImage: "",
 		sortMode: "type",
 		viewMode: "grid",
@@ -101,6 +102,19 @@ var app = {
 				}
 			}
 
+		},
+		getThemedIcon: function (iconPath) {
+				var iconName = "";
+				if (app.theme != "light") {
+					iconPath = iconPath;
+				} else {
+					iconPath = iconPath.split("/");
+					iconName = iconPath.pop();
+					iconPath.push("dark");
+					iconPath.push(iconName);
+					iconPath = iconPath.join("/");
+				}
+			return iconPath;
 		},
 		vibrate: function (data) {
 			if (!! navigator.vibrate ) {
@@ -487,6 +501,14 @@ function init () {
         geometry,
         material;
 	app.mobile = window.innerWidth <= 640;
+	if (localStorage.getItem("theme") != null) {
+		app.theme = localStorage.getItem("theme");
+	} else {
+		localStorage.setItem("theme", "light");
+		app.theme = theme;
+	}
+	document.body.setAttribute("class", app.theme);
+
     console.log("Data Hexagon (C) "+(new Date().getFullYear()) + " jeremy@spacehexagon.com");
 	console.log("https://github.com/SpaceHexagon/datahexagon");
 
@@ -612,7 +634,7 @@ function init () {
 
 	console.log(page);
 
-	if (page == "/home/?" || page.split("/").length > 2) {
+	if ((page == "/home/?" || page.split("/").length > 2) && document.querySelector("#register-form") == null) {
 		if (!! app && !! app.container) {
 			app.container.ondragover = function () {
                 app.lightbox.setAttribute("class", "lightbox hover");
@@ -637,6 +659,7 @@ function init () {
 		}
 
 	} else {
+		document.body.setAttribute("class", "");
         scene = three.scene =  new THREE.Scene();
 		camera = three.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.2, 80000 );
 		renderer = three.renderer = new THREE.WebGLRenderer({alpha: true, antialias: (window.innerWidth <= 1440)});
@@ -644,7 +667,7 @@ function init () {
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		renderer.domElement.setAttribute("class", "viewport");
 		document.body.appendChild( renderer.domElement );
-		if (page == "/") {
+//		if (page == "/") {
             var skyMat = new THREE.MeshLambertMaterial({ color: 0xffffff }),
 				sunMat = new THREE.MeshBasicMaterial({ color: 0xffffff }),
                 cloudMat = (app.mobile ? new THREE.MeshLambertMaterial({ color: 0x9000ff }) : new THREE.MeshPhongMaterial({ color: 0x9000ff })),
@@ -705,7 +728,7 @@ function init () {
 				y = 0;
 				x++;
 			}
-		}
+//		}
 		animate();
     }
 }

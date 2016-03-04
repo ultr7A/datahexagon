@@ -1,5 +1,6 @@
 module.exports = function Menu(type, options) {
 	var aside = document.createElement("aside"),
+		getThemedIcon = app.getThemedIcon,
 		menuItems = [],
 		menuItem = null,
 		menu = this,
@@ -16,6 +17,9 @@ module.exports = function Menu(type, options) {
 	switch (type) {
 	case "standard":
 		menuItems = menuItems.concat(UI.defaults.menu.options);
+		menuItems.forEach(function(menuItem){
+			menuItem.icon = getThemedIcon(menuItem.icon);
+		});
 		break;
 	case "custom":
 		menuItems = options.menuItems;

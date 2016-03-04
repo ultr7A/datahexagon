@@ -7,7 +7,7 @@ module.exports = function Sidebar(type, options) {
 	this.element = aside;
 	this.options = options;
 	if (!!options.icon) {
-		icon.src = options.icon;
+		icon.src = app.getThemedIcon(options.icon);
 		icon.setAttribute("class", "icon");
 		aside.appendChild(icon);
 	}

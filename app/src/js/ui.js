@@ -34,7 +34,7 @@ var UI = {
 					menu.applet.close();
 					menu.applet.dataPane.close();
 				}},
-				{"name": "New", "icon":"/app/data/plus.png", "click": function create (event, menu) {
+				{"name": "New", "icon":"/app/data/192/plus.png", "click": function create (event, menu) {
 
 				}},
 				{"name": "Options", "icon":"/app/data/192/circle.png", "click": function options (event, menu) {
