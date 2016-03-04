@@ -40,7 +40,7 @@ module.exports = function () {
 				this.add();
 			}
 
-			setTimeout(this.save, 30000);
+			self.saveTimeout = setTimeout(function () { self.save({auto: true}); }, 30000);
 
 			return [menu, sidebar, view];
 		},
@@ -83,7 +83,9 @@ module.exports = function () {
 				doc = documents.all[documents.current];
 			doc.content = self.view.element.children[0].value;
 			saveText(doc.resource, doc.content);
-			self.saveTimeout = setTimeout(self.save, 60000);
+            if (!!p && p.auto === true) {
+                self.saveTimeout = setTimeout(function() { self.save(p); }, 60000);
+            }
 		},
 		open: function (p) {
 			var documents = this.models.document,
@@ -105,8 +107,8 @@ module.exports = function () {
 			});
 		},
 		close: function (p) {
-			this.save();
-			clearTimeout(this.saveTimeout);
+			self.save();
+			clearTimeout(self.saveTimeout);
 			console.log("actually closing now..");
 		}
 	};
