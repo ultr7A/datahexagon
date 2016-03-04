@@ -1,5 +1,5 @@
 module.exports = function () {
-	return {
+	var self = {
 		name: "Text Editor",
 		icon: "/app/data/192/text.png",
 		options: {
@@ -79,11 +79,11 @@ module.exports = function () {
 //			}
 		},
 		save: function (p) {
-			var documents = this.models.document,
+			var documents = self.models.document,
 				doc = documents.all[documents.current];
-			doc.content = this.view.element.children[0].value;
+			doc.content = self.view.element.children[0].value;
 			saveText(doc.resource, doc.content);
-			this.saveTimeout = setTimeout(this.save, 60000);
+			self.saveTimeout = setTimeout(self.save, 60000);
 		},
 		open: function (p) {
 			var documents = this.models.document,
@@ -110,6 +110,7 @@ module.exports = function () {
 			console.log("actually closing now..");
 		}
 	};
+    return self;
 };
 
 

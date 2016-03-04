@@ -679,10 +679,8 @@ input[type=text], input[type=password] {
 
 
 body.light  {
-	background-color: #F0F0F0 !important;
-	background-image: -webkit-radial-gradient(circle,#FFFFFF, #ACACAC) !important;
-	background-image: -moz-radial-gradient(circle,#FFFFFF, #ACACAC) !important;
-	background-image: radial-gradient(circle,#FFFFFF, #ACACAC) !important;
+	background-color: #F5F5F5 !important;
+	background-image: none !important;
 	color: black;
 }
 
