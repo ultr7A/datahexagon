@@ -653,7 +653,7 @@ input[type=text], input[type=password] {
 }
 
 .light .Card {
-    background-color: #FDFDFD !important;
+    background-color: #FFFFFF !important;
     color: #828282;
     border-radius: 3px;
     border-top: 0 !important;
@@ -666,7 +666,7 @@ input[type=text], input[type=password] {
 }
 
 .light .Folder {
-    background-color: #F7F7F7 !important;
+    background-color: #FFFFFF !important;
     border-top: 0 !important;
     text-shadow: none;
     background-image: none;
@@ -1772,13 +1772,14 @@ div.formContainer {
     padding-left: 0px;
     padding-right: 0;
     color: #808080;
-    margin-left: 55px;
+    margin-right: 8px;
+    margin-left: 10px;
     margin-top: 0;
     background: rgba(0, 0, 0, 0);
     box-shadow: none;
     font-size: 18px;
     float: left;
-    min-width: 195px;
+    min-width: 263px;
 }
 
 .light .UI-Applet .UI-Sidebar {

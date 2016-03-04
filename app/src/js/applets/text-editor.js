@@ -27,11 +27,8 @@ module.exports = function () {
 					items: []
 				}),
 				element = document.createElement("div"),
-				//textarea = document.createElement("textarea"),
 				view = null,
 				span = null;
-			//element.appendChild(textarea)l;
-
 			view = new Frame("text");
 			this.sidebar = sidebar;
 			this.menu = menu;
@@ -50,36 +47,36 @@ module.exports = function () {
 		add: function (p) {
 			var sidebar = this.sidebar,
 				documents = this.models.document,
-				document = Object.create(this.models.document.schema),
+				doc = Object.create(this.models.document.schema),
 				item = null,
 				exists = false,
 				filename = "",
 				a = app.files,
 				l = a.length;
 
-			if (!!p && !!p.resource) {
-				document.resource = p.resource;
+			if (!!p && !!p.open && !!p.open.resource) {
+				doc.resource = p.open.resource;
 			} else {
-				document.resource = app.cwd + "/" + document.resource;
+				doc.resource = app.cwd + "/" + doc.resource;
 			}
 
-			filename = document.resource.split("/");
+			filename = doc.resource.split("/");
 			filename = filename[filename.length -1];
 
 			while ( --l > -1) {
-				if (a[l].name == filename) {
+				if (!exists && a[l].name == filename) {
 					console.log(a[l].name);
-					this.open(document.resource);
+					this.open({resource: doc.resource});
 					exists = true;
 				}
 			}
-			if (!exists) {
-				documents.all.push(document);
-				item = new SidebarItem("editable", {title: document.resource});
-				documents.current = documents.all.length - 1;
-				sidebar.options.items.push(item);
-				sidebar.element.appendChild(item.element);
-			}
+//			if (!exists) {
+//				documents.all.push(doc);
+//				item = new SidebarItem("editable", {title: doc.resource});
+//				documents.current = documents.all.length - 1;
+//				sidebar.options.items.push(item);
+//				sidebar.element.appendChild(item.element);
+//			}
 		},
 		save: function (p) {
 			var documents = this.models.document,
@@ -92,11 +89,11 @@ module.exports = function () {
 			var documents = this.models.document,
 				textarea = this.view.element.children[0],
 				applet = this;
-			app.request("get", p, "", function (resp) {
+			app.request("get", p.resource, "?cache="+Date.now(), function (resp) {
 				var doc = Object.create(applet.models.document.schema),
 					documents = applet.models.document,
 					item = null;
-				doc.resource = p;
+				doc.resource = p.resource;
 				item = new SidebarItem("editable", {title: doc.resource});
 				documents.all.push(doc);
 				documents.current = documents.all.indexOf(doc);

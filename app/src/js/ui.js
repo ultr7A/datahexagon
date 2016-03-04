@@ -56,9 +56,20 @@ var UI = {
 							resource = element.getAttribute("data-resource"),
                             name = element.getAttribute("data-name");
 						e.preventDefault();
-						app.request("GET", resource+"?cache="+Date.now(), "", function (response) {
-							app.openPane('edit', name, {"resource":app.cwd+"/"+name, "text": response});
-						});
+                        app.openPane("text-editor", "text-editor", {
+                            applet: {
+                                name: "text-editor",
+                                open: {
+                                    resource: resource,
+                                    type: "text"
+                                }
+                            }
+                        });
+//						app.request("GET", resource+"?cache="+Date.now(), "", function (response) {
+//							app.openPane('edit', name, {"resource":app.cwd+"/"+name, "text": response});
+//                            app.openPane("Text Editor", name, {" "})
+//
+//						});
 						return false;
 					}},
 					{"name": "Delete", "icon":"/app/data/192/dark/x.png", "click": function (e) {
