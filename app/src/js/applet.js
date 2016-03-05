@@ -3,6 +3,9 @@ function Applet(name, params) {
 		div = document.createElement("div"),
 		c = 0;
 	div.setAttribute("class", "DataPane UI-Applet");
+	div.addEventListener("focus", function (){
+		app.showMenu("applet"); // show lightbox
+	}, true);
 	this.div = div;
 	this.data = data;
 	this.components = [];
@@ -43,6 +46,8 @@ Applet.prototype.add = function (params) {
 
 Applet.prototype.save = function (params) {
 	console.log("Applet saves... ", params);
+	var resource = (!!params && !!params.resource) ? params.resource : "";
+	socket.emit("datahexagon event", {user: app.user.name, dir: app.cwd, resource: resource, type: "save"});
 	this.data.save(params);
 };
 

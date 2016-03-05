@@ -14,7 +14,9 @@ module.exports = function Sidebar(type, options) {
 	h2.innerHTML = options.title;
 	h3.innerHTML = options.subtitle;
 	aside.appendChild(h2);
-	aside.appendChild(h3);
+	if (options.subtitle != "") {
+		aside.appendChild(h3);
+	}
 	aside.appendChild(document.createElement("br"));
 	switch (type) {
 	case "standard":

@@ -70,7 +70,7 @@ var app = {
                 }
                 console.log(p, app.panes[p]);
             }
-			app.showMenu("lightbox");
+			app.showMenu("applet");
             pane = new DataPane(type, name, data);
 			if (paneview.children.length > 1) {
 				paneview.insertBefore(pane.container, paneview.children[1]);
@@ -92,8 +92,8 @@ var app = {
 					[].forEach.call(menus, function (togglingMenu, index) {
 					togglingMenu.setAttribute("style", "display: " + (togglingMenu.getAttribute("class") == menu ? "block" : "none") + ";");
 				});
-				lightbox.setAttribute("style", "display: " + ((menu == "none" || menu == "startMenu") ? "none" : "block")+ ";"+(menu == "lightbox" ? "z-index: 2 !important;" : ""));
-				lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " dark" : ""));
+				lightbox.setAttribute("style", "display: " + ((menu == "none" || menu == "startMenu") ? "none" : "block")+ ";");
+				lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " dark" : "") + (menu == "applet" ? " applet" : ""));
 				if (menu == "launcher") {
 					window.scroll(0, 0);
 					app.initLauncher();
@@ -542,13 +542,28 @@ function init () {
 
 	socket.on('datahexagon event', function (data) {
 		var user,
-			sys = app;
+			sys = app,
+			panes = app.panes,
+			applet = null,
+			p = panes.length -1,
+			docs = null;
 		console.log("socket event...");
 		if (data.user == sys.user.name) {
 				//user = sys.users[userData.user];
 			if (data.type == "refresh") {
 				if (data.dir == app.cwd) {
 					openFolder(app.cwd);
+				}
+			} else if (data.type == "save") {
+				if (data.dir == app.cwd) {
+					// temporary hack
+					while (p >= 0) {
+						applet = panes[p].applet;app.panes[0].applet;
+						docs = applet.data.models.document;
+						console.log("attemping to reopen current file that was just saved on other machine")
+						applet.open({resource: docs.all[docs.all.length-1].resource});
+						p --;
+					}
 				}
 			}
 

@@ -346,6 +346,11 @@ section.content#paneview {
 	pointer-events: none;
 }
 
+.lightbox.applet {
+	display: block;
+	z-index: 2 !important;
+}
+
 section.launcher {
   position: fixed;
     z-index: 10000000;
