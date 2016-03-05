@@ -949,15 +949,17 @@ textarea.small {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(129, 129, 129, 0.5);
-}
-
-::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.5);
 }
 
+::-webkit-scrollbar-thumb {
+  background: rgba(192, 192, 192, 0.5);
+  -webkit-transition: all 0.333s ease;
+  transition: all 0.333s ease;
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 1);
+  background: rgba(127, 127, 127, 1);
 }
 
 @media screen and (max-width:1568px) {
@@ -1814,6 +1816,7 @@ div.formContainer {
   margin-right: 8px;
   margin-left: 10px;
   margin-top: 0;
+  margin-bottom: 0;
   background: rgba(0, 0, 0, 0);
   box-shadow: none;
   font-size: 18px;
