@@ -200,6 +200,7 @@
         <script src="/app/dist/js/ui.js"></script>
         <script src="/app/dist/js/app.js"></script>
         <script src="/app/dist/js/main.js"></script>
+        <script src="/app/dist/js/world.js"></script>
         <script src="/app/dist/js/applet.js"></script>
 		<script src="/app/lib/codemirror/codemirror.js" ></script>
 		<script src="/app/lib/codemirror/css.js" ></script>
