@@ -5,6 +5,7 @@ function Applet(name, params) {
 	div.setAttribute("class", "DataPane UI-Applet");
 	div.addEventListener("focus", function (){
 		app.showMenu("applet"); // show lightbox
+		console.log("trying to focus");
 	}, true);
 	this.div = div;
 	this.data = data;

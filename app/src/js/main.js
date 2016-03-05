@@ -84,13 +84,13 @@ var app = {
 		showMenu: function (menu) {
 			var menus = document.querySelectorAll("aside.view, aside.sort, aside.file, aside.creation, aside.startMenu, section.launcher"),
 				lightbox = document.querySelector(".lightbox");
-				if (app.currentMenu == menu) {
+				if (app.currentMenu != "applet" && app.currentMenu == menu) {
 					menu = "none";
 				}
 				app.currentMenu = menu;
 				if (!! lightbox) {
 					[].forEach.call(menus, function (togglingMenu, index) {
-					togglingMenu.setAttribute("style", "display: " + (togglingMenu.getAttribute("class") == menu ? "block" : "none") + ";");
+					togglingMenu.setAttribute("style", "display: " + (togglingMenu.getAttribute("class").search(menu) > -1 ? "block" : "none") + ";");
 				});
 				lightbox.setAttribute("style", "display: " + ((menu == "none" || menu == "startMenu") ? "none" : "block")+ ";");
 				lightbox.setAttribute("class", "lightbox" + (menu == "launcher" ? " dark" : "") + (menu == "applet" ? " applet" : ""));

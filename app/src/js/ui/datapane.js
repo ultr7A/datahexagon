@@ -113,7 +113,9 @@ DataPane.prototype.close = function () {
         pane = this;
     pane.container.parentNode.removeChild(pane.container);
     panes.splice(panes.indexOf(pane));
-	app.showMenu("none");
+	if (panes.length < 1) {
+		app.showMenu("none");
+	}
 };
 
 DataPane.prototype.getCloseMethod = function (save) {
@@ -142,7 +144,9 @@ DataPane.prototype.getCloseMethod = function (save) {
 			pane.container.parentNode.removeChild(pane.container);
 			panes.splice(panes.indexOf(pane));
 		}
-		app.showMenu("none");
+		if (app.panes.length < 1) {
+			app.showMenu("none");
+		}
     };
 };
 
