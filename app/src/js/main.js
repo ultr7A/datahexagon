@@ -456,14 +456,16 @@ function uploadFiles (pane) {
 	return false;
 }
 
-function saveText (name, value) {
+function saveText (name, value, noRefresh) {
 	var xhr = new XMLHttpRequest(),
 		formData = new FormData();
 	initForm(formData, "touch", name);
 	formData.append("text", value);
 	xhr.onload = function () {
 		if (xhr.status == 200) {
-			openFolder(app.cwd);
+			if (!!noRefresh == false) {
+				openFolder(app.cwd);
+			}
 		}
 	};
 	xhr.open("POST", "/app/data.php", true);

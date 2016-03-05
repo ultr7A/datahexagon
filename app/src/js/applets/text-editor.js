@@ -82,7 +82,7 @@ module.exports = function () {
 			var documents = self.models.document,
 				doc = documents.all[documents.current];
 			doc.content = self.view.element.children[0].value;
-			saveText(doc.resource, doc.content);
+			saveText(doc.resource, doc.content, true);
             if (!!p && p.auto === true) {
                 self.saveTimeout = setTimeout(function() { self.save(p); }, 60000);
             }
