@@ -35,7 +35,7 @@ module.exports = function () {
 			this.view = view;
 
 			if (!!p && p.open) {
-				this.add({resource: p.open});
+				this.open({resource: p.open});
 			} else {
 				this.add();
 			}
