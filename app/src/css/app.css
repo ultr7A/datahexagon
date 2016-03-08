@@ -154,7 +154,7 @@ nav a.view {
 }
 nav a.sort {
     background-image: url(/app/data/192/circle.png);
-
+    margin-bottom: 10px;
 }
 nav a.theme {
 	background-image: url(/app/data/sun-192.png);
@@ -1108,7 +1108,7 @@ textarea.small {
 	nav a.up {
 		display: inline-block;
 		margin-top: 12px;
-        margin-left: 0;
+        margin-left: 4px;
         background-image: url(/app/data/192/back.png);
 	}
 	nav a.mkdir {
@@ -1121,6 +1121,7 @@ textarea.small {
 	nav a.create {
 		margin-bottom: 15px;
 		margin-top: 12px;
+        margin-left: 4px;
 	}
 	nav a.rm {
 		  font-size: 2.0em;
@@ -1307,13 +1308,13 @@ aside.creation nav a span {
 	}
 	nav a.up {
 		width: 50px;
-    	margin-left: 0px;
+    	margin-left: 4px;
 	}
 	aside.sort nav a, aside.view nav a, aside.file nav a {
 		top: 0px !important;
-		left: 6px;
-		margin-left: 9px;
-		margin-right: 6px;
+        left: 6px;
+        margin-left: 16px;
+        margin-right: 0px;
 	}
 
 	aside.creation {
