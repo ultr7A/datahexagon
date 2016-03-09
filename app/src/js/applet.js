@@ -37,7 +37,9 @@ Applet.prototype.init = function (params) {
 	}
 	if (!!params && !!params.open) {
 		this.open(params.open);
-	}
+	} else {
+        this.add();
+    }
 };
 
 Applet.prototype.add = function (params) {

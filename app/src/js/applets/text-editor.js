@@ -34,14 +34,7 @@ module.exports = function () {
 			this.menu = menu;
 			this.view = view;
 
-			if (!!p && p.open) {
-				this.open({resource: p.open});
-			} else {
-				this.add();
-			}
-
 			self.saveTimeout = setTimeout(function () { self.save({auto: true}); }, 30000);
-
 			return [menu, sidebar, view];
 		},
 		add: function (p) {
@@ -52,7 +45,9 @@ module.exports = function () {
 				exists = false,
 				filename = "",
 				a = app.files,
-				l = a.length;
+				l = a.length -1;
+
+            console.log("add document");
 
 			if (!!p && !!p.open && !!p.open.resource) {
 				doc.resource = p.open.resource;
@@ -63,20 +58,21 @@ module.exports = function () {
 			filename = doc.resource.split("/");
 			filename = filename[filename.length -1];
 
-			while ( --l > -1) {
+			while (l > -1) {
 				if (!exists && a[l].name == filename) {
-					console.log(a[l].name);
+					console.log("existing file found", a[l].name);
 					this.open({resource: doc.resource});
 					exists = true;
 				}
+                l --;
 			}
-//			if (!exists) {
-//				documents.all.push(doc);
-//				item = new SidebarItem("editable", {title: doc.resource});
-//				documents.current = documents.all.length - 1;
-//				sidebar.options.items.push(item);
-//				sidebar.element.appendChild(item.element);
-//			}
+			if (!exists) {
+				documents.all.push(doc);
+				item = new SidebarItem("editable", {title: doc.resource});
+				documents.current = documents.all.length - 1;
+				sidebar.options.items.push(item);
+				sidebar.element.appendChild(item.element);
+			}
 		},
 		save: function (p) {
 			var documents = self.models.document,
@@ -91,7 +87,8 @@ module.exports = function () {
 			var documents = this.models.document,
 				textarea = this.view.element.children[0],
 				applet = this;
-			app.request("get", p.resource, "?cache="+Date.now(), function (resp) {
+            console.log("text editor open.. ", p);
+			app.request("get", p.resource+"?cache="+Date.now(), "", function (resp) {
 				var doc = Object.create(applet.models.document.schema),
 					documents = applet.models.document,
 					item = null;
