@@ -943,7 +943,7 @@ textarea:focus {
 }
 
 .lightbox.light, .light .lightbox {
-	background-color: rgba(255, 255, 255, 0.9) !important;
+	background-color: rgba(245,245,245,0.9) !important;
     color: black;
     text-shadow: none;
 }
@@ -1791,8 +1791,8 @@ div.formContainer {
 }
 
 .light .UI-Applet .UI-Sidebar {
-	    background: rgba(255, 255, 255, 0.19) !important;
-    background-color: rgba(255, 255, 255, 0.19) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    background-color: rgba(255, 255, 255, 0.7) !important;
 }
 .light .UI-Applet .UI-SidebarItem {
 	color: #7B7B7B;
