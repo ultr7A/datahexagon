@@ -1341,6 +1341,16 @@ aside.creation nav a span {
     min-width: 320px;
   }
 
+  .DataPane.mkdir {
+    bottom: inherit !important;
+    top: 54px !important;
+  }
+
+  .DataPane.touch {
+    bottom: inherit !important;
+    top: 54px !important;
+  }
+
   nav a {
     margin-right: 0;
     margin-left: 6px;
@@ -1873,6 +1883,15 @@ div.formContainer {
   transition: all 0.050s cubic-bezier(0.01, 0.76, 0.45, 0.89);
   -webkit-transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
   transform: scale(0.2,0.2) perspective(150px) translateZ(-12px);
+}
+
+.UI-Context-Menu ul {
+  padding-left: 0;
+  margin-top: 0;
+}
+
+.UI-Context-Menu ul li {
+  list-style-type: none;
 }
 
 .Image .UI-Context-Menu {

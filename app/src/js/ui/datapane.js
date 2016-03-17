@@ -35,11 +35,13 @@
             case "touch":
                 showEntry = true;
                 showTitleEntry = true;
+                container.setAttribute("class", "DataPane touch");
 				titleEntry.setAttribute("style", "background-image: url(/app/data/touch.png)");
 				titleEntry.setAttribute("class", "titleEntry icon");
             break;
 			case "mkdir":
                 showTitleEntry = true;
+                container.setAttribute("class", "DataPane mkdir");
 				titleEntry.setAttribute("style", "background-image: url(/app/data/mkdir.png);");
 				titleEntry.setAttribute("class", "titleEntry icon");
             break;
