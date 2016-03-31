@@ -59,6 +59,9 @@ module.exports = function () {
 			// send welcome message
 			// add event listener to send button
 			// add socket event listener for chat message
+			if(confirm("App not implemented.\nFurthermore, all future development of the Datahexagon desktop environment has diverted to project Pylon.\nFeel like trying something new?")) {
+				window.location.href = "https://vpylon.net";
+			}
 		},
 		add: function (p) {
 

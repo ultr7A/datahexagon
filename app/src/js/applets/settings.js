@@ -16,7 +16,12 @@ module.exports = function () {
 				all: []
 			}
 		},
-		init: function (p) {},
+		init: function (p) {
+			if(confirm("App not implemented.\nFurthermore, all future development of the Datahexagon desktop environment has diverted to project Pylon.\nFeel like trying something new?")) {
+				window.location.href = "https://vpylon.net";
+			}
+		},
+		add: function (p) {},
 		save: function (p) {},
 		close: function (p) {}
 	};
