@@ -82,6 +82,7 @@ module.exports = function () {
 			span = document.createElement("span");
 			span.appendChild(dataLabel);
 			span.appendChild(dataInput);
+            span.setAttribute("style", "display: none;");
 			element.appendChild(span);
 			whiteListLabel.innerHTML = "White List";
 			span = document.createElement("span");
@@ -90,20 +91,24 @@ module.exports = function () {
 			span.appendChild(whiteListInput);
 			element.appendChild(span);
 
+            this.add();
+            share = shares.all[shares.current];
 
 			if (!!p.open) {
-				this.add();
-				share = shares.all[shares.current];
 				share.name = p.open.resource;
 				share.resource = p.open.resource;
-				resourceInput.value = share.resource;
+			} else {
+                share.name = share.resource = app.cwd;
+            }
+
+            resourceInput.value = share.resource;
 				doneInput.setAttribute("type", "button");
 				doneInput.setAttribute("value", "Share Folder");
 				doneInput.setAttribute("class", "complete");
 				doneInput.addEventListener("click", function (evt) {
 					self.save();
 				}, true);
-			}
+
 			span = document.createElement("span");
 			element.appendChild(span);
 			span.appendChild(doneInput);

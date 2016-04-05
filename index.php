@@ -80,8 +80,8 @@
                  </div>
                  <div class='auth_field'>
                      <span class='label'>Password:</span><input name="password" type='password' value="" />
+                     <input type='submit' value='Go'/>
                  </div>
-                 <input type='submit' value='Go'/>
 			</form>
             <form action="/home/?" method="POST" id='register-form' class='hidden'>
                <input type="hidden" name="register" value="1" />
@@ -93,8 +93,8 @@
                 </div>
                 <div class='auth_field'>
                     <span class='label'>Password:</span> <input name="password" type='password' value="" />
+                    <input type='submit' value='Go'/>
                 </div>
-                <input type='submit' value='Go'/>
             </form>
 		</div>
         <script src="/app/lib/three.js"></script>

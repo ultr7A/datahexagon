@@ -1589,14 +1589,26 @@ form.fileManagement {
   width: 330px;
 }
 
+@media (min-width: 641px) {
+  #signin-form .auth_field {
+    display: block;
+    width: 622px;
+  }
+}
+
+#signin-form input[type=submit] {
+  min-width: 176px;
+  cursor: pointer;
+}
+
 .formContainer form {
   margin: auto !important;
   max-width: 816px !important;
 }
 
-.auth_field label {
+.auth_field .label {
+  min-width: 81px !important;
   display: inline-block !important;
-  min-width: 80px !important;
 }
 
 .auth_field input[type=text],
@@ -1605,7 +1617,7 @@ form.fileManagement {
 }
 
 .hidden .auth_field {
-  display: none;
+  display: none !important;
 }
 
 .hidden input[type=submit] {
