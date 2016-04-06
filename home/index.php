@@ -89,7 +89,7 @@
 
         </header>
         <?php if ($username != "") { ?>
-        <form class='fileManagement' action="?" method="POST" enctype="multipart/form-data">
+        <form class='fileManagement' action="?" method="POST" onsubmit="return false;" enctype="multipart/form-data">
             <aside class="root">
             	<nav>
                 	<a class="sh" title="Launch Applets"></a>
