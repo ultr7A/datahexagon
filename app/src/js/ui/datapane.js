@@ -32,18 +32,28 @@
 		container = applet.div;
     } else {
 		switch (type) {
-            case "touch":
+            case "touch":makeDirectory
                 showEntry = true;
                 showTitleEntry = true;
                 container.setAttribute("class", "DataPane touch");
 				titleEntry.setAttribute("style", "background-image: url(/app/data/touch.png)");
 				titleEntry.setAttribute("class", "titleEntry icon");
+                titleEntry.addEventListener("keypress", function (evt) {
+                    if (evt.which == 13) {
+                        done.click();
+                    }
+                }, true);
             break;
 			case "mkdir":
                 showTitleEntry = true;
                 container.setAttribute("class", "DataPane mkdir");
 				titleEntry.setAttribute("style", "background-image: url(/app/data/mkdir.png);");
 				titleEntry.setAttribute("class", "titleEntry icon");
+                titleEntry.addEventListener("keypress", function (evt) {
+                    if (evt.which == 13) {
+                        done.click();
+                    }
+                }, true);
             break;
             case "upload":
                 upload = document.createElement("input");
