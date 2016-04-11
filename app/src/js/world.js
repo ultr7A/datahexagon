@@ -26,7 +26,7 @@ var world = {
 		renderer.domElement.setAttribute("class", "viewport");
 		document.body.appendChild( renderer.domElement );
 
-			var skyTexture = THREE.ImageUtils.loadTexture("/app/data/data-sky.png", null, function () {
+			var skyTexture = THREE.ImageUtils.loadTexture("/app/data/data-sky-m.png", null, function () {
 					var skybox = new THREE.Object3D(), // used to use larger jpeg version sunset-5.jpg
 					skyboxFace = null,
 					skyboxSideMat = new THREE.MeshBasicMaterial({
