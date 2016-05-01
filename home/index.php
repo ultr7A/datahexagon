@@ -10,6 +10,7 @@
             $user_id = -1;
             $serverMSG = "";
 			$createUser = false;
+			$pageTitle = "Home";
 
             if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 				if (isset($_POST["register"])) {
@@ -54,6 +55,7 @@
 					if (mysqli_num_rows($shares) > 0) {
 						$share = mysqli_fetch_array($shares);
 						if ($share["public"] == 1) {
+							$pageTitle = $dir;
 							$username = "anonymous";
 							$password = "anonymous";
 						} else {
@@ -67,7 +69,7 @@
 			}
 			mysqli_close($connection);
         ?>
-        <title>Home | DataHexagon</title>
+        <title><?php echo $pageTitle . " | DataHexagon"; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name='theme-color' content='rgb(40, 40, 40)'>
 		<meta name="description" content="A web based desktop environment, file storage and sharing service." >
