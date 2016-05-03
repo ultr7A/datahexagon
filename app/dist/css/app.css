@@ -1251,10 +1251,14 @@ aside.creation nav a span {
   }
 
   .UI-Applet textarea {
-    min-height: 180px;
+    min-height: 270px;
     width: 100%;
     margin-top: 60px;
     box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 4px;
+  }
+
+  .UI-Sidebar h2 {
+    display: none !important;
   }
 
   .UI-Context-Menu {
@@ -1445,14 +1449,15 @@ aside.creation nav a span {
     margin-left: 7.75% !important;
     margin-top: 0.75% !important;
     background-repeat: no-repeat;
+    vertical-align: bottom;
   }
 
   .launcher .UI-App-Icon.up {
-    bottom: 4em !important;
+    bottom: 3em !important;
   }
 
   .launcher .UI-App-Icon.down {
-    top: 2em !important;
+    top: 3em !important;
   }
 }
 

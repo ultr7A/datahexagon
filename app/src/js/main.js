@@ -191,16 +191,25 @@ var app = {
 			uploadFiles(pane);
 		},
 	initLauncher: function () {
-		var launcher = document.querySelector("section.launcher");
+		var launcher = document.querySelector("section.launcher"),
+            spacer = document.createElement("div");
+        spacer.setAttribute("class", "spacer");
         launcher.innerHTML = "";
 		setTimeout(function(){
 			launcher.setAttribute("class", "launcher show");
-		},100)
+		}, 100);
 		this.accessories.forEach(function (accessory, i) {
 			var appIcon = new AppIcon(accessory, i),
                 launcher = document.querySelector("section.launcher");
 			console.log("accessory", accessory);
-			launcher.appendChild(appIcon.element);
+            spacer.appendChild(appIcon.element);
+            if (i ==2 || i == 5) {
+                launcher.appendChild(spacer);
+                spacer = document.createElement("div");
+                spacer.setAttribute("style", "margin-top: 8%;")
+                spacer.setAttribute("class", "spacer");
+            }
+
 		});
 	},
 	handleBackButton: function (url, addEntry) {
