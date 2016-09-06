@@ -4,9 +4,12 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"path"
+	"runtime"
 )
 
 func dataHandler(w http.ResponseWriter, r *http.Request) {
+	_, filename, _, _ := runtime.Caller(1)
 	switch r.Method {
 	//GET needs to do a directory listing...
 
@@ -30,7 +33,7 @@ func dataHandler(w http.ResponseWriter, r *http.Request) {
 			if part.FileName() == "" {
 				continue
 			}
-			dst, err := os.Create("/home/sanat/" + part.FileName())
+			dst, err := os.Create(path.Join(path.Dir(filename), "/data/", part.FileName() ))
 			defer dst.Close()
 
 			if err != nil {
@@ -48,8 +51,27 @@ func dataHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func accountHandler(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case "GET":
+		/* load settings ? */
+
+	case "POST":
+			/* sign up  / in */
+
+
+	default:
+		w.WriteHeader(http.StatusMethodNotAllowed)
+	}
+}
+
+
+
+
 func main() {
-	http.HandleFunc("/data", dataHandler)
+
+	http.HandleFunc("/data", dataHandler) // mass storage
+	http.HandleFunc("/accounts", accountHandler) // auth
 
 	//static file handler.
 	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("web"))))
