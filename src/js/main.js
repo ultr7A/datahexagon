@@ -47,16 +47,16 @@ var app = {
 		},
 		sharing: {
 			listAllShares: function (username, callback) {
-				app.request("POST", "/data/share.php", "operation=list&username="+app.user.name+"&password="+app.user.pass, callback);
+				app.request("POST", "/share", "operation=list&username="+app.user.name+"&password="+app.user.pass, callback);
 			},
 			readShare: function (id, username, callback) {
-				app.request("POST", "/data/share.php", "operation=read&username="+app.user.name+"&password="+app.user.pass+"&id="+id, callback);
+				app.request("POST", "/share", "operation=read&username="+app.user.name+"&password="+app.user.pass+"&id="+id, callback);
 			},
 			saveShare: function (path, username, users, public, data, callback) {
-				app.request("POST", "/data/share.php", "operation=update&path="+path+"&username="+app.user.name+"&password="+app.user.pass+"&users="+users+"&public="+public+"&data="+data, callback);
+				app.request("POST", "/share", "operation=update&path="+path+"&username="+app.user.name+"&password="+app.user.pass+"&users="+users+"&public="+public+"&data="+data, callback);
 			},
 			deleteShare: function (path, username, callback) {
-				app.request("POST", "/data/share.php", "operation=delete&path="+path+"&username="+app.user.name+"&password="+app.user.pass, callback);
+				app.request("POST", "/share", "operation=delete&path="+path+"&username="+app.user.name+"&password="+app.user.pass, callback);
 			}
 		},
         openPane: function (type, name, data) {

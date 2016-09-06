@@ -65,13 +65,28 @@ func handleAccounts(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func handleSharing(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case "GET":
+		/* load shares */
+
+	case "POST":
+			/* create / modify share */
+
+
+	default:
+		w.WriteHeader(http.StatusMethodNotAllowed)
+	}
+}
+
 
 
 
 func main() {
 
-	http.HandleFunc("/api", handleAPI) // mass storage
+	http.HandleFunc("/api", handleAPI) // file storage
 	http.HandleFunc("/accounts", handleAccounts) // auth
+	http.HandleFunc("/share", handleSharing) // shared folders
 
 	//static file handler.
 	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("web"))))
