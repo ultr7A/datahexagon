@@ -3,17 +3,17 @@
 # Example .gitignore files: https://github.com/github/gitignore
 /bower_components/
 /node_modules/
-/app/private_avatar.php
-/app/private_data.php
-/app/private_share.php
+/data/private_avatar.php
+/data/private_api
+/data/private_share.php
 /private_index.php
 /home/private_index.php
-/app/lib/three.min.js
-/app/lib/ThreeCSG.js
-/app/lib/three.js
-/app/lib/csg.js
-/app/lib/socket.io/socket.io.js
+/data/lib/three.min.js
+/data/lib/ThreeCSG.js
+/data/lib/three.js
+/data/lib/csg.js
+/data/lib/socket.io/socket.io.js
 /undefined
-/app/dist/css/thevelvetcafe.ca
+/data/dist/css/thevelvetcafe.ca
 ./server.exe
 server.exe

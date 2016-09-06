@@ -47,16 +47,16 @@ var app = {
 		},
 		sharing: {
 			listAllShares: function (username, callback) {
-				app.request("POST", "/app/share.php", "operation=list&username="+app.user.name+"&password="+app.user.pass, callback);
+				app.request("POST", "/data/share.php", "operation=list&username="+app.user.name+"&password="+app.user.pass, callback);
 			},
 			readShare: function (id, username, callback) {
-				app.request("POST", "/app/share.php", "operation=read&username="+app.user.name+"&password="+app.user.pass+"&id="+id, callback);
+				app.request("POST", "/data/share.php", "operation=read&username="+app.user.name+"&password="+app.user.pass+"&id="+id, callback);
 			},
 			saveShare: function (path, username, users, public, data, callback) {
-				app.request("POST", "/app/share.php", "operation=update&path="+path+"&username="+app.user.name+"&password="+app.user.pass+"&users="+users+"&public="+public+"&data="+data, callback);
+				app.request("POST", "/data/share.php", "operation=update&path="+path+"&username="+app.user.name+"&password="+app.user.pass+"&users="+users+"&public="+public+"&data="+data, callback);
 			},
 			deleteShare: function (path, username, callback) {
-				app.request("POST", "/app/share.php", "operation=delete&path="+path+"&username="+app.user.name+"&password="+app.user.pass, callback);
+				app.request("POST", "/data/share.php", "operation=delete&path="+path+"&username="+app.user.name+"&password="+app.user.pass, callback);
 			}
 		},
         openPane: function (type, name, data) {
@@ -179,7 +179,7 @@ var app = {
 
 			};
 			app.showMenu('none');
-			//pane = app.openPane('edit', "Uploading", {"controls": false, "class":"upload", "resource":"uploading", "icon":"/app/data/upload.png", "text": ""});
+			//pane = app.openPane('edit', "Uploading", {"controls": false, "class":"upload", "resource":"uploading", "icon":"/data/upload.png", "text": ""});
 			if (!! input) {
 				pane.uploadInput = input;
 			}
@@ -376,7 +376,7 @@ function readDirectory (callback) {
 			callback(xhr.responseText);
 		}
 	};
-	xhr.open("POST", "/app/data.php", true);
+	xhr.open("POST", "/api", true);
 	xhr.send(formData);
 	return false;
 }
@@ -393,7 +393,7 @@ function makeDirectory (pane) {
 			pane.close();
 		}
 	};
-	xhr.open("POST", "/app/data.php", true);
+	xhr.open("POST", "/api", true);
 	xhr.send(formData);
 	return false;
 }
@@ -408,7 +408,7 @@ function deletePath (directory) {
 			openFolder(app.cwd);
 		}
 	};
-	xhr.open("POST", "/app/data.php", true);
+	xhr.open("POST", "/api", true);
 	xhr.send(formData);
 	return false;
 }
@@ -453,7 +453,7 @@ function uploadFiles (pane) {
         }
     }
 
-	xhr.open("POST", "/app/data.php", true);
+	xhr.open("POST", "/api", true);
 	xhr.send(formData);
 	if (!! document.querySelector(".upload [type=file]")) {
         document.querySelector(".upload [type=file]").files = [];
@@ -477,7 +477,7 @@ function saveText (name, value, noRefresh) {
 			}
 		}
 	};
-	xhr.open("POST", "/app/data.php", true);
+	xhr.open("POST", "/api", true);
 	xhr.send(formData);
 	return false;
 }

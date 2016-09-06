@@ -1,7 +1,7 @@
 module.exports = function () {
 	return {
 		name: "Image Editor",
-		icon: "/app/data/192/image-2.png",
+		icon: "/data/192/image-2.png",
 		options: {
 			"Save Changes": function (p) {}
 		},

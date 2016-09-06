@@ -1,7 +1,7 @@
 module.exports = function () {
 	return {
 		name: "Messaging",
-		icon: "/app/data/192/chat.png",
+		icon: "/data/192/chat.png",
 		options: {
 			"New Message": function (p) {
 

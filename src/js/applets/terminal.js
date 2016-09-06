@@ -1,7 +1,7 @@
 module.exports = function () {
 	return { // support algebra as well as *nix commands
 		name: "Terminal",
-		icon: "/app/data/192/text.png",
+		icon: "/data/192/text.png",
 		options: {
 			"Save Dump": function (p) {}
 		},

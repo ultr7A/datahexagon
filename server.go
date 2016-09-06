@@ -8,7 +8,7 @@ import (
 	"runtime"
 )
 
-func dataHandler(w http.ResponseWriter, r *http.Request) {
+func handleAPI(w http.ResponseWriter, r *http.Request) {
 	_, filename, _, _ := runtime.Caller(1)
 	switch r.Method {
 	//GET needs to do a directory listing...
@@ -51,7 +51,7 @@ func dataHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func accountHandler(w http.ResponseWriter, r *http.Request) {
+func handleAccounts(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
 		/* load settings ? */
@@ -70,8 +70,8 @@ func accountHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	http.HandleFunc("/data", dataHandler) // mass storage
-	http.HandleFunc("/accounts", accountHandler) // auth
+	http.HandleFunc("/api", handleAPI) // mass storage
+	http.HandleFunc("/accounts", handleAccounts) // auth
 
 	//static file handler.
 	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("web"))))

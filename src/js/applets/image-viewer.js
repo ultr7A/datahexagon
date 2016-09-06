@@ -1,7 +1,7 @@
 module.exports = function () {
 	return {
 		name: "Image Viewer",
-		icon: "/app/data/192/",
+		icon: "/data/192/",
 		options: {
 			"Next": function (p) {},
 			"Previous": function (p) {},

@@ -1,7 +1,7 @@
 module.exports = function () {
 	var self = {
 		name: "Text Editor",
-		icon: "/app/data/192/text.png",
+		icon: "/data/192/text.png",
 		options: {
 			"Save Changes": function (p) {}
 		},

@@ -1517,7 +1517,7 @@ main {
 
 @font-face {
   font-family: robotoThin;
-  src: url(/css/Roboto-Thin.ttf);
+  src: url(/app/css/Roboto-Thin.ttf);
 }
 
 #overworld {

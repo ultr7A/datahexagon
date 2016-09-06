@@ -1,7 +1,7 @@
 module.exports = function () {
 	return {
 		name: "Settings",
-		icon: "/app/data/192/circle.png",
+		icon: "/data/192/circle.png",
 		options: {
 			"Save Changes": function (p) {}
 		},

@@ -1,7 +1,7 @@
 module.exports = function () {
 	return {
 		name: "Clock",
-		icon: "/app/data/192/clock-2.png",
+		icon: "/data/192/clock-2.png",
 		options: {
 			"Clock": function (p) {},
 			"Alarm": function (p) {},

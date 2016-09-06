@@ -36,7 +36,7 @@
                 showEntry = true;
                 showTitleEntry = true;
                 container.setAttribute("class", "DataPane touch");
-				titleEntry.setAttribute("style", "background-image: url(/app/data/touch.png)");
+				titleEntry.setAttribute("style", "background-image: url(/data/touch.png)");
 				titleEntry.setAttribute("class", "titleEntry icon");
                 titleEntry.addEventListener("keypress", function (evt) {
                     if (evt.which == 13) {
@@ -47,7 +47,7 @@
 			case "mkdir":
                 showTitleEntry = true;
                 container.setAttribute("class", "DataPane mkdir");
-				titleEntry.setAttribute("style", "background-image: url(/app/data/mkdir.png);");
+				titleEntry.setAttribute("style", "background-image: url(/data/mkdir.png);");
 				titleEntry.setAttribute("class", "titleEntry icon");
                 titleEntry.addEventListener("keypress", function (evt) {
                     if (evt.which == 13) {
@@ -59,7 +59,7 @@
                 upload = document.createElement("input");
                 upload.setAttribute("type", "file");
                 upload.setAttribute("multiple", "multiple");
-				titleString = '<img src="/app/data/upload.png" title="Upload Files"><span>Upload Files</span>';
+				titleString = '<img src="/data/upload.png" title="Upload Files"><span>Upload Files</span>';
 				showTitle = true;
             break;
             case "view":
@@ -73,7 +73,7 @@
 				if (!! data.icon) {
 					titleEntry.setAttribute("style", "background-image: url("+data.icon+");");
 				} else {
-					titleEntry.setAttribute("style", "background-image: url(/app/data/text2.png);");
+					titleEntry.setAttribute("style", "background-image: url(/data/text2.png);");
 				}
 				titleEntry.setAttribute("class", "titleEntry icon");
 

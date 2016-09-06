@@ -13,7 +13,7 @@ build() {
  echo "browserify $(pwd)/src/js/app.js"
  browserify -d -e src/js/app.js -t babelify -o "$dist/js/app.js" -v
 
- #echo "myth $(pwd)/app/src/css/app.css"
+ #echo "myth $(pwd)/data/src/css/app.css"
  #myth app/src/css/app.css "app/dist/css/app.css"
 
  #echo "copy echo $(pwd)/public"

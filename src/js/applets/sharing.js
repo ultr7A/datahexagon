@@ -5,7 +5,7 @@
 module.exports = function () {
 	return {
 		name: "Sharing",
-		icon: "/app/data/192/share.png",
+		icon: "/data/192/share.png",
 		view: null,
 		menu: null,
 		sidebar: null,

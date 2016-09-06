@@ -1,7 +1,7 @@
 module.exports = function () {
 	return {
 		name: "3D Editor",
-		icon: "/app/data/192/cube.png",
+		icon: "/data/192/cube.png",
 		options: {
 			"Save Changes": function (p) {}
 		},
