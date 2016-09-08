@@ -20,9 +20,7 @@ module.exports = function () {
 			}
 		},
 		init: function (p) {
-			if(confirm("App not implemented.\nFurthermore, development of all but the core Datahexagon desktop has diverted to project Pylon.\nFeel like trying something new?")) {
-				window.location.href = "https://vpylon.net";
-			}
+			alert("App not implemented\nContact openspacehexagon@gmail.com for more info.")
 		},
 		add: function (p) {},
 		save: function (p) {},
