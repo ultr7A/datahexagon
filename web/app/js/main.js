@@ -694,6 +694,7 @@ document.addEventListener("DOMContentLoaded", init, false);
 function animate () {
 	var camera = three.camera;
     requestAnimationFrame(animate);
+	camera.position.set(-16, -16.5, 12-0.5 * Math.sin(Date.now()/1600));
 	if (!! world.skybox) {
 		world.skybox.position.set(camera.position.x, camera.position.y, camera.position.z);
 	}
