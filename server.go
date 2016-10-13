@@ -11,41 +11,50 @@ import (
 func handleAPI(w http.ResponseWriter, r *http.Request) {
 	_, filename, _, _ := runtime.Caller(1)
 	switch r.Method {
-	//GET needs to do a directory listing...
-
-	case "GET":
 
 	case "POST":
-		//get the multipart reader for the request.
-		reader, err := r.MultipartReader()
+		//filePath := r.URL.Query().Get("path")
+		operation := r.URL.Query().Get("dataOperation")
+		// username := r.URL.Query().Get("username")
+		// password := r.URL.Query().Get("password")
+		if len(operation) != 0 {
+		    switch operation {
+			case "ls":
 
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
+			case "mkdir":
+
+			case "upload":
+				reader, err := r.MultipartReader() //get the multipart reader for the request.
+				if err != nil {
+					http.Error(w, err.Error(), http.StatusInternalServerError)
+					return
+				}
+				for { //copy each part to destination.
+					part, err := reader.NextPart()
+					if err == io.EOF {
+						break
+					}
+					if part.FileName() == "" {
+						continue
+					}
+					dst, err := os.Create(path.Join(path.Dir(filename), "/data/", part.FileName() ))
+					defer dst.Close()
+					if err != nil {
+						http.Error(w, err.Error(), http.StatusInternalServerError)
+						return
+					}
+					if _, err := io.Copy(dst, part); err != nil {
+						http.Error(w, err.Error(), http.StatusInternalServerError)
+						return
+					}
+				}
+			case "touch":
+
+			}
+		} else {
+			w.WriteHeader(http.StatusMethodNotAllowed)
 		}
 
-		//copy each part to destination.
-		for {
-			part, err := reader.NextPart()
-			if err == io.EOF {
-				break
-			}
-			if part.FileName() == "" {
-				continue
-			}
-			dst, err := os.Create(path.Join(path.Dir(filename), "/data/", part.FileName() ))
-			defer dst.Close()
-
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-				return
-			}
-
-			if _, err := io.Copy(dst, part); err != nil {
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-				return
-			}
-		}
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	}
